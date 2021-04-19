@@ -10,3 +10,26 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Org metadata
+**Custom_Object__c**
+**/components/Site**
+**/classes/Change**
+**/classes/Forgot**
+**/classes/MyProfile**
+**/classes/Site**
+**/pages/Answers**
+**/pages/Bandwidth**
+**/pages/Change**
+**/pages/Exception**
+**/pages/File**
+**/pages/Forgot**
+**/pages/Ideas**
+**/pages/InMaintenance**
+**/pages/MyProfile**
+**/pages/Site**
+**/pages/Std**
+**/pages/Unauthorized**
+**/pages/Under**
+**/profiles/**
+**/staticresources/SiteSamples**
