@@ -33,3 +33,6 @@ package.xml
 **/pages/Under**
 **/profiles/**
 **/staticresources/SiteSamples**
+**/lwc**
+**/layouts**
+**/applications**
