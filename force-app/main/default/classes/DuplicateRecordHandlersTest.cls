@@ -66,7 +66,6 @@ public class DuplicateRecordHandlersTest {
 		l.Email = 'jdoe@td.com';
 		l.Company = 'TD';
 		return l;
-
 	}
 
 	@isTest
@@ -75,7 +74,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Account a = setupAccounts(1)[0];
 
 		Database.DMLOptions insertDML = new Database.DMLOptions();
@@ -93,7 +92,7 @@ public class DuplicateRecordHandlersTest {
 		insert drisToInsert;
 
 		System.debug('We now have ' + [SELECT Count() FROM DuplicateRecordItem] + ' duplicaterecoritems');
-		test.stopTest();
+
 
 		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
@@ -103,10 +102,9 @@ public class DuplicateRecordHandlersTest {
 		for(DuplicateRecordItem dri : driList){
 			System.assertEquals('Account', dri.Object_Type__c);
 		}
-		List<Account> primary = [SELECT Id FROM Account WHERE Id = :a.Id];
-		List<Account> secondaries = [SELECT Id FROM Account WHERE Id != :a.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		//System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet]);
+
+		Test.stopTest();
+		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
@@ -115,7 +113,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Account a = setupAccounts(1)[0];
 
 		Database.DMLOptions insertDML = new Database.DMLOptions();
@@ -140,9 +138,54 @@ public class DuplicateRecordHandlersTest {
 		List<Account> primary = [SELECT Id FROM Account WHERE Id = :a.Id];
 		List<Account> secondaries = [SELECT Id FROM Account WHERE Id != :a.Id];
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		test.stopTest();
+
+		Test.stopTest();
 
 		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+	}
+
+	@isTest
+	private static void dupeAccountsUpdate(){
+		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Account_Duplicate_Rule' LIMIT 1];
+		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
+		insert dupRS;
+
+		Test.startTest();
+		List<Account> dupeAccts = setupAccounts(2);
+		Account a = dupeAccts[0];
+		Account b = dupeAccts[1];
+
+		Database.DMLOptions insertDML = new Database.DMLOptions();
+		insertDML.DuplicateRuleHeader.AllowSave = true;
+		List<Database.SaveResult> srList = Database.insert(dupeAccts, insertDML);
+
+		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
+		for(Account ac : [SELECT Id FROM Account]){
+			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
+			drisToInsert.add(dup);
+		}
+		insert drisToInsert;
+
+		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
+		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
+		System.assertEquals('Account', drsList[0].Object_Type__c); // can't know this because we are creating it manually
+
+		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By__c FROM DuplicateRecordItem];
+
+
+		driList[0].Object_Type__c = null;
+		update driList;
+
+		Test.stopTest();
+
+		for(DuplicateRecordItem dri : [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By__c FROM DuplicateRecordItem]){
+			System.assertEquals('Account', dri.Object_Type__c);
+			System.assertNotEquals(null, dri.Created_Date__c);
+			System.assertNotEquals(null, dri.Created_By__c);
+		}
+
+		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');
+		System.assertEquals(3, [SELECT Count() FROM DuplicateRecordItem], 'Three dupes not caught');
 	}
 
 
@@ -154,7 +197,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Account a = [SELECT Id FROM Account][0];
 		Contact c = setupContact(a.Id);
 
@@ -168,7 +211,6 @@ public class DuplicateRecordHandlersTest {
 			drisToInsert.add(dup);
 		}
 		insert drisToInsert;
-		test.stopTest();
 
 		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
@@ -178,10 +220,9 @@ public class DuplicateRecordHandlersTest {
 		for(DuplicateRecordItem dri : driList){
 			System.assertEquals('Contact', dri.Object_Type__c);
 		}
-		List<Contact> primary = [SELECT Id FROM Contact WHERE Id = :c.Id];
-		List<Contact> secondaries = [SELECT Id FROM Contact WHERE Id != :c.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		//System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet]);
+
+		Test.stopTest();
+		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
@@ -190,7 +231,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Account a = [SELECT Id FROM Account][0];
 		Contact c = setupContact(a.Id);
 
@@ -216,7 +257,7 @@ public class DuplicateRecordHandlersTest {
 		List<Contact> primary = [SELECT Id FROM Contact WHERE Id = :c.Id];
 		List<Contact> secondaries = [SELECT Id FROM Contact WHERE Id != :c.Id];
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		test.stopTest();
+		Test.stopTest();
 
 		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
@@ -229,7 +270,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Lead l = setupLead();
 
 		Database.DMLOptions insertDML = new Database.DMLOptions();
@@ -247,7 +288,8 @@ public class DuplicateRecordHandlersTest {
 		insert drisToInsert;
 
 		System.debug('We now have ' + [SELECT Count() FROM DuplicateRecordItem] + ' duplicaterecoritems');
-		test.stopTest();
+
+		Test.stopTest();
 
 		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
@@ -257,10 +299,6 @@ public class DuplicateRecordHandlersTest {
 		for(DuplicateRecordItem dri : driList){
 			System.assertEquals('Lead', dri.Object_Type__c);
 		}
-		List<Lead> primary = [SELECT Id FROM Lead WHERE Id = :l.Id];
-		List<Lead> secondaries = [SELECT Id FROM Lead WHERE Id != :l.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		//System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
@@ -269,7 +307,7 @@ public class DuplicateRecordHandlersTest {
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
-		test.startTest();
+		Test.startTest();
 		Lead l = setupLead();
 
 		Database.DMLOptions insertDML = new Database.DMLOptions();
@@ -294,8 +332,11 @@ public class DuplicateRecordHandlersTest {
 		List<Lead> primary = [SELECT Id FROM Lead WHERE Id = :l.Id];
 		List<Lead> secondaries = [SELECT Id FROM Lead WHERE Id != :l.Id];
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
-		test.stopTest();
+
+		Test.stopTest();
 
 		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
+
+
 }

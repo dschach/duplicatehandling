@@ -37,64 +37,88 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 	}
 
 	private static void fillFields(List<DuplicateRecordItem> newRecords){
+
+		// Start by populating a lot of describe information. This is probably more code than your org needs
+		// because we are writing this to be extensible so it can handle any object with or without record types
+
 		Set<Id> recIDs = new Set<Id>();
+		//Set<String> prefixes = new Set<String>();
+		List<String> objectNames = new List<String>();
+
+
+		Map<String, Schema.DescribeSObjectResult> prefixToObject = new Map<String, Schema.DescribeSObjectResult>();
+		Map<String, Boolean> prefixToHasRecordType = new Map<String, Boolean>();
+		Map<Id, String> recordTypeIDsToNames = new Map<Id, String>();
+
 		for(DuplicateRecordItem dri : newRecords){
 			recIDs.add(dri.RecordId);
-		}
-		Map<Id, Account> accounts = new Map<Id, Account>([SELECT Id, Name, CreatedBy.Name, CreatedDate FROM Account WHERE Id IN :recIDs]);
-		Map<Id, Contact> contacts = new Map<Id, Contact>([SELECT Id, Name, AccountId, CreatedBy.Name, CreatedDate FROM Contact WHERE Id IN :recIDs]);
-		Map<Id, Lead> leads = new Map<Id, Lead>([SELECT Id, Name, CreatedBy.Name, CreatedDate FROM Lead WHERE Id IN :recIDs]);
-		for(DuplicateRecordItem dri : newRecords){
-			if(dri.RecordId.getSobjectType() == Schema.Account.SObjectType){
-				System.debug('DUPLICATE ACCOUNT');
-				dri.Object_Type__c = 'Account';
-				if(accounts.containsKey(dri.RecordId)){
-					Account a = accounts.get(dri.RecordId);
-					dri.Account__c = a.Id;
-					dri.Created_By__c = a.CreatedBy.Name;
-					dri.Created_Date__c = a.CreatedDate;
-				}
-			}
-			else if(dri.RecordId.getSobjectType() == Schema.Contact.SObjectType){
-				dri.Object_Type__c = 'Contact';
-				System.debug('DUPLICATE CONTACT');
-				if(contacts.containsKey(dri.RecordId)){
-					dri.Account__c = contacts.get(dri.RecordId).AccountId;
-					Contact c = contacts.get(dri.RecordId);
-					dri.Contact__c = c.Id;
-					dri.Created_By__c = c.CreatedBy.Name;
-					dri.Created_Date__c = c.CreatedDate;
-				}
-			}
-			else if(dri.RecordId.getSobjectType() == Schema.Lead.SObjectType){
-				dri.Object_Type__c = 'Lead';
-				System.debug('DUPLICATE CONTACT');
-				if(leads.containsKey(dri.RecordId)){
-					Lead c = leads.get(dri.RecordId);
-					dri.Lead__c = c.Id;
-					dri.Created_By__c = c.CreatedBy.Name;
-					dri.Created_Date__c = c.CreatedDate;
+			String prefix = ((String)dri.recordId).substring(0, 3);
+			System.debug('PREFIX: ' + prefix);
+			//prefixes.add(prefix);
+			if(!prefixToObject.containsKey(prefix)){
+				Schema.DescribeSObjectResult dsr = dri.RecordId.getSObjectType().getDescribe();
+				prefixToObject.put(prefix, dsr);
+
+				objectNames.add(dsr.getName());
+				System.debug('ObjectName: ' + dsr.getName());
+
+				Boolean hasRecordType = dri.RecordId.getSObjectType().getDescribe().fields.getMap().containsKey('recordtypeid');
+				prefixToHasRecordType.put(prefix, hasRecordType);
+				if(hasRecordType){
+					for(Schema.RecordTypeInfo rti : dsr.getRecordTypeInfos()){
+						recordTypeIDsToNames.put(rti.getRecordTypeId(), rti.getName());
+					}
 				}
 			}
 		}
 
-		/* Fill Object Types in separate loop to minimize describes */
-		/* TODO: Check if object has record types and fill that */
-		Map<String, Schema.DescribeSObjectResult> prefixToObject = new Map<String, Schema.DescribeSObjectResult>();
-		Set<String> recordIDs = new Set<String>();
-		for(DuplicateRecordItem dri : newRecords){
-			recordIDs.add(dri.RecordId);
-			String prefix = ((String)dri.recordId).substring(0, 3);
-			if(!prefixToObject.containsKey(prefix)){
-				Schema.DescribeSObjectResult dsr = dri.RecordId.getSObjectType().getDescribe();
-				prefixToObject.put(prefix, dsr);
+		// We are putting a SOQL query in a loop, but it's not a loop on the trigger records;
+		// it is a loop on the object types, so we will not hit any governor limits.
+		// In fact, it's a better practice than hard-coding loops for each possible object.
+
+		Map<Id, SObject> allDuplicateRecords = new Map<Id, SObject>();
+		for(String prefix : prefixToObject.keyset() ){
+
+			String objectName = prefixToObject.get(prefix).getName();
+			Boolean hasRT = prefixToHasRecordType.get(prefix);
+
+			String recordQuery = 'SELECT Id, CreatedDate, CreatedBy.Name';
+			if(objectName.equalsIgnoreCase('Contact')){
+				recordQuery += ', AccountId';
+			}
+			if(hasRT){
+				recordQuery += ', RecordTypeId';
+			}
+			recordQuery += ' FROM ' + objectName + ' WHERE Id IN :recIDs';
+			System.debug('Dupe record query ' + recordQuery);
+			for(SObject so : Database.query(recordQuery)){
+				allDuplicateRecords.put((Id)so.get('Id'), so);
 			}
 		}
+
 		for(DuplicateRecordItem dri : newRecords){
-			String prefix = ((String)dri.recordId).substring(0, 3);
-			if(prefixToObject.containsKey(prefix)){
-				Schema.DescribeSObjectResult dsr = prefixToObject.get(prefix);
-				dri.Object_Type__c = dsr.getName();
+
+			SObject dupeRecord = allDuplicateRecords.get(dri.RecordId);
+			String prefix = ((String)dri.RecordId).substring(0, 3);
+
+			dri.Object_Type__c = prefixToObject.get(prefix).getName();
+			dri.Created_By__c = (Id)(dupeRecord.get('CreatedById'));
+			dri.Created_Date__c = (DateTime)(dupeRecord.get('CreatedDate'));
+
+			// Handle RecordType objects
+			if( prefixToHasRecordType.containsKey(prefix) && prefixToHasRecordType.get(prefix) == true ){
+				dri.Record_Type__c = recordTypeIDsToNames.get((Id)dupeRecord.get('RecordTypeId'));
+			}
+
+			// Handle Account, Contact, Lead differently
+
+			if(dri.Object_Type__c.equalsIgnoreCase('Account')){
+				dri.Account__c = dri.RecordId;
+			} else if(dri.Object_Type__c.equalsIgnoreCase('Contact')){
+				dri.Contact__c = dri.RecordId;
+				dri.Account__c = (Id)(dupeRecord.get('AccountId'));
+			} else if(dri.Object_Type__c.equalsIgnoreCase('Lead')){
+				dri.Lead__c = dri.RecordId;
 			}
 		}
 	}

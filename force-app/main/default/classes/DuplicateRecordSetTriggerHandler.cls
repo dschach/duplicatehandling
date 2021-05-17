@@ -33,7 +33,7 @@ public without sharing class DuplicateRecordSetTriggerHandler {
 
 		Set<Id> toDelete = new Set<Id>();
 		for(DuplicateRecordSet drs : newRecords){
-			System.debug(drs.Name + ' has this many record: ' + drs.RecordCount);
+			System.debug(drs.Name + ' has this many records: ' + drs.RecordCount);
 			if(drs.RecordCount == 1){
 				toDelete.add(drs.Id);
 			}
@@ -44,7 +44,7 @@ public without sharing class DuplicateRecordSetTriggerHandler {
 				System.debug('Calling a FUTURE method to delete the DRS');
 				deleteSingleRecordSets(toDelete);
 			} else {
-				System.debug('DELETING ' + [SELECT Count() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
+				System.debug('Synchronously DELETING ' + [SELECT Count() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
 				delete [SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete];
 			}
 		}
