@@ -1,12 +1,21 @@
 # Duplicate Management Enhancements
 
-> This sample application is designed to run on the Salesforce Platform.
+> This application is designed to run on the Salesforce Platform.
 
 ## Table of contents
+
+-   [Quick Deploy](#quick-deploy): Fast, easy installation of this repository into any org.
 
 -   [Installing the app using a Scratch Org](#installing-the-app-using-a-scratch-org): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
 
 -   [Installing the app using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground): Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
+
+## Quick Deploy
+
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
 
 ## Installing the app using a Scratch Org
 
@@ -42,7 +51,7 @@
     sfdx force:source:push
     ```
 
-1. Assign the **recipes** permission set to the default user:
+1. Assign the **Duplicates Handler** permission set to the default user:
 
     ```
     sfdx force:user:permset:assign -n Duplicates_Handler

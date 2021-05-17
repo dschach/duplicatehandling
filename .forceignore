@@ -12,12 +12,19 @@ package.xml
 **/__tests__/**
 
 # Org metadata
-**/Custom_Object**
-**/components/Site**
+**/applications**
 **/classes/Change**
 **/classes/Forgot**
 **/classes/MyProfile**
 **/classes/Site**
+**/components/Site**
+**/layouts/Global*
+**/lwc
+**/lwc**
+**/objects/**/recordTypes
+**/objects/Account
+**/objects/Contact
+**/objects/Lead
 **/pages/Answers**
 **/pages/Bandwidth**
 **/pages/Change**
@@ -31,8 +38,9 @@ package.xml
 **/pages/Std**
 **/pages/Unauthorized**
 **/pages/Under**
-**/profiles/**
+**/profiles
+**/settings
+**/sites
+**/standardValueSets
 **/staticresources/SiteSamples**
-**/lwc**
-**/layouts**
-**/applications**
+**quickActions**
