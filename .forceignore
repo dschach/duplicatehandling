@@ -17,6 +17,7 @@ package.xml
 **/classes/Forgot**
 **/classes/MyProfile**
 **/classes/Site**
+**/duplicateRules
 **/components/Site**
 **/layouts/Global*
 **/lwc

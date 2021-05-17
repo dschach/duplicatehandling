@@ -38,6 +38,7 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 # Org Metadata
+**/duplicateRules
 **/profiles/Admin**
 **/sites/
 **/staticresources/SiteSamples*
