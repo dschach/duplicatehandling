@@ -18,6 +18,10 @@
                 <behavior>Readonly</behavior>
                 <field>RecordCount</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Latest_Created_Date__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
