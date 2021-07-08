@@ -27,7 +27,7 @@
 * Ver       Date            Author        Modification
 * 1.0    04/19/2021   David Schach     Initial Version
 **/
-public inherited sharing class DuplicateRecordItemTriggerHandler {
+public without sharing class DuplicateRecordItemTriggerHandler {
 
 	public static void handleTrigger(List<DuplicateRecordItem> newRecords, List<DuplicateRecordItem> oldRecords, Map<Id, DuplicateRecordItem> newRecordsMap, Map<Id, DuplicateRecordItem> oldRecordsMap, System.TriggerOperation triggerEvent) {
 		System.debug('IN DUPLICATE RECORD ITEM TRIGGER HANDLER ' + triggerEvent.name());
@@ -126,6 +126,8 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 			// Handle RecordType objects
 			if( prefixToHasRecordType.containsKey(prefix) && prefixToHasRecordType.get(prefix) == true ){
 				dri.Record_Type__c = recordTypeIDsToNames.get((Id)dupeRecord.get('RecordTypeId'));
+			} else {
+				dri.Record_Type__c = null;
 			}
 
 			// Handle Account, Contact, Lead differently

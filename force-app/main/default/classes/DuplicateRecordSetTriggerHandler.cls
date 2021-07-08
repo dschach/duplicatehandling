@@ -29,6 +29,7 @@
  * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
 **/
 public without sharing class DuplicateRecordSetTriggerHandler {
+
     public static void handleTrigger(List<DuplicateRecordSet> newRecords, List<DuplicateRecordSet> oldRecords, Map<Id, DuplicateRecordSet> newRecordsMap, Map<Id, DuplicateRecordSet> oldRecordsMap, System.TriggerOperation triggerEvent) {
 		System.debug('IN DUPLICATE RECORD SET TRIGGER HANDLER ' + triggerEvent.name());
 		switch on triggerEvent {
