@@ -4,6 +4,7 @@
 	"country": "US",
 	"language": "en_US",
 	"features": ["EnableSetPasswordInApi"],
+	"hasSampleData": true,
 	"settings": {
 		"lightningExperienceSettings": {
 			"enableS1DesktopEnabled": true
