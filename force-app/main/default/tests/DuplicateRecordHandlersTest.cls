@@ -188,7 +188,7 @@ public class DuplicateRecordHandlersTest {
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
 		System.assertEquals('Account', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
-		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By__c FROM DuplicateRecordItem];
+		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By_Name__c FROM DuplicateRecordItem];
 
 
 		driList[0].Object_Type__c = null;
@@ -196,10 +196,10 @@ public class DuplicateRecordHandlersTest {
 
 		Test.stopTest();
 
-		for(DuplicateRecordItem dri : [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By__c FROM DuplicateRecordItem]){
+		for(DuplicateRecordItem dri : [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By_Name__c FROM DuplicateRecordItem]){
 			System.assertEquals('Account', dri.Object_Type__c);
 			System.assertNotEquals(null, dri.Created_Date__c);
-			System.assertNotEquals(null, dri.Created_By__c);
+			System.assertNotEquals(null, dri.Created_By_Name__c);
 		}
 
 		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sfdx force:org:create -f config/project-scratch-def.json --durationdays 7 -a ActionPlans -s
+sfdx force:org:create -f config/project-scratch-def.json --durationdays 10 -a DuplicatesHandler -s
 
 sfdx force:source:push
 

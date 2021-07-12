@@ -106,7 +106,7 @@
         <fields>Name</fields>
         <fields>Record</fields>
         <fields>Created_Date__c</fields>
-        <fields>Created_By__c</fields>
+        <fields>Created_By_Name__c</fields>
         <relatedList>DuplicateRecordItem</relatedList>
         <sortField>Record</sortField>
         <sortOrder>Asc</sortOrder>

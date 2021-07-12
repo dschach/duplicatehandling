@@ -100,7 +100,7 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 			String objectName = prefixToObject.get(prefix).getName();
 			Boolean hasRT = prefixToHasRecordType.get(prefix);
 
-			String recordQuery = 'SELECT Id, CreatedDate, CreatedBy.Name';
+			String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
 			if(objectName.equalsIgnoreCase('Contact')){
 				recordQuery += ', AccountId';
 			}
@@ -120,7 +120,12 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 			String prefix = ((String)dri.RecordId).substring(0, 3);
 
 			dri.Object_Type__c = prefixToObject.get(prefix).getName();
-			dri.Created_By__c = (Id)(dupeRecord.get('CreatedById'));
+			String cbString = JSON.serializePretty(dupeRecord);
+			System.debug(JSON.serializePretty(dupeRecord));
+			Map<String, Object> cb = (Map<String, Object>)JSON.deserializeUntyped(cbString);
+			Map<String, Object> createdBy = (Map<String, Object>)cb.get('CreatedBy');
+			System.debug('createdBy ' + createdBy);
+			dri.Created_By_Name__c = (String)createdBy.get('Name');
 			dri.Created_Date__c = (DateTime)(dupeRecord.get('CreatedDate'));
 
 			// Handle RecordType objects

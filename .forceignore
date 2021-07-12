@@ -51,6 +51,6 @@ package.xml
 **/objects/Account
 
 # Prevent org changes from populating project
-DuplicateRecordSet-Duplicate Record Set Layout.layout
 *.duplicateRule
 *.listView
+*.profile
