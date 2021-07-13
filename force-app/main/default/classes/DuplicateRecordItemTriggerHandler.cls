@@ -34,13 +34,13 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		switch on triggerEvent {
 
 			when BEFORE_INSERT {
-				fillFields(newRecords);
+				assortDuplicateItems(newRecords);
 			}
 			when AFTER_INSERT {
 				updateDuplicateRecordSet(newRecords);
 			}
 			when BEFORE_UPDATE {
-				fillFields(newRecords);
+				assortDuplicateItems(newRecords);
 			}
 			// NOT listed in trigger. To use this, update trigger contexts.
 			when AFTER_UPDATE {
@@ -54,14 +54,27 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		}
 	}
 
-	private static void fillFields(List<DuplicateRecordItem> newRecords){
+	private static void assortDuplicateItems(List<DuplicateRecordItem> newRecords){
+
+		Set<Id> recIDs = new Set<Id>();
+		for(DuplicateRecordItem dri : newRecords){
+			recIDs.add(dri.RecordId);
+			dri.Object_Type__c = dri.RecordId.getSObjectType().getDescribe().getName();
+		}
+
+		handleAccounts(newRecords, recIDs);
+		handleContacts(newRecords, recIDs);
+		handleLeads(newRecords, recIDs);
+
+	}
+
+	/* private static void fillFields(List<DuplicateRecordItem> newRecords){
 
 		// Start by populating a lot of describe information. This is probably more code than your org needs
 		// because we are writing this to be extensible so it can handle any object with or without record types
 
 		Set<Id> recIDs = new Set<Id>();
-		//Set<String> prefixes = new Set<String>();
-		List<String> objectNames = new List<String>();
+		//List<String> objectNames = new List<String>();
 
 
 		Map<String, Schema.DescribeSObjectResult> prefixToObject = new Map<String, Schema.DescribeSObjectResult>();
@@ -77,8 +90,8 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 				Schema.DescribeSObjectResult dsr = dri.RecordId.getSObjectType().getDescribe();
 				prefixToObject.put(prefix, dsr);
 
-				objectNames.add(dsr.getName());
-				System.debug('ObjectName: ' + dsr.getName());
+				//objectNames.add(dsr.getName());
+				//System.debug('ObjectName: ' + dsr.getName());
 
 				Boolean hasRecordType = dri.RecordId.getSObjectType().getDescribe().fields.getMap().containsKey('recordtypeid');
 				prefixToHasRecordType.put(prefix, hasRecordType);
@@ -125,6 +138,7 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 			Map<String, Object> cb = (Map<String, Object>)JSON.deserializeUntyped(cbString);
 			Map<String, Object> createdBy = (Map<String, Object>)cb.get('CreatedBy');
 			System.debug('createdBy ' + createdBy);
+			dri.Created_By__c = (Id)createdBy.get('Id');
 			dri.Created_By_Name__c = (String)createdBy.get('Name');
 			dri.Created_Date__c = (DateTime)(dupeRecord.get('CreatedDate'));
 
@@ -144,6 +158,98 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 				dri.Account__c = (Id)(dupeRecord.get('AccountId'));
 			} else if(dri.Object_Type__c.equalsIgnoreCase('Lead')){
 				dri.Lead__c = dri.RecordId;
+			}
+		}
+	} */
+
+	private static void handleAccounts(List<DuplicateRecordItem> newAccounts, Set<Id> recordIDs){
+
+		Schema.DescribeSObjectResult d = Schema.SObjectType.Account;
+		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+		Boolean hasRecordType = rtMapById.size() > 1;
+
+		String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
+		if(hasRecordType){
+			recordQuery += ', RecordTypeId, RecordType.Name';
+		}
+		recordQuery += ' FROM Account WHERE Id IN :recordIDs';
+
+		Map<Id, Account> duplicateAccounts = new Map<Id, Account>((List<Account>)Database.query(recordQuery));
+
+		for(DuplicateRecordItem dri : newAccounts){
+			if(duplicateAccounts.containsKey(dri.RecordId)){
+				Account a = duplicateAccounts.get(dri.RecordId);
+				dri.Account__c = a.Id;
+				dri.Created_By__c = a.CreatedById;
+				dri.Created_By_Name__c = a.CreatedBy.Name;
+				dri.Created_Date__c = a.CreatedDate;
+				if(hasRecordType){
+					Schema.RecordTypeInfo sri = rtMapById.get((Id)a.get('RecordTypeId'));
+					dri.Record_Type__c = sri.getName();
+				} else {
+					dri.Record_Type__c = null;
+				}
+			}
+		}
+	}
+
+	private static void handleContacts(List<DuplicateRecordItem> newContacts, Set<Id> recordIDs){
+		Schema.DescribeSObjectResult d = Schema.SObjectType.Contact;
+		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+		Boolean hasRecordType = rtMapById.size() > 1;
+
+		String recordQuery = 'SELECT Id, AccountId, CreatedDate, CreatedById, CreatedBy.Name';
+		if(hasRecordType){
+			recordQuery += ', RecordTypeId, RecordType.Name';
+		}
+		recordQuery += ' FROM Contact WHERE Id IN :recordIDs';
+
+		Map<Id, Contact> duplicateContacts = new Map<Id, Contact>((List<Contact>)Database.query(recordQuery));
+
+		for(DuplicateRecordItem dri : newContacts){
+			if(duplicateContacts.containsKey(dri.RecordId)){
+				Contact c = duplicateContacts.get(dri.RecordId);
+				dri.Contact__c = c.Id;
+				dri.Account__c = c.AccountId;
+				dri.Created_By__c = c.CreatedById;
+				dri.Created_By_Name__c = c.CreatedBy.Name;
+				dri.Created_Date__c = c.CreatedDate;
+				if(hasRecordType){
+					Schema.RecordTypeInfo sri = rtMapById.get((Id)c.get('RecordTypeId'));
+					dri.Record_Type__c = sri.getName();
+				} else {
+					dri.Record_Type__c = null;
+				}
+			}
+		}
+	}
+
+	private static void handleLeads(List<DuplicateRecordItem> newLeads, Set<Id> recordIDs){
+		Schema.DescribeSObjectResult d = Schema.SObjectType.Lead;
+		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+		Boolean hasRecordType = rtMapById.size() > 1;
+
+		String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
+		if(hasRecordType){
+			recordQuery += ', RecordTypeId, RecordType.Name';
+		}
+		recordQuery += ' FROM Lead WHERE Id IN :recordIDs';
+
+		Map<Id, Lead> duplicateLeads = new Map<Id, Lead>((List<Lead>)Database.query(recordQuery));
+
+		for(DuplicateRecordItem dri : newLeads){
+			if(duplicateLeads.containsKey(dri.RecordId)){
+				Lead a = duplicateLeads.get(dri.RecordId);
+				dri.Lead__c = a.Id;
+				dri.Created_By__c = a.CreatedById;
+				dri.Created_By_Name__c = a.CreatedBy.Name;
+				dri.Created_Date__c = a.CreatedDate;
+				if(hasRecordType){
+					Schema.RecordTypeInfo sri = rtMapById.get((Id)a.get('RecordTypeId'));
+					dri.Record_Type__c = sri.getName();
+				} else {
+					dri.Record_Type__c = null;
+				}
 			}
 		}
 	}

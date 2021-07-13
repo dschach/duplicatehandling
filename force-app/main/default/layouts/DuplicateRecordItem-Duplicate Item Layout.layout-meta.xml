@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>Created_By_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Created_By__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -43,10 +47,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Record_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Created_By__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
