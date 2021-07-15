@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/dschach/duplicatehandling)
 [![codecov](https://codecov.io/gh/dschach/duplicatehandling/branch/main/graph/badge.svg?token=4353PVRMRH)](https://codecov.io/gh/dschach/duplicatehandling)
-[![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://img.shields.io/twitter/follow/dschach.svg?style=social)
+[![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://twitter.com/dschach)
 
 > This application is designed to run on the Salesforce Platform.
 
