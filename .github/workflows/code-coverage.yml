@@ -12,7 +12,7 @@ jobs:
     - name: Authenticate Dev Hub
       run: 'node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a DevHub -d'
     - name: Create Scratch Org
-      run: node_modules/sfdx-cli/bin/run force:org:create --targetdevhubusername DevHub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+      run: node_modules/sfdx-cli/bin/run force:org:create --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
     - name: Deploy source
       run: node_modules/sfdx-cli/bin/run force:source:push
     - name: Run Apex tests
