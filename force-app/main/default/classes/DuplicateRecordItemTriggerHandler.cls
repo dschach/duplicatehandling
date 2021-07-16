@@ -164,8 +164,7 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 
 	private static void handleAccounts(List<DuplicateRecordItem> newAccounts, Set<Id> recordIDs){
 
-		Schema.DescribeSObjectResult d = Schema.SObjectType.Account;
-		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+		Map<Id,Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Account.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
 		String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
@@ -194,8 +193,8 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 	}
 
 	private static void handleContacts(List<DuplicateRecordItem> newContacts, Set<Id> recordIDs){
-		Schema.DescribeSObjectResult d = Schema.SObjectType.Contact;
-		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+
+		Map<Id,Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Contact.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
 		String recordQuery = 'SELECT Id, AccountId, CreatedDate, CreatedById, CreatedBy.Name';
@@ -225,8 +224,8 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 	}
 
 	private static void handleLeads(List<DuplicateRecordItem> newLeads, Set<Id> recordIDs){
-		Schema.DescribeSObjectResult d = Schema.SObjectType.Lead;
-		Map<Id,Schema.RecordTypeInfo> rtMapById = d.getRecordTypeInfosById();
+
+		Map<Id,Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Lead.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
 		String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
