@@ -16,7 +16,7 @@ jobs:
     - name: Deploy source
       run: node_modules/sfdx-cli/bin/run force:source:push
     - name: assign permissions
-      run: sfdx force:user:permset:assign -n Duplicates_Handler
+      run: node_modules/sfdx-cli/bin/run force:user:permset:assign -n Duplicates_Handler
     - name: Run Apex tests
       run: node_modules/sfdx-cli/bin/run force:apex:test:run --codecoverage --resultformat human -d ./
     - name: Upload code coverage for Apex to Codecov.io
