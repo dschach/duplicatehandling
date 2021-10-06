@@ -121,8 +121,13 @@ public class DuplicateRecordHandlersTest {
 			System.assertEquals('Account', dri.Object_Type__c);
 		}
 
-		Test.stopTest();
 		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet]);
+
+		delete [SELECT Id FROM DuplicateRecordItem LIMIT 1];
+
+		Test.stopTest();
+
+		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
