@@ -1,5 +1,5 @@
 /**
-	Duplicate Handling helper code
+    Duplicate Handling helper code
     Copyright (C) 2021 David Schach
 
     This program is free software: you can redistribute it and/or modify
