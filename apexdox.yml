@@ -1,14 +1,14 @@
 engine:
   source:
     - path: "${workspaceFolder}/force-app/main/default/classes"
-      sourceUrl: https://github.com/dschach/record-types/tree/main/force-app/main/default/classes
+      sourceUrl: https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes
     - path: "${workspaceFolder}/force-app/main/default/tests"
-      sourceUrl: https://github.com/dschach/record-types/tree/main/force-app/main/default/tests
+      sourceUrl: https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/tests
   targetDirectory: "${workspaceFolder}/docs"
   #excludes:
   #  - "*Test.cls"
   title: Duplicate Record Handlers code documentation
-  subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/record-types">Duplicate Record Handlerss</a>
+  subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlerss</a>
   sortOrder: alpha
   cleanDir: true
   showTOCSnippets: true
