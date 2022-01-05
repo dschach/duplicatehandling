@@ -25,7 +25,7 @@
  * @author David Schach
  * @since 4/19/2021
  * @see DuplicateRecordHandlersTest
- * @group TriggerHandler
+ * @group TriggerHandlers
  */
 public without sharing class DuplicateRecordSetTriggerHandler {
 	
