@@ -1,4 +1,4 @@
-/**
+/*
 	Duplicate Handling helper code
     Copyright (C) 2021 David Schach
 
@@ -15,20 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-
-/**
- * @File Name          : DuplicateRecordHandlersTest.cls
- * @Description        :
- * @Author             : David Schach
- * @Group              :
- * @Last Modified By   : David Schach
- * @Last Modified On   : 11/13/2019, 12:42:09 PM
- * @Modification Log   :
+/*
  * Ver       Date            Author      		    Modification
- * 1.0    11/13/2019   David Schach     Initial Version
-**/
+ * 1.0    11/13/2019   David Schach    Initial Version
+ */
+/**
+ * @description Tests for DuplicateRecord trigger handlers
+ * @author David Schach
+ * @since 11/13/2019
+ * @group Test Classes
+ * @see DuplicateRecordItemTriggerHandler
+ * @see DuplicateRecordSetTriggerHandler
+ */
 @isTest
-public class DuplicateRecordHandlersTest {
+private class DuplicateRecordHandlersTest {
 
 	@TestSetup
 	static void makeData(){
