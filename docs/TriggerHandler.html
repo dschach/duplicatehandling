@@ -155,7 +155,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L574">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L611">
                         errorOutsideTriggerContext
                       </a></td>
                     <td>
@@ -187,7 +187,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L426">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L463">
                         handlerName
                       </a></td>
                     <td>
@@ -203,7 +203,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L47">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L53">
                         isTriggerExecuting
                       </a></td>
                     <td>
@@ -235,6 +235,22 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L40">
+                        showDebug
+                      </a></td>
+                    <td>
+                      <div class="attribute-signature">
+                        private static Boolean showDebug
+                      </div>
+                    </td>
+
+
+                    <td class="attribute-description">
+                      <code class="code-inline">true</code> if we include a debug statement for trigger entry and exit
+                    </td>
+                  </tr>
+                  <tr class="property ">
+                    <td class="attribute-name">
                       <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L34">
                         showLimits
                       </a></td>
@@ -251,7 +267,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L40">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L46">
                         triggerEvent
                       </a></td>
                     <td>
@@ -293,7 +309,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.TriggerHandler">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L60">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L67">
                       TriggerHandler()
                     </a>
                   </h4>
@@ -311,7 +327,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.TriggerHandler_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L69">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L76">
                       TriggerHandler(handlerName)
                     </a>
                   </h4>
@@ -579,6 +595,24 @@
                     </div>
                   </li>
                   <li class="method public">
+                    <a class="methods-toc__entry " href="#TriggerHandler.showDebug">
+                      showDebug ()
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Called in the trigger to force the class to debug trigger entry and exit with context. <br>This is only shown in Test context, to speed org performance
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#TriggerHandler.showDebug_1">
+                      showDebug (enabled)
+                    </a>
+
+                    <div class="methods-toc__description">
+                      Called in the trigger to force the class to debug trigger entry and exit with context. <br>Set to true to show entry and exit. <br>This is only shown in Test context, to speed org performance
+                    </div>
+                  </li>
+                  <li class="method public">
                     <a class="methods-toc__entry " href="#TriggerHandler.showLimits">
                       showLimits ()
                     </a>
@@ -609,7 +643,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="TriggerHandler.addToLoopCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L396">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L433">
                       addToLoopCount()
                     </a>
                   </h4>
@@ -639,7 +673,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.afterDelete">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L482">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L519">
                       afterDelete()
                     </a>
                   </h4>
@@ -657,7 +691,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.afterInsert">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L468">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L505">
                       afterInsert()
                     </a>
                   </h4>
@@ -675,7 +709,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.afterUndelete">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L489">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L526">
                       afterUndelete()
                     </a>
                   </h4>
@@ -693,7 +727,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.afterUpdate">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L475">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L512">
                       afterUpdate()
                     </a>
                   </h4>
@@ -711,7 +745,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.beforeDelete">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L461">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L498">
                       beforeDelete()
                     </a>
                   </h4>
@@ -729,7 +763,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.beforeInsert">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L448">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L485">
                       beforeInsert()
                     </a>
                   </h4>
@@ -747,7 +781,7 @@
                 <div class="method protected">
                   <h4 class="method-title " id="TriggerHandler.beforeUpdate">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L455">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L492">
                       beforeUpdate()
                     </a>
                   </h4>
@@ -765,7 +799,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.bypass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L163">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L169">
                       bypass(handlerName)
                     </a>
                   </h4>
@@ -793,7 +827,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.bypass_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L172">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L178">
                       bypass(handlerNames)
                     </a>
                   </h4>
@@ -817,7 +851,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.bypassAll">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L179">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L185">
                       bypassAll()
                     </a>
                   </h4>
@@ -835,7 +869,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.bypassList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L226">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L236">
                       bypassList()
                     </a>
                   </h4>
@@ -858,12 +892,12 @@
                   <div class="method-subtitle">
                     Example
                   </div>
-                  <pre class="code-example"><code> TriggerHandler.bypassList();</code></pre>
+                  <pre class="code-example"><code> List&lt;String&gt; bypassedHandlers = TriggerHandler.bypassList();</code></pre>
                 </div>
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearAllBypasses">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L242">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L252">
                       clearAllBypasses()
                     </a>
                   </h4>
@@ -885,7 +919,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearBypass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L191">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L197">
                       clearBypass(handlerName)
                     </a>
                   </h4>
@@ -913,7 +947,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearBypass_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L203">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L211">
                       clearBypass(handlersNames)
                     </a>
                   </h4>
@@ -936,12 +970,12 @@
                     Example
                   </div>
                   <pre class="code-example"><code> List&lt;String&gt; classList = [&#39;AccountTriggerHandler&#39;,&#39;ContactTriggerHandler&#39;]; 
- TriggerHandler.clearBypass(classList;</code></pre>
+ TriggerHandler.clearBypass(classList);</code></pre>
                 </div>
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearBypassList">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L263">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L273">
                       clearBypassList()
                     </a>
                   </h4>
@@ -963,7 +997,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearGlobalBypass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L253">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L263">
                       clearGlobalBypass()
                     </a>
                   </h4>
@@ -985,7 +1019,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.clearMaxLoopCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L153">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L159">
                       clearMaxLoopCount()
                     </a>
                   </h4>
@@ -1003,7 +1037,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="TriggerHandler.getHandlerName">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L435">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L472">
                       getHandlerName()
                     </a>
                   </h4>
@@ -1033,7 +1067,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.getLoopCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L322">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L359">
                       getLoopCount(handlerName)
                     </a>
                   </h4>
@@ -1063,7 +1097,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.isBypassed">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L215">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L225">
                       isBypassed(handlerName)
                     </a>
                   </h4>
@@ -1097,7 +1131,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.run">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L84">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L90">
                       run()
                     </a>
                   </h4>
@@ -1115,7 +1149,7 @@
                     Author
                   </div>
                   <div class="method-subtitle-description">
-                    Kevin O&#39;Hara David Schach
+                    Kevin O&#39;Hara, David Schach
                   </div>
                   <div class="method-subtitle">
                     Example
@@ -1125,7 +1159,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.setBypass">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L274">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L284">
                       setBypass(handlerName, desiredValue)
                     </a>
                   </h4>
@@ -1158,7 +1192,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.setMaxLoopCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L141">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L147">
                       setMaxLoopCount(max)
                     </a>
                   </h4>
@@ -1192,7 +1226,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="TriggerHandler.setTriggerContext">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L334">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L371">
                       setTriggerContext()
                     </a>
                   </h4>
@@ -1210,7 +1244,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="TriggerHandler.setTriggerContext_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L347">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L384">
                       setTriggerContext(opType, testMode)
                     </a>
                   </h4>
@@ -1243,9 +1277,61 @@
                   </div>
                 </div>
                 <div class="method public">
+                  <h4 class="method-title " id="TriggerHandler.showDebug">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L333">
+                      showDebug()
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Called in the trigger to force the class to debug trigger entry and exit with context. <br>This is only shown in Test context, to speed org performance
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static void showDebug()
+                  </div>
+                  <div class="method-subtitle">
+                    Example
+                  </div>
+                  <pre class="code-example"><code> new AccountSampleTriggerHandler.showDebug().showLimits().run();</code></pre>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="TriggerHandler.showDebug_1">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L345">
+                      showDebug(enabled)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Called in the trigger to force the class to debug trigger entry and exit with context. <br>Set to true to show entry and exit. <br>This is only shown in Test context, to speed org performance
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static void showDebug(Boolean enabled)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">enabled</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Boolean</code>
+                  </div>
+                  <div class="param-description">true to enable; false to disable</div>
+                  <div class="method-subtitle">
+                    See
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a href="javascript:void(0)" onclick="goToLocation('TriggerHandler.html#TriggerHandler.showDebug')">TriggerHandler.showDebug</a>
+                  </div>
+                </div>
+                <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.showLimits">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L301">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L311">
                       showLimits()
                     </a>
                   </h4>
@@ -1267,7 +1353,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.showLimits_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L312">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L322">
                       showLimits(enabled)
                     </a>
                   </h4>
@@ -1297,7 +1383,7 @@
                 <div class="method private">
                   <h4 class="method-title " id="TriggerHandler.validateRun">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L416">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L453">
                       validateRun()
                     </a>
                   </h4>
@@ -1338,7 +1424,7 @@
 
             <h2 class="class-title " id="TriggerHandler.LoopCount">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L498">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L535">
                 TriggerHandler.LoopCount
               </a>
             </h2>
@@ -1367,7 +1453,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L500">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L537">
                         count
                       </a></td>
                     <td>
@@ -1380,7 +1466,7 @@
                   </tr>
                   <tr class="property ">
                     <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L499">
+                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L536">
                         max
                       </a></td>
                     <td>
@@ -1419,7 +1505,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.LoopCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L505">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L542">
                       LoopCount()
                     </a>
                   </h4>
@@ -1437,7 +1523,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.LoopCount_1">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L515">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L552">
                       LoopCount(max)
                     </a>
                   </h4>
@@ -1513,7 +1599,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.exceeded">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L535">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L572">
                       exceeded()
                     </a>
                   </h4>
@@ -1537,7 +1623,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.getCount">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L551">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L588">
                       getCount()
                     </a>
                   </h4>
@@ -1561,7 +1647,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.getMax">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L543">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L580">
                       getMax()
                     </a>
                   </h4>
@@ -1585,7 +1671,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.increment">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L526">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L563">
                       increment()
                     </a>
                   </h4>
@@ -1609,7 +1695,7 @@
                 <div class="method public">
                   <h4 class="method-title " id="TriggerHandler.LoopCount.setMax">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L559">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L596">
                       setMax(max)
                     </a>
                   </h4>
@@ -1638,7 +1724,7 @@
 
             <h2 class="class-title " id="TriggerHandler.TriggerHandlerException">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L567">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/TriggerHandler.cls#L604">
                 TriggerHandler.TriggerHandlerException
               </a>
             </h2>

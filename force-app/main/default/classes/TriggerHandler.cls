@@ -35,6 +35,12 @@ public virtual class TriggerHandler {
 
 	@TestVisible
 	/**
+	 * `true` if we include a debug statement for trigger entry and exit
+	 */
+	private static Boolean showDebug;
+
+	@TestVisible
+	/**
 	 * the current triggerEvent of the trigger, overridable in tests
 	 * */
 	private System.TriggerOperation triggerEvent;
@@ -52,6 +58,7 @@ public virtual class TriggerHandler {
 		bypassedHandlers = new Set<String>();
 		globalBypass = false;
 		showLimits = false;
+		showDebug = false;
 	}
 
 	/**
@@ -76,8 +83,7 @@ public virtual class TriggerHandler {
 	/**
 	 * @description main method that will be called during execution
 	 * <br> See the sample trigger for the best way to set up your handler
-	 * @author Kevin O'Hara
-	 * @author David Schach
+	 * @author Kevin O'Hara, David Schach
 	 * @example
 	 * new AccountSampleTriggerHandler().run();
 	 */
@@ -87,6 +93,10 @@ public virtual class TriggerHandler {
 		}
 
 		addToLoopCount();
+
+		if (showDebug) {
+			System.debug(LoggingLevel.DEBUG, String.format('Entering {0}, fired {1}', new List<String>{ getHandlerName(), this.triggerEvent + '' })); // NOPMD
+		}
 
 		// dispatch to the correct handler method
 		switch on this.triggerEvent {
@@ -117,17 +127,13 @@ public virtual class TriggerHandler {
 			System.debug(
 				LoggingLevel.DEBUG,
 				String.format(
-					'{0} on {1} ({2}/{3} queries) and ({4}/{5} DML calls',
-					new List<String>{
-						this.triggerEvent + '',
-						getHandlerName(),
-						Limits.getQueries() + '',
-						Limits.getLimitQueries() + '',
-						Limits.getDmlStatements() + '',
-						Limits.getLimitDmlStatements() + ''
-					}
+					'{0} on {1} ({2}/{3} queries) and ({4}/{5} DML calls)',
+					new List<String>{ this.triggerEvent + '', getHandlerName(), Limits.getQueries() + '', Limits.getLimitQueries() + '', Limits.getDmlStatements() + '', Limits.getLimitDmlStatements() + '' }
 				)
 			); // NOPMD
+		}
+		if (showDebug) {
+			System.debug(LoggingLevel.DEBUG, String.format('Exiting {0}, fired {1}', new List<String>{ getHandlerName(), this.triggerEvent + '' })); // NOPMD
 		}
 	}
 
@@ -189,7 +195,9 @@ public virtual class TriggerHandler {
 	 * TriggerHandler.clearBypass('AccountSampleTriggerHandler')
 	 */
 	public static void clearBypass(String handlerName) {
-		TriggerHandler.bypassedHandlers.remove(handlerName);
+		if (TriggerHandler.bypassedHandlers.contains(handlerName)) {
+			TriggerHandler.bypassedHandlers.remove(handlerName);
+		}
 	}
 
 	/**
@@ -198,10 +206,12 @@ public virtual class TriggerHandler {
 	 * @param handlersNames
 	 * @example
 	 * List<String> classList = ['AccountTriggerHandler','ContactTriggerHandler'];
-	 * TriggerHandler.clearBypass(classList;
+	 * TriggerHandler.clearBypass(classList);
 	 */
 	public static void clearBypass(List<String> handlersNames) {
-		TriggerHandler.bypassedHandlers.removeAll(handlersNames);
+		for (String s : handlersNames) {
+			clearBypass(s);
+		}
 	}
 
 	/**
@@ -221,7 +231,7 @@ public virtual class TriggerHandler {
 	 *
 	 * @return      `List<String>`
 	 * @example
-	 * TriggerHandler.bypassList();
+	 * List<String> bypassedHandlers = TriggerHandler.bypassList();
 	 */
 	public static List<String> bypassList() {
 		List<String> bypasses = new List<String>(TriggerHandler.bypassedHandlers);
@@ -311,6 +321,33 @@ public virtual class TriggerHandler {
 	 */
 	public static void showLimits(Boolean enabled) {
 		showLimits = enabled;
+	}
+
+	// handle debugs
+	/**
+	 * @description Called in the trigger to force the class to debug trigger entry and exit with context.
+	 * <br>This is only shown in Test context, to speed org performance
+	 * @example
+	 * new AccountSampleTriggerHandler.showDebug().showLimits().run();
+	 */
+	public static void showDebug() {
+		showDebug(true);
+	}
+
+	/**
+	 * @description   Called in the trigger to force the class to debug trigger entry and exit with context.
+	 * <br>Set to true to show entry and exit.
+	 * <br>This is only shown in Test context, to speed org performance
+	 *
+	 * @param enabled true to enable; false to disable
+	 * @see TriggerHandler.showDebug[0]
+	 */
+	public static void showDebug(Boolean enabled) {
+		if (Test.isRunningTest()) {
+			showDebug = enabled;
+		} else {
+			showDebug = false;
+		}
 	}
 
 	/**

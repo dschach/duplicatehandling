@@ -19,6 +19,7 @@
  * Ver       Date            Author      		    Modification
  * 1.0    04/19/2021   David Schach     Initial Version
  * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * 2.0    01/17/2022   David Schach     New Trigger Handler
  */
 /**
  * Trigger Handler for `DuplicateRecordSet`
@@ -27,40 +28,36 @@
  * @see DuplicateRecordHandlersTest
  * @group TriggerHandlers
  */
-public without sharing class DuplicateRecordSetTriggerHandler {
-	
-	/**
-	 * @description         Handle all trigger records
-	 *
-	 * @param newRecords    Trigger.new
-	 * @param oldRecords    Trigger.old
-	 * @param newRecordsMap Trigger.newMap
-	 * @param oldRecordsMap Trigger.oldMap
-	 * @param triggerEvent  Trigger context enum
-	 */
-	public static void handleTrigger(
-		List<DuplicateRecordSet> newRecords,
-		List<DuplicateRecordSet> oldRecords,
-		Map<Id, DuplicateRecordSet> newRecordsMap,
-		Map<Id, DuplicateRecordSet> oldRecordsMap,
-		System.TriggerOperation triggerEvent
-	) {
-		System.debug('IN DUPLICATE RECORD SET TRIGGER HANDLER ' + triggerEvent.name());
-		switch on triggerEvent {
-			// NOT listed in trigger. To use these, update trigger contexts.
-			//when BEFORE_INSERT {}
-			//when AFTER_INSERT {}
-			//when BEFORE_UPDATE {}
-			//when BEFORE_DELETE {}
-			//when AFTER_DELETE {}
-			//when AFTER_UNDELETE {}
+public without sharing class DuplicateRecordSetTriggerHandler extends TriggerHandler {
+	private List<DuplicateRecordSet> newRecords;
+	//private List<DuplicateRecordSet> oldRecords;
+	//private Map<Id, DuplicateRecordSet> newRecordsMap;
+	//private Map<Id, DuplicateRecordSet> oldRecordsMap;
 
-			when AFTER_UPDATE {
-				findSingleRecordSets(newRecords);
-			}
-		}
+	/**
+	 * @description Constructor using super() method for faster performance
+	 * <br>We cast all four trigger collections - but don't use most, so they are commented
+	 */
+	public DuplicateRecordSetTriggerHandler() {
+		super('DuplicateRecordSetTriggerHandler');
+		this.newRecords = (List<DuplicateRecordSet>) Trigger.new;
+		//this.oldRecords = (List<DuplicateRecordSet>) Trigger.old;
+		//this.newRecordsMap = (Map<Id, DuplicateRecordSet>) Trigger.newMap;
+		//this.oldRecordsMap = (Map<Id, DuplicateRecordSet>) Trigger.oldMap;
 	}
 
+	/**
+	 * @description Override afterUpdate. We don't use any other contexts
+	 */
+	public override void afterUpdate() {
+		findSingleRecordSets(newRecords);
+	}
+
+	/**
+	 * @description      We find all sets with 1 item, and then we pass those to the delete methods
+	 *
+	 * @param newRecords Trigger.new
+	 */
 	public static void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
 		Set<Id> toDelete = new Set<Id>();
 		for (DuplicateRecordSet drs : newRecords) {
@@ -81,6 +78,11 @@ public without sharing class DuplicateRecordSetTriggerHandler {
 		}
 	}
 
+	/**
+	 * @description              Future delete all single-member record sets
+	 *
+	 * @param candidatesToDelete Ids of all record sets we want to delete (in future context, for performance)
+	 */
 	@future
 	public static void deleteSingleRecordSets(Set<Id> candidatesToDelete) {
 		System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
