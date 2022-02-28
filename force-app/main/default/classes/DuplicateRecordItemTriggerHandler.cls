@@ -19,33 +19,33 @@
 /*
  * Ver       Date            Author        Modification
  * 1.0    04/19/2021   David Schach     Initial Version
+ * 1.1    02/28/2022   David Schach     Static to instance trigger handler methods
  */
 /**
  * Trigger Handler for `DuplicateRecordItem`
- * @author David Schach
- * @since 4/19/2021
+ * @author {@link [David Schach](https://github.com/dschach)}
+ * @since 02/28/2022
  * @see DuplicateRecordHandlersTest
- * @group TriggerHandlers
+ * @group Duplicate Handlers
  */
-public without sharing class DuplicateRecordItemTriggerHandler {
-	
+public inherited sharing class DuplicateRecordItemTriggerHandler {
 	/**
-	 * @description         Handle all trigger records
+	 * Handle all trigger records
 	 *
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param newRecords    Trigger.new
 	 * @param oldRecords    Trigger.old
 	 * @param newRecordsMap Trigger.newMap
 	 * @param oldRecordsMap Trigger.oldMap
 	 * @param triggerEvent  Trigger context enum
 	 */
-	public static void handleTrigger(
+	public void handleTrigger(
 		List<DuplicateRecordItem> newRecords,
 		List<DuplicateRecordItem> oldRecords,
 		Map<Id, DuplicateRecordItem> newRecordsMap,
 		Map<Id, DuplicateRecordItem> oldRecordsMap,
 		System.TriggerOperation triggerEvent
 	) {
-		System.debug('IN DUPLICATE RECORD ITEM TRIGGER HANDLER ' + triggerEvent.name());
 		switch on triggerEvent {
 			when BEFORE_INSERT {
 				assortDuplicateItems(newRecords);
@@ -56,23 +56,30 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 			when BEFORE_UPDATE {
 				assortDuplicateItems(newRecords);
 			}
-			// NOT listed in trigger. To use this, update trigger contexts.
 			when AFTER_UPDATE {
 				updateDuplicateRecordSet(newRecords);
 			}
-			//when BEFORE_DELETE {}
 			when AFTER_DELETE {
 				updateDuplicateRecordSet(oldRecords);
 			}
-			//when AFTER_UNDELETE {}
 		}
 	}
 
-	private static void assortDuplicateItems(List<DuplicateRecordItem> newRecords) {
+	/**
+	 * Assign object type and then handle all records
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  newRecords Trigger.new
+	 */
+	private void assortDuplicateItems(List<DuplicateRecordItem> newRecords) {
+		Map<String, String> mapPrefixToObjectName = new Map<String, String>();
 		Set<Id> recIDs = new Set<Id>();
 		for (DuplicateRecordItem dri : newRecords) {
+			String recId = (String) dri.RecordId;
+			if (!mapPrefixToObjectName.containsKey(recId.left(3))) {
+				mapPrefixToObjectName.put(recId.left(3), dri.RecordId.getSObjectType().getDescribe().getName()); //NOPMD
+			}
 			recIDs.add(dri.RecordId);
-			dri.Object_Type__c = dri.RecordId.getSObjectType().getDescribe().getName();
+			dri.Object_Type__c = mapPrefixToObjectName.get(recId.left(3));
 		}
 
 		handleAccounts(newRecords, recIDs);
@@ -80,7 +87,13 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		handleLeads(newRecords, recIDs);
 	}
 
-	private static void handleAccounts(List<DuplicateRecordItem> newAccounts, Set<Id> recordIDs) {
+	/**
+	 * Handle Accounts (may be duplicated for any object)
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  newAccounts Trigger.new
+	 * @param  recordIDs   AccountIDs, which are technically in newAccounts, but included for simplicity
+	 */
+	private void handleAccounts(List<DuplicateRecordItem> newAccounts, Set<Id> recordIDs) {
 		Map<Id, Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Account.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
@@ -109,7 +122,13 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		}
 	}
 
-	private static void handleContacts(List<DuplicateRecordItem> newContacts, Set<Id> recordIDs) {
+	/**
+	 * Handle Contacts (may be duplicated for any object)
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param newContacts Trigger.new
+	 * @param recordIDs ContactIDs, which are technically in newContacts, but included for simplicity
+	 **/
+	private void handleContacts(List<DuplicateRecordItem> newContacts, Set<Id> recordIDs) {
 		Map<Id, Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Contact.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
@@ -139,7 +158,13 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		}
 	}
 
-	private static void handleLeads(List<DuplicateRecordItem> newLeads, Set<Id> recordIDs) {
+	/**
+	 * Handle Leads (may be duplicated for any object)
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param newLeads Trigger.new
+	 * @param recordIDs LeadIDs, which are technically in newLeads, but included for simplicity
+	 **/
+	private void handleLeads(List<DuplicateRecordItem> newLeads, Set<Id> recordIDs) {
 		Map<Id, Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Lead.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
@@ -168,10 +193,14 @@ public without sharing class DuplicateRecordItemTriggerHandler {
 		}
 	}
 
-	private static void updateDuplicateRecordSet(List<DuplicateRecordItem> newRecords) {
+	/**
+	 * Update the parent `DuplicateRecordItem` records
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param newRecords Trigger.new
+	 */
+	private void updateDuplicateRecordSet(List<DuplicateRecordItem> newRecords) {
 		Map<Id, DuplicateRecordSet> toUpdate = new Map<Id, DuplicateRecordSet>();
 		for (DuplicateRecordItem dri : newRecords) {
-			//String sObjectName = dri.RecordId.getSObjectType().getDescribe().getName();
 			DuplicateRecordSet drs = new DuplicateRecordSet(Id = dri.DuplicateRecordSetId);
 			drs.Object_Type__c = dri.Object_Type__c;
 			toUpdate.put(dri.DuplicateRecordSetId, drs);

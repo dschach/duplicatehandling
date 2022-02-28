@@ -17,17 +17,13 @@
 */
 
 /**
- * @File Name          : DuplicateRecordItemTrigger.trigger
- * @Description        :
- * @Author             : David Schach
- * @Group              :
- * @Last Modified By   : David Schach
- * @Last Modified On   : 04/19/2021
- * @Modification Log   :
+ * Trigger for DuplicateRecordItem
+ * @author {@link [David Schach](https://github.com/dschach)}
+ * @since 04/19/2021
  * Ver       Date            Author      		    Modification
  * 1.0    04/19/2021   David Schach     Initial Version
+ * 1.1    02/28/2022   David Schach     Static to instance trigger handler methods
  **/
 trigger DuplicateRecordItemTrigger on DuplicateRecordItem(before insert, before update, after insert, after update, after delete) {
-	System.debug('IN DUPLICATE RECORD ITEM TRIGGER');
-	DuplicateRecordItemTriggerHandler.handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
+	new DuplicateRecordItemTriggerHandler().handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
 }

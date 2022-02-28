@@ -18,20 +18,20 @@
 /*
  * Ver       Date            Author      		    Modification
  * 1.0    11/13/2019   David Schach    Initial Version
+ * 1.1    02/28/2022   David Schach    PMD-identified cleanup
  */
 /**
- * @description Tests for DuplicateRecord trigger handlers
- * @author David Schach
- * @since 11/13/2019
+ * Tests for DuplicateRecord trigger handlers
+ * @author {@link [David Schach](https://github.com/dschach)}
+ * @since 02/28/2022
  * @group Test Classes
  * @see DuplicateRecordItemTriggerHandler
  * @see DuplicateRecordSetTriggerHandler
  */
 @isTest
 private class DuplicateRecordHandlersTest {
-
 	@TestSetup
-	static void makeData(){
+	static void makeData() {
 		Account a = setupAccounts(1)[0];
 		insert a;
 		Contact c = setupContact(a.Id);
@@ -40,23 +40,22 @@ private class DuplicateRecordHandlersTest {
 		insert l;
 	}
 
-	static List<Account> setupAccounts(Integer acctCount){
+	static List<Account> setupAccounts(Integer acctCount) {
 		List<Account> accts = new List<Account>();
-		for(Integer i = 0; i < acctCount; i++){
-		Account a = new Account();
-		a.Name = 'TD';
-		a.Website = 'www.salesforce.com';
-		a.BillingCity = 'New York';
-		a.BillingPostalCode = '10027';
-		accts.add(a);
+		for (Integer i = 0; i < acctCount; i++) {
+			Account a = new Account();
+			a.Name = 'TD';
+			a.Website = 'www.salesforce.com';
+			a.BillingCity = 'New York';
+			a.BillingPostalCode = '10027';
+			accts.add(a);
 		}
-		//insert accts;
 		return accts;
 	}
 
-	static List<Contact> setupContacts(List<Account> accts){
+	static List<Contact> setupContacts(List<Account> accts) {
 		List<Contact> cons = new List<Contact>();
-		for(Account a : accts){
+		for (Account a : accts) {
 			Contact c = new Contact();
 			c.FirstName = 'John';
 			c.LastName = 'Smith';
@@ -64,11 +63,10 @@ private class DuplicateRecordHandlersTest {
 			c.AccountId = a.Id;
 			cons.add(c);
 		}
-		//insert cons;
 		return cons;
 	}
 
-	static Contact setupContact(Id acctId){
+	static Contact setupContact(Id acctId) {
 		Contact c = new Contact();
 		c.FirstName = 'John';
 		c.LastName = 'Smith';
@@ -77,7 +75,7 @@ private class DuplicateRecordHandlersTest {
 		return c;
 	}
 
-	static Lead setupLead(){
+	static Lead setupLead() {
 		Lead l = new Lead();
 		l.FirstName = 'James';
 		l.LastName = 'Doe';
@@ -87,7 +85,7 @@ private class DuplicateRecordHandlersTest {
 	}
 
 	@isTest
-	private static void dupeAccountsCreate(){
+	private static void dupeAccountsCreate() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Account_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -98,40 +96,37 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(a, insertDML);
-
-		System.debug('Account count: ' + [SELECT Count() FROM Account]);
+		System.assert(sr.isSuccess());
+		//System.debug('Account count: ' + [SELECT COUNT() FROM Account]);
 
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Account ac : [SELECT Id FROM Account]){
+		for (Account ac : [SELECT Id FROM Account]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
 			drisToInsert.add(dup);
 		}
-		System.debug('inserting this many duplicaterecorditems: ' + drisToInsert.size());
+		//System.debug('inserting this many duplicaterecorditems: ' + drisToInsert.size());
 		insert drisToInsert;
-
-		System.debug('We now have ' + [SELECT Count() FROM DuplicateRecordItem] + ' duplicaterecoritems');
-
 
 		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
 		System.assertEquals('Account', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Account', dri.Object_Type__c);
 		}
 
-		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet]);
+		System.assertEquals(1, [SELECT COUNT() FROM DuplicateRecordSet]);
 
 		delete [SELECT Id FROM DuplicateRecordItem LIMIT 1];
 
 		Test.stopTest();
 
-		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet]);
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
-	private static void dupeAccountsMerge(){
+	private static void dupeAccountsMerge() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Account_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -142,9 +137,9 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(a, insertDML);
-
+		System.assert(sr.isSuccess());
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Account ac : [SELECT Id FROM Account]){
+		for (Account ac : [SELECT Id FROM Account]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
 			drisToInsert.add(dup);
 		}
@@ -155,35 +150,33 @@ private class DuplicateRecordHandlersTest {
 		System.assertEquals('Account', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Account', dri.Object_Type__c);
 		}
 		List<Account> primary = [SELECT Id FROM Account WHERE Id = :a.Id];
 		List<Account> secondaries = [SELECT Id FROM Account WHERE Id != :a.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
+		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
 
-		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	@isTest
-	private static void dupeAccountsUpdate(){
+	private static void dupeAccountsUpdate() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Account_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
 
 		Test.startTest();
 		List<Account> dupeAccts = setupAccounts(2);
-		Account a = dupeAccts[0];
-		Account b = dupeAccts[1];
 
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
-		List<Database.SaveResult> srList = Database.insert(dupeAccts, insertDML);
+		List<Database.SaveResult> srList = Database.insert(dupeAccts, insertDML); //NOPMD
 
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Account ac : [SELECT Id FROM Account]){
+		for (Account ac : [SELECT Id FROM Account]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
 			drisToInsert.add(dup);
 		}
@@ -195,27 +188,25 @@ private class DuplicateRecordHandlersTest {
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By_Name__c FROM DuplicateRecordItem];
 
-
 		driList[0].Object_Type__c = null;
 		update driList;
 
 		Test.stopTest();
 
-		for(DuplicateRecordItem dri : [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By_Name__c FROM DuplicateRecordItem]){
+		for (DuplicateRecordItem dri : [SELECT Id, Object_Type__c, Account__c, Created_Date__c, Created_By_Name__c FROM DuplicateRecordItem]) {
 			System.assertEquals('Account', dri.Object_Type__c);
 			System.assertNotEquals(null, dri.Created_Date__c);
 			System.assertNotEquals(null, dri.Created_By_Name__c);
 		}
 
-		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');
-		System.assertEquals(3, [SELECT Count() FROM DuplicateRecordItem], 'Three dupes not caught');
+		System.assertEquals(1, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');
+		System.assertEquals(3, [SELECT COUNT() FROM DuplicateRecordItem], 'Three dupes not caught');
 	}
-
 
 	/* CONTACTS **************************** */
 
 	@isTest
-	private static void dupeContactsCreate(){
+	private static void dupeContactsCreate() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Contact_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -227,9 +218,9 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(c, insertDML);
-
+		System.assert(sr.isSuccess());
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Contact cc : [SELECT Id FROM Contact]){
+		for (Contact cc : [SELECT Id FROM Contact]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = cc.id);
 			drisToInsert.add(dup);
 		}
@@ -240,16 +231,16 @@ private class DuplicateRecordHandlersTest {
 		System.assertEquals('Contact', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Contact__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Contact', dri.Object_Type__c);
 		}
 
 		Test.stopTest();
-		System.assertEquals(1, [SELECT Count() FROM DuplicateRecordSet]);
+		System.assertEquals(1, [SELECT COUNT() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
-	private static void dupeContactsMerge(){
+	private static void dupeContactsMerge() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Contact_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -261,9 +252,9 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(c, insertDML);
-
+		System.assert(sr.isSuccess());
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Contact cc : [SELECT Id FROM Contact]){
+		for (Contact cc : [SELECT Id FROM Contact]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = cc.id);
 			drisToInsert.add(dup);
 		}
@@ -274,21 +265,21 @@ private class DuplicateRecordHandlersTest {
 		System.assertEquals('Contact', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Contact__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Contact', dri.Object_Type__c);
 		}
 		List<Contact> primary = [SELECT Id FROM Contact WHERE Id = :c.Id];
 		List<Contact> secondaries = [SELECT Id FROM Contact WHERE Id != :c.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
+		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 		Test.stopTest();
 
-		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	/* LEADS **************************** */
 
 	@isTest
-	private static void dupeLeadsCreate(){
+	private static void dupeLeadsCreate() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Lead_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -299,18 +290,18 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(l, insertDML);
-
-		System.debug('Lead count: ' + [SELECT Count() FROM Lead]);
+		System.assert(sr.isSuccess());
+		//System.debug('Lead count: ' + [SELECT COUNT() FROM Lead]);
 
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Lead ac : [SELECT Id FROM Lead]){
+		for (Lead ac : [SELECT Id FROM Lead]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
 			drisToInsert.add(dup);
 		}
-		System.debug('inserting this many duplicaterecorditems: ' + drisToInsert.size());
+		//System.debug('inserting this many duplicaterecorditems: ' + drisToInsert.size());
 		insert drisToInsert;
 
-		System.debug('We now have ' + [SELECT Count() FROM DuplicateRecordItem] + ' duplicaterecoritems');
+		//System.debug('We now have ' + [SELECT COUNT() FROM DuplicateRecordItem] + ' duplicaterecoritems');
 
 		Test.stopTest();
 
@@ -319,13 +310,13 @@ private class DuplicateRecordHandlersTest {
 		System.assertEquals('Lead', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Lead__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Lead', dri.Object_Type__c);
 		}
 	}
 
 	@isTest
-	private static void dupeLeadsMerge(){
+	private static void dupeLeadsMerge() {
 		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Lead_Duplicate_Rule' LIMIT 1];
 		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
 		insert dupRS;
@@ -336,9 +327,9 @@ private class DuplicateRecordHandlersTest {
 		Database.DMLOptions insertDML = new Database.DMLOptions();
 		insertDML.DuplicateRuleHeader.AllowSave = true;
 		Database.SaveResult sr = Database.insert(l, insertDML);
-
+		System.assert(sr.isSuccess());
 		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
-		for(Lead ac : [SELECT Id FROM Lead]){
+		for (Lead ac : [SELECT Id FROM Lead]) {
 			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
 			drisToInsert.add(dup);
 		}
@@ -349,17 +340,15 @@ private class DuplicateRecordHandlersTest {
 		System.assertEquals('Lead', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
 		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Lead__c FROM DuplicateRecordItem];
-		for(DuplicateRecordItem dri : driList){
+		for (DuplicateRecordItem dri : driList) {
 			System.assertEquals('Lead', dri.Object_Type__c);
 		}
 		List<Lead> primary = [SELECT Id FROM Lead WHERE Id = :l.Id];
 		List<Lead> secondaries = [SELECT Id FROM Lead WHERE Id != :l.Id];
-		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false);
+		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
 
-		System.assertEquals(0, [SELECT Count() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
-
-
 }
