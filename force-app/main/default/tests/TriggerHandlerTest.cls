@@ -191,15 +191,13 @@ private class TriggerHandlerTest {
 	}
 
 	/**
-	 * @description Test and show limits and debug
+	 * @description Test and show limits
 	 */
 	@isTest
 	private static void testBeforeInsertWithLimits() {
 		beforeInsertMode();
 		TriggerHandler.showLimits(false);
 		TriggerHandler.showLimits();
-		TriggerHandler.showDebug(false);
-		TriggerHandler.showDebug();
 		handler.run();
 		System.assert(TriggerHandler.showLimits, 'We should be showing limits'); //NOPMD
 		TriggerHandler.getLoopCount('TestHandler');

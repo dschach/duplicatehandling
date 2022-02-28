@@ -104,7 +104,7 @@
 
             <h2 class="class-title top-level-type" id="DuplicateRecordSetTriggerHandler">
 
-              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L31">
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L30">
                 DuplicateRecordSetTriggerHandler
               </a>
             </h2>
@@ -118,7 +118,7 @@
               </div>
 
               <div class="class-signature">
-                public without sharing class DuplicateRecordSetTriggerHandler extends TriggerHandler
+                public without sharing class DuplicateRecordSetTriggerHandler
               </div>
               <div class="class-subtitle">
                 See
@@ -127,125 +127,39 @@
                 <a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordHandlersTest.html')">DuplicateRecordHandlersTest</a>
               </div><br />David Schach<br />4/19/2021
             </div>
-            <div class="subsection properties DuplicateRecordSetTriggerHandler">
-              <h3 class="subsection-title properties">DuplicateRecordSetTriggerHandler Properties</h2>
-                <table class="attributes-table properties">
-
-                  <tr>
-                    <th>Name</th>
-                    <th>Signature</th>
-
-
-                  </tr>
-                  <tr class="property ">
-                    <td class="attribute-name">
-                      <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L32">
-                        newRecords
-                      </a></td>
-                    <td>
-                      <div class="attribute-signature">
-                        private List&lt;DuplicateRecordSet&gt; newRecords
-                      </div>
-                    </td>
-
-
-                  </tr>
-                </table>
-            </div>
-            <div class="subsection methods">
-              <h3 class="subsection-title methods">DuplicateRecordSetTriggerHandler Constructors</h3>
-              <div class="methods-container">
-                <ul class="methods-toc">
-                  <li class="method public">
-                    <a class="methods-toc__entry " href="#DuplicateRecordSetTriggerHandler.DuplicateRecordSetTriggerHandler">
-                      DuplicateRecordSetTriggerHandler ()
-                    </a>
-
-                    <div class="methods-toc__description">
-                      Constructor using super() method for faster performance <br>We cast all four trigger collections - but don&#39;t use most, so they are commented
-                    </div>
-                  </li>
-                </ul>
-                <div class="method public">
-                  <h4 class="method-title " id="DuplicateRecordSetTriggerHandler.DuplicateRecordSetTriggerHandler">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L41">
-                      DuplicateRecordSetTriggerHandler()
-                    </a>
-                  </h4>
-                  <div class="method-description">
-                    Constructor using super() method for faster performance <br>We cast all four trigger collections - but don&#39;t use most, so they are commented
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public DuplicateRecordSetTriggerHandler()
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="subsection methods">
               <h3 class="subsection-title methods">DuplicateRecordSetTriggerHandler Methods</h3>
               <div class="methods-container">
                 <ul class="methods-toc">
                   <li class="method public">
-                    <a class="methods-toc__entry " href="#DuplicateRecordSetTriggerHandler.afterUpdate">
-                      afterUpdate ()
-                    </a>
-
-                    <div class="methods-toc__description">
-                      Override afterUpdate. We don&#39;t use any other contexts
-                    </div>
-                  </li>
-                  <li class="method public">
                     <a class="methods-toc__entry " href="#DuplicateRecordSetTriggerHandler.deleteSingleRecordSets">
                       deleteSingleRecordSets (candidatesToDelete)
                     </a>
 
-                    <div class="methods-toc__description">
-                      Future delete all single-member record sets
-                    </div>
                   </li>
                   <li class="method public">
                     <a class="methods-toc__entry " href="#DuplicateRecordSetTriggerHandler.findSingleRecordSets">
                       findSingleRecordSets (newRecords)
                     </a>
 
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DuplicateRecordSetTriggerHandler.handleTrigger">
+                      handleTrigger (newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
+                    </a>
+
                     <div class="methods-toc__description">
-                      We find all sets with 1 item, and then we pass those to the delete methods
+                      Handle all trigger records
                     </div>
                   </li>
                 </ul>
                 <div class="method public">
-                  <h4 class="method-title " id="DuplicateRecordSetTriggerHandler.afterUpdate">
-
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L52">
-                      afterUpdate()
-                    </a>
-                  </h4>
-                  <div class="method-description">
-                    Override afterUpdate. We don&#39;t use any other contexts
-                  </div>
-                  <div class="method-subtitle">
-                    Signature
-                  </div>
-
-                  <div class="method-signature">
-                    public override void afterUpdate()
-                  </div>
-                </div>
-                <div class="method public">
                   <h4 class="method-title " id="DuplicateRecordSetTriggerHandler.deleteSingleRecordSets">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L87">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L85">
                       deleteSingleRecordSets(candidatesToDelete)
                     </a>
                   </h4>
-                  <div class="method-description">
-                    Future delete all single-member record sets
-                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
@@ -253,23 +167,14 @@
                   <div class="method-signature">
                     public static void deleteSingleRecordSets(Set&lt;Id&gt; candidatesToDelete)
                   </div>
-                  <div class="method-subtitle">Parameters</div>
-                  <div class="param-name">candidatesToDelete</div>
-                  <div class="param-type">
-                    Type: <code class="code-inline">Set&lt;Id&gt;</code>
-                  </div>
-                  <div class="param-description">Ids of all record sets we want to delete (in future context, for performance)</div>
                 </div>
                 <div class="method public">
                   <h4 class="method-title " id="DuplicateRecordSetTriggerHandler.findSingleRecordSets">
 
-                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L61">
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L64">
                       findSingleRecordSets(newRecords)
                     </a>
                   </h4>
-                  <div class="method-description">
-                    We find all sets with 1 item, and then we pass those to the delete methods
-                  </div>
                   <div class="method-subtitle">
                     Signature
                   </div>
@@ -277,12 +182,44 @@
                   <div class="method-signature">
                     public static void findSingleRecordSets(List&lt;DuplicateRecordSet&gt; newRecords)
                   </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="DuplicateRecordSetTriggerHandler.handleTrigger">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L41">
+                      handleTrigger(newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Handle all trigger records
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public static void handleTrigger( List&lt;DuplicateRecordSet&gt; newRecords, List&lt;DuplicateRecordSet&gt; oldRecords, Map&lt;Id, DuplicateRecordSet&gt; newRecordsMap, Map&lt;Id, DuplicateRecordSet&gt; oldRecordsMap, System.TriggerOperation triggerEvent )
+                  </div>
                   <div class="method-subtitle">Parameters</div>
                   <div class="param-name">newRecords</div>
                   <div class="param-type">
-                    Type: <code class="code-inline">List&lt;DuplicateRecordSet&gt;</code>
+                    Type: <code class="code-inline">		List&lt;DuplicateRecordSet&gt;</code>
                   </div>
-                  <div class="param-description">Trigger.new</div>
+                  <div class="param-description"> Trigger.new</div>
+                  <div class="param-name">oldRecords</div>
+                  <div class="param-description"> Trigger.old</div>
+                  <div class="param-name">newRecordsMap</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">DuplicateRecordSet&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.newMap</div>
+                  <div class="param-name">oldRecordsMap</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">DuplicateRecordSet&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.oldMap</div>
+                  <div class="param-name">triggerEvent</div>
+                  <div class="param-description"> Trigger context enum</div>
                 </div>
               </div>
             </div>

@@ -24,24 +24,16 @@
 		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
 		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
-		"neworg": ". scripts/orginit.sh",
-		"init": ". scripts/initialize.sh",
+		"init": ". scripts/orginit.sh",
 		"prepare": "husky install"
 	},
 	"devDependencies": {
-		"@lwc/eslint-plugin-lwc": "^1.1.1",
 		"@prettier/plugin-xml": "^0.12.0",
-		"@salesforce/eslint-config-lwc": "^3.2.1",
-		"@salesforce/eslint-plugin-aura": "^2.0.0",
-		"@salesforce/eslint-plugin-lightning": "^1.0.0",
-		"eslint-config-prettier": "^6.15.0",
-		"eslint-plugin-import": "^2.25.4",
-		"eslint-plugin-jest": "^25.7.0",
-		"eslint-plugin-prettier": "^4.0.0",
-		"husky": "^7.0.4",
+		"eslint-config-prettier": "^6.11.0",
+		"husky": "^7.0.0",
 		"lint-staged": "^10.0.7",
-		"prettier": "^2.5.1",
-		"prettier-plugin-apex": "^1.10.0"
+		"prettier": "^2.0.5",
+		"prettier-plugin-apex": "^1.6.0"
 	},
 	"lint-staged": {
 		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [

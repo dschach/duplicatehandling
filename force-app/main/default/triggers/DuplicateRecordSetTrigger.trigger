@@ -16,7 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-trigger DuplicateRecordSetTrigger on DuplicateRecordSet(after update) {
-	new DuplicateRecordSetTriggerHandler().run();
-	//DuplicateRecordSetTriggerHandler.handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
+trigger DuplicateRecordSetTrigger on DuplicateRecordSet (after update) {
+
+    DuplicateRecordSetTriggerHandler.handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
+
 }

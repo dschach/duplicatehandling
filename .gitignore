@@ -13,8 +13,7 @@
 coverage/
 
 # SOQL & Apex
-scripts/soql
-scripts/apex
+**/scripts
 
 # Logs
 logs
