@@ -29,6 +29,9 @@ node_modules/
 # Eslint cache
 .eslintcache
 
+# PMD cache
+.pmdCache
+
 # MacOS system files
 .DS_Store
 
