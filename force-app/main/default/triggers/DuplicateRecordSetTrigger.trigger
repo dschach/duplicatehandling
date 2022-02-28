@@ -16,8 +16,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-trigger DuplicateRecordSetTrigger on DuplicateRecordSet (after update) {
-
-    DuplicateRecordSetTriggerHandler.handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
+/**
+ * Trigger for DuplicateREcordItem
+ * @author {@link [David Schach](https://github.com/dschach)}
+ * @since 04/19/2021
+ * Ver       Date            Author      		    Modification
+ * 1.0    04/19/2021   David Schach     Initial Version
+ * 1.1    02/28/2022   David Schach     Static to instance trigger handler methods
+ **/
+trigger DuplicateRecordSetTrigger on DuplicateRecordSet(after update) {
+	new DuplicateRecordSetTriggerHandler().handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
 
 }

@@ -19,33 +19,33 @@
  * Ver       Date            Author      		    Modification
  * 1.0    04/19/2021   David Schach     Initial Version
  * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * 1.2    02/28/2022   David Schach     Static to instance trigger handler methods
  */
 /**
  * Trigger Handler for `DuplicateRecordSet`
- * @author David Schach
- * @since 4/19/2021
+ * @author {@link [David Schach](https://github.com/dschach)}
+ * @since 02/28/2022
  * @see DuplicateRecordHandlersTest
- * @group TriggerHandlers
+ * @group Duplicate Handlers
  */
-public without sharing class DuplicateRecordSetTriggerHandler {
-	
+public inherited sharing class DuplicateRecordSetTriggerHandler {
 	/**
-	 * @description         Handle all trigger records
+	 * Handle all trigger records
 	 *
+	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param newRecords    Trigger.new
 	 * @param oldRecords    Trigger.old
 	 * @param newRecordsMap Trigger.newMap
 	 * @param oldRecordsMap Trigger.oldMap
 	 * @param triggerEvent  Trigger context enum
 	 */
-	public static void handleTrigger(
+	public void handleTrigger(
 		List<DuplicateRecordSet> newRecords,
 		List<DuplicateRecordSet> oldRecords,
 		Map<Id, DuplicateRecordSet> newRecordsMap,
 		Map<Id, DuplicateRecordSet> oldRecordsMap,
 		System.TriggerOperation triggerEvent
 	) {
-		System.debug('IN DUPLICATE RECORD SET TRIGGER HANDLER ' + triggerEvent.name());
 		switch on triggerEvent {
 			// NOT listed in trigger. To use these, update trigger contexts.
 			//when BEFORE_INSERT {}
@@ -61,10 +61,15 @@ public without sharing class DuplicateRecordSetTriggerHandler {
 		}
 	}
 
-	public static void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
+	/**
+	 * Query for all single-item `DuplicateRecordSet` records
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  newRecords Trigger.new
+	 */
+	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
 		Set<Id> toDelete = new Set<Id>();
 		for (DuplicateRecordSet drs : newRecords) {
-			System.debug(drs.Name + ' has this many records: ' + drs.RecordCount);
+			//System.debug(drs.Name + ' has this many records: ' + drs.RecordCount);
 			if (drs.RecordCount == 1) {
 				toDelete.add(drs.Id);
 			}
@@ -72,18 +77,23 @@ public without sharing class DuplicateRecordSetTriggerHandler {
 
 		if (!toDelete.isEmpty()) {
 			if (!System.isFuture() && !System.isBatch()) {
-				System.debug('Calling a FUTURE method to delete the DRS');
+				//System.debug('Calling a FUTURE method to delete the DRS');
 				deleteSingleRecordSets(toDelete);
 			} else {
-				System.debug('Synchronously DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
+				//System.debug('Synchronously DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
 				delete [SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete];
 			}
 		}
 	}
 
+	/**
+	 * Future delete `DuplicateRecordSet` records with only 1 `DuplicateRecordItem`
+	 * @author {@link [David Schach](https://github.com/dschach)}
+	 * @param  candidatesToDelete Queried `DuplicateRecordSet` records with 1 `DuplicateRecordItem`
+	 */
 	@future
 	public static void deleteSingleRecordSets(Set<Id> candidatesToDelete) {
-		System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
+		//System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
 		delete [SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete];
 	}
 }
