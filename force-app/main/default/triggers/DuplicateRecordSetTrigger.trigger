@@ -17,8 +17,8 @@
 */
 
 /**
- * Trigger for DuplicateREcordItem
- * @author {@link [David Schach](https://github.com/dschach)}
+ * Trigger for DuplicateRecordItem
+ * @author David Schach
  * @since 04/19/2021
  * Ver       Date            Author      		    Modification
  * 1.0    04/19/2021   David Schach     Initial Version
@@ -26,5 +26,4 @@
  **/
 trigger DuplicateRecordSetTrigger on DuplicateRecordSet(after update) {
 	new DuplicateRecordSetTriggerHandler().handleTrigger(Trigger.new, Trigger.old, Trigger.newMap, Trigger.oldMap, Trigger.operationType);
-
 }

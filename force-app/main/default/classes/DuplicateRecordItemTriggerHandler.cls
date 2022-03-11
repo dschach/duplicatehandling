@@ -97,6 +97,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 		Map<Id, Schema.RecordTypeInfo> rtMapById = Schema.SObjectType.Account.getRecordTypeInfosById();
 		Boolean hasRecordType = rtMapById.size() > 1;
 
+		// dynamic query in case the org does not use Account record types
 		String recordQuery = 'SELECT Id, CreatedDate, CreatedById, CreatedBy.Name';
 		if (hasRecordType) {
 			recordQuery += ', RecordTypeId, RecordType.Name';
