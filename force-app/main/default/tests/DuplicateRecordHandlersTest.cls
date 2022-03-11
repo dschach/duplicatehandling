@@ -24,7 +24,7 @@
  * Tests for DuplicateRecord trigger handlers
  * @author {@link [David Schach](https://github.com/dschach)}
  * @since 02/28/2022
- * @group Test Classes
+ * @group Tests
  * @see DuplicateRecordItemTriggerHandler
  * @see DuplicateRecordSetTriggerHandler
  */

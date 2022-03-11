@@ -7,6 +7,9 @@
 .sfdx
 .vscode
 
+*meta.xml
+
+pmd/
 coverage/
-docs/
+docs/assets/
 doc-assets/
