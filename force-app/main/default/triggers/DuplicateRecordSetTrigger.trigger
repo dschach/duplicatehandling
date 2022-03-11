@@ -17,7 +17,7 @@
 */
 
 /**
- * Trigger for DuplicateREcordItem
+ * Trigger for DuplicateRecordItem
  * @author {@link [David Schach](https://github.com/dschach)}
  * @since 04/19/2021
  * Ver       Date            Author      		    Modification
