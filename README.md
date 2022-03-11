@@ -1,6 +1,8 @@
 # Duplicate Management Enhancements
 
 ![License](https://img.shields.io/github/license/dschach/duplicatehandling)
+[![CI](https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml)
+[![coverage check](https://github.com/dschach/duplicatehandling/actions/workflows/codecov.yml/badge.svg)](https://github.com/dschach/duplicatehandling/actions/workflows/codecov.yml)
 [![codecov](https://codecov.io/gh/dschach/duplicatehandling/branch/main/graph/badge.svg?token=4353PVRMRH)](https://codecov.io/gh/dschach/duplicatehandling)
 [![Twitter](https://img.shields.io/twitter/follow/dschach.svg?style=social)](https://twitter.com/dschach)
 
