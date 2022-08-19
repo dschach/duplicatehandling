@@ -18,13 +18,13 @@ jobs:
       - name: Authenticate Dev Hub
         run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a DevHub -d"
       - name: Create Scratch Org
-        run: node_modules/sfdx-cli/bin/run force:org:create --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+        run: sfdx force:org:create --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
       - name: Deploy source
-        run: node_modules/sfdx-cli/bin/run force:source:push
+        run: sfdx force:source:push
       - name: assign permissions
-        run: node_modules/sfdx-cli/bin/run force:user:permset:assign -n Duplicates_Handler
+        run: sfdx force:user:permset:assign -n Duplicates_Handler
       - name: Run Apex tests
-        run: node_modules/sfdx-cli/bin/run force:apex:test:run --codecoverage --resultformat human -d ./
+        run: sfdx force:apex:test:run --codecoverage --resultformat human -d ./
       #- name: Delete coverage file (temporary fix)
       #  run: rm ./test-result-707*-codecoverage.json
       - name: "Upload code coverage for Apex to Codecov.io"
@@ -32,4 +32,4 @@ jobs:
         with:
           flags: Apex
       - name: Delete Scratch Org
-        run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
+        run: sfdx force:org:delete --noprompt
