@@ -1,5 +1,8 @@
 name: code-coverage
-on: [push]
+on:
+  push:
+    paths:
+      - "force-app/**"
 jobs:
   build:
     runs-on: ubuntu-latest
