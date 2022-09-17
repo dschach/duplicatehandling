@@ -1,26 +1,25 @@
 /*
-	Duplicate Handling helper code
-    Copyright (C) 2021 David Schach
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
+ * Duplicate Handling helper code
+ * Copyright (C) 2021 David Schach
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 /*
- * Ver       Date            Author      		    Modification
+ * Ver       Date            Author           Modification
  * 1.0    04/19/2021   David Schach     Initial Version
  * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
  * 1.2    02/28/2022   David Schach     Static to instance trigger handler methods
+ * 1.3    09/14/2022   David Schach     Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false
  */
+
 /**
  * Trigger Handler for `DuplicateRecordSet`
  * @author {@link [David Schach](https://github.com/dschach)}
@@ -81,7 +80,7 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 				deleteSingleRecordSets(toDelete);
 			} else {
 				//System.debug('Synchronously DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
-				delete [SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete];
+				Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete], false);
 			}
 		}
 	}
@@ -94,6 +93,6 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	@future
 	public static void deleteSingleRecordSets(Set<Id> candidatesToDelete) {
 		//System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
-		delete [SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete];
+		Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete], false);
 	}
 }
