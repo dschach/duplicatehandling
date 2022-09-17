@@ -1,0 +1,17 @@
+{
+	"trailingComma": "none",
+	"useTabs": true,
+	"tabWidth": 2,
+	"printWidth": 180,
+	"bracketSameLine": true,
+	"bracketSpacing": true,
+	"embeddedLanguageFormatting": "auto",
+	"htmlWhitespaceSensitivity": "ignore",
+	"apexInsertFinalNewline": false,
+	"overrides": [
+		{
+			"files": "*.{cmp,page,component,html}",
+			"options": { "tabWidth": 2, "parser": "html" }
+		}
+	]
+}

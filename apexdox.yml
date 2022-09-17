@@ -8,7 +8,7 @@ engine:
   title: Duplicate Record Handlers code documentation
   subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
   sortOrder: alpha
-  cleanDir: true
+  cleanDir: false
   showTOCSnippets: true
   scope:
     - global

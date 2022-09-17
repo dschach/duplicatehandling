@@ -19,7 +19,10 @@
 			<div id="logo-container">
 				<div class="title">Duplicate Record Handlers code documentation</div>
 				<img src="assets/logo.png" />
-				<div class="subtitle">Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a></div>
+				<div class="subtitle">
+					Documentation for
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
+				</div>
 			</div>
 			<div id="search-wrapper">
 				<div class="search-icon"></div>
@@ -28,7 +31,7 @@
 			<ul id="search-results" class=""></ul>
 			<div class="navbar">
 				<nav role="navigation">
-					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');"> Home </a>
+					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
 					<details id="Duplicate_Handlers" class="group-name">
 						<summary id="header-Duplicate_Handlers" class="nav-header">
 							<span>Duplicate Handlers</span>
@@ -72,18 +75,27 @@
 		<table id="content">
 			<tr>
 				<td class="scoping-panel">
-					Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" /> <label for="cbx-all">All</label>&nbsp;&nbsp;
+					Show:
+					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+					<label for="cbx-all">All</label>
+					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-					<label for="cbx-global"> global </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-					<label for="cbx-public"> public </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-					<label for="cbx-protected"> protected </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-					<label for="cbx-private"> private </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-					<label for="cbx-webservice"> webService </label>&nbsp;&nbsp;<input
-						type="checkbox"
-						checked="true"
-						id="cbx-testmethod"
-						onclick="toggleScope('testmethod', this.checked);" />
-					<label for="cbx-testmethod"> testMethod </label>
+					<label for="cbx-global">global</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+					<label for="cbx-public">public</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+					<label for="cbx-protected">protected</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+					<label for="cbx-private">private</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
+					<label for="cbx-webservice">webService</label>
+					&nbsp;&nbsp;
+					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+					<label for="cbx-testmethod">testMethod</label>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +112,10 @@
 							</a>
 						</h2>
 						<div class="class-container">
-							<div class="class-description">Trigger Handler for <code class="code-inline">DuplicateRecordSet</code></div>
+							<div class="class-description">
+								Trigger Handler for
+								<code class="code-inline">DuplicateRecordSet</code>
+							</div>
 							<div class="class-subtitle">Signature</div>
 
 							<div class="class-signature">public inherited sharing class DuplicateRecordSetTriggerHandler</div>
@@ -108,23 +123,33 @@
 							<div class="class-subtitle-description">
 								<a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordHandlersTest.html')">DuplicateRecordHandlersTest</a>
 							</div>
-							<br /><a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a><br />02/28/2022
+							<br />
+							<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+							<br />
+							02/28/2022
 						</div>
 						<div class="subsection methods">
 							<h3 class="subsection-title methods">DuplicateRecordSetTriggerHandler Methods</h3>
 							<div class="methods-container">
 								<ul class="methods-toc">
 									<li class="method public">
-										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.deleteSingleRecordSets"> deleteSingleRecordSets (candidatesToDelete) </a>
+										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.deleteSingleRecordSets">deleteSingleRecordSets (candidatesToDelete)</a>
 
 										<div class="methods-toc__description">
-											Future delete <code class="code-inline">DuplicateRecordSet</code> records with only 1 <code class="code-inline">DuplicateRecordItem</code>
+											Future delete
+											<code class="code-inline">DuplicateRecordSet</code>
+											records with only 1
+											<code class="code-inline">DuplicateRecordItem</code>
 										</div>
 									</li>
 									<li class="method public">
-										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.findSingleRecordSets"> findSingleRecordSets (newRecords) </a>
+										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.findSingleRecordSets">findSingleRecordSets (newRecords)</a>
 
-										<div class="methods-toc__description">Query for all single-item <code class="code-inline">DuplicateRecordSet</code> records</div>
+										<div class="methods-toc__description">
+											Query for all single-item
+											<code class="code-inline">DuplicateRecordSet</code>
+											records
+										</div>
 									</li>
 									<li class="method public">
 										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.handleTrigger">
@@ -146,16 +171,25 @@
 										</a>
 									</h4>
 									<div class="method-description">
-										Future delete <code class="code-inline">DuplicateRecordSet</code> records with only 1 <code class="code-inline">DuplicateRecordItem</code>
+										Future delete
+										<code class="code-inline">DuplicateRecordSet</code>
+										records with only 1
+										<code class="code-inline">DuplicateRecordItem</code>
 									</div>
 									<div class="method-subtitle">Signature</div>
 									<div class="method-annotations">@future</div>
 									<div class="method-signature">public static void deleteSingleRecordSets(Set&lt;Id&gt; candidatesToDelete)</div>
 									<div class="method-subtitle">Parameters</div>
 									<div class="param-name">candidatesToDelete</div>
-									<div class="param-type">Type: <code class="code-inline">Set&lt;Id&gt;</code></div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">Set&lt;Id&gt;</code>
+									</div>
 									<div class="param-description">
-										Queried <code class="code-inline">DuplicateRecordSet</code> records with 1 <code class="code-inline">DuplicateRecordItem</code>
+										Queried
+										<code class="code-inline">DuplicateRecordSet</code>
+										records with 1
+										<code class="code-inline">DuplicateRecordItem</code>
 									</div>
 									<div class="method-subtitle">Author</div>
 									<div class="method-subtitle-description">
@@ -173,13 +207,20 @@
 											findSingleRecordSets(newRecords)
 										</a>
 									</h4>
-									<div class="method-description">Query for all single-item <code class="code-inline">DuplicateRecordSet</code> records</div>
+									<div class="method-description">
+										Query for all single-item
+										<code class="code-inline">DuplicateRecordSet</code>
+										records
+									</div>
 									<div class="method-subtitle">Signature</div>
 
 									<div class="method-signature">public void findSingleRecordSets(List&lt;DuplicateRecordSet&gt; newRecords)</div>
 									<div class="method-subtitle">Parameters</div>
 									<div class="param-name">newRecords</div>
-									<div class="param-type">Type: <code class="code-inline">List&lt;DuplicateRecordSet&gt;</code></div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">List&lt;DuplicateRecordSet&gt;</code>
+									</div>
 									<div class="param-description">Trigger.new</div>
 									<div class="method-subtitle">Author</div>
 									<div class="method-subtitle-description">
@@ -206,15 +247,24 @@
 									</div>
 									<div class="method-subtitle">Parameters</div>
 									<div class="param-name">newRecords</div>
-									<div class="param-type">Type: <code class="code-inline"> List&lt;DuplicateRecordSet&gt;</code></div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">List&lt;DuplicateRecordSet&gt;</code>
+									</div>
 									<div class="param-description">Trigger.new</div>
 									<div class="param-name">oldRecords</div>
 									<div class="param-description">Trigger.old</div>
 									<div class="param-name">newRecordsMap</div>
-									<div class="param-type">Type: <code class="code-inline">DuplicateRecordSet&gt;</code></div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">DuplicateRecordSet&gt;</code>
+									</div>
 									<div class="param-description">Trigger.newMap</div>
 									<div class="param-name">oldRecordsMap</div>
-									<div class="param-type">Type: <code class="code-inline">DuplicateRecordSet&gt;</code></div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">DuplicateRecordSet&gt;</code>
+									</div>
 									<div class="param-description">Trigger.oldMap</div>
 									<div class="param-name">triggerEvent</div>
 									<div class="param-description">Trigger context enum</div>
@@ -231,7 +281,7 @@
 			<tr>
 				<td class="footer">
 					<div>
-						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer"> Powered By ApexDox VS Code </a>
+						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
 					</div>
 				</td>
 			</tr>
