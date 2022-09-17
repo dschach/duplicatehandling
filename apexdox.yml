@@ -2,15 +2,13 @@ engine:
   source:
     - path: "${workspaceFolder}/force-app/main/default/classes"
       sourceUrl: https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes
-    - path: "${workspaceFolder}/force-app/main/default/tests"
-      sourceUrl: https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/tests
   targetDirectory: "${workspaceFolder}/docs"
   #excludes:
   #  - "*Test.cls"
   title: Duplicate Record Handlers code documentation
   subtitle: Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
   sortOrder: alpha
-  cleanDir: true
+  cleanDir: false
   showTOCSnippets: true
   scope:
     - global
@@ -26,6 +24,9 @@ engine:
     - "${workspaceFolder}/doc-assets/logo.png"
     - "${workspaceFolder}/doc-assets/favicon.png"
     - "${workspaceFolder}/doc-assets/icon.png"
+    - "${workspaceFolder}/doc-assets/highlight.css"
+    - "${workspaceFolder}/doc-assets/highlight.js"
+    - "${workspaceFolder}/doc-assets/index.js"
   #  - "${workspaceFolder}/documentation/meme.jpg"
   port: 9090
 docblock:
