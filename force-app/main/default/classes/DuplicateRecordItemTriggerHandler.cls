@@ -1,19 +1,19 @@
 /*
-	Duplicate Handling helper code
-    Copyright (C) 2021 David Schach
+ * Duplicate Handling helper code
+ * Copyright (C) 2021 David Schach
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 /*
@@ -113,7 +113,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By__c = a.CreatedById;
 				dri.Created_By_Name__c = a.CreatedBy.Name;
 				dri.Created_Date__c = a.CreatedDate;
-				if (hasRecordType) {
+				if (hasRecordType && a.get('RecordTypeId') != null) {
 					Schema.RecordTypeInfo sri = rtMapById.get((Id) a.get('RecordTypeId'));
 					dri.Record_Type__c = sri.getName();
 				} else {
@@ -149,7 +149,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By__c = c.CreatedById;
 				dri.Created_By_Name__c = c.CreatedBy.Name;
 				dri.Created_Date__c = c.CreatedDate;
-				if (hasRecordType) {
+				if (hasRecordType && c.get('RecordTypeId') != null) {
 					Schema.RecordTypeInfo sri = rtMapById.get((Id) c.get('RecordTypeId'));
 					dri.Record_Type__c = sri.getName();
 				} else {
@@ -184,7 +184,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By__c = a.CreatedById;
 				dri.Created_By_Name__c = a.CreatedBy.Name;
 				dri.Created_Date__c = a.CreatedDate;
-				if (hasRecordType) {
+				if (hasRecordType && a.get('RecordTypeId') != null) {
 					Schema.RecordTypeInfo sri = rtMapById.get((Id) a.get('RecordTypeId'));
 					dri.Record_Type__c = sri.getName();
 				} else {

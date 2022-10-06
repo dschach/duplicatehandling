@@ -26,7 +26,6 @@
  * @since 02/28/2022
  * @group Tests
  * @see DuplicateRecordItemTriggerHandler
- * @see DuplicateRecordSetTriggerHandler
  */
 @isTest
 private class DuplicateRecordHandlersTest {
@@ -121,8 +120,6 @@ private class DuplicateRecordHandlersTest {
 		delete [SELECT Id FROM DuplicateRecordItem LIMIT 1];
 
 		Test.stopTest();
-
-		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
@@ -158,8 +155,6 @@ private class DuplicateRecordHandlersTest {
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
-
-		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	@isTest
@@ -199,7 +194,6 @@ private class DuplicateRecordHandlersTest {
 			System.assertNotEquals(null, dri.Created_By_Name__c);
 		}
 
-		System.assertEquals(1, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');
 		System.assertEquals(3, [SELECT COUNT() FROM DuplicateRecordItem], 'Three dupes not caught');
 	}
 
@@ -272,8 +266,6 @@ private class DuplicateRecordHandlersTest {
 		List<Contact> secondaries = [SELECT Id FROM Contact WHERE Id != :c.Id];
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 		Test.stopTest();
-
-		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	/* LEADS **************************** */
@@ -348,7 +340,5 @@ private class DuplicateRecordHandlersTest {
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
-
-		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 }
