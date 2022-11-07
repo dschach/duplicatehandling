@@ -1,19 +1,19 @@
 /*
-	Duplicate Handling helper code
-    Copyright (C) 2021 David Schach
+ * Duplicate Handling helper code
+ * Copyright (C) 2021 David Schach
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 /*
  * Ver       Date            Author      		    Modification
@@ -24,8 +24,9 @@
  * Tests for DuplicateRecord trigger handlers
  * @author {@link [David Schach](https://github.com/dschach)}
  * @since 02/28/2022
- * @group Tests
+ * @group Duplicate Handlers
  * @see DuplicateRecordItemTriggerHandler
+ * @see DuplicateRecordSetTriggerHandler
  */
 @isTest
 private class DuplicateRecordHandlersTest {
@@ -120,6 +121,8 @@ private class DuplicateRecordHandlersTest {
 		delete [SELECT Id FROM DuplicateRecordItem LIMIT 1];
 
 		Test.stopTest();
+
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet]);
 	}
 
 	@isTest
@@ -155,6 +158,8 @@ private class DuplicateRecordHandlersTest {
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
+
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	@isTest
@@ -194,6 +199,7 @@ private class DuplicateRecordHandlersTest {
 			System.assertNotEquals(null, dri.Created_By_Name__c);
 		}
 
+		System.assertEquals(1, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet deleted');
 		System.assertEquals(3, [SELECT COUNT() FROM DuplicateRecordItem], 'Three dupes not caught');
 	}
 
@@ -266,6 +272,8 @@ private class DuplicateRecordHandlersTest {
 		List<Contact> secondaries = [SELECT Id FROM Contact WHERE Id != :c.Id];
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 		Test.stopTest();
+
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 
 	/* LEADS **************************** */
@@ -340,5 +348,7 @@ private class DuplicateRecordHandlersTest {
 		Database.MergeResult[] results = Database.merge(primary[0], secondaries, false); //NOPMD
 
 		Test.stopTest();
+
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
 	}
 }
