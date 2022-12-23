@@ -13,5 +13,13 @@
 		"mobileSettings": {
 			"enableS1EncryptedStoragePref2": false
 		}
+	},
+	"objectSettings": {
+		"account": {
+			"defaultRecordType": "default_account"
+		},
+		"contact": {
+			"defaultRecordType": "default_contact"
+		}
 	}
 }

@@ -137,8 +137,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By_Name__c = a.CreatedBy.Name;
 				dri.Created_Date__c = a.CreatedDate;
 				if (hasRecordType && a.get('RecordTypeId') != null) {
-					Schema.RecordTypeInfo sri = rtMapById.get((Id) a.get('RecordTypeId'));
-					dri.Record_Type__c = sri.getName();
+					dri.Record_Type__c = rtMapById.get((Id) a.get('RecordTypeId')).getName();
 				} else {
 					dri.Record_Type__c = null;
 				}
@@ -173,8 +172,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By_Name__c = c.CreatedBy.Name;
 				dri.Created_Date__c = c.CreatedDate;
 				if (hasRecordType && c.get('RecordTypeId') != null) {
-					Schema.RecordTypeInfo sri = rtMapById.get((Id) c.get('RecordTypeId'));
-					dri.Record_Type__c = sri.getName();
+					dri.Record_Type__c = rtMapById.get((Id) c.get('RecordTypeId')).getName();
 				} else {
 					dri.Record_Type__c = null;
 				}
@@ -208,8 +206,7 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 				dri.Created_By_Name__c = a.CreatedBy.Name;
 				dri.Created_Date__c = a.CreatedDate;
 				if (hasRecordType && a.get('RecordTypeId') != null) {
-					Schema.RecordTypeInfo sri = rtMapById.get((Id) a.get('RecordTypeId'));
-					dri.Record_Type__c = sri.getName();
+					dri.Record_Type__c = rtMapById.get((Id) a.get('RecordTypeId')).getName();
 				} else {
 					dri.Record_Type__c = null;
 				}

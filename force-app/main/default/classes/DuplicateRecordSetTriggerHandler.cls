@@ -50,21 +50,28 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 		Map<Id, DuplicateRecordSet> oldRecordsMap,
 		System.TriggerOperation triggerEvent
 	) {
+		//System.debug('IN DRS TRIGGER HANDLER');
 		switch on triggerEvent {
 			when AFTER_UPDATE {
-				findSingleRecordSets(newRecords);
+				findSingleRecordSets(newRecords, oldRecordsMap);
 			}
 		}
 	}
 
 	/**
 	 * Query for all single-item `DuplicateRecordSet` records
+	 * <br>First we exclude DRS records where the DRI count was and is zero. This allows us to instantiate the record. We don't know why DRS records are also updated when they are created, but that's the situation.
+	 * <br>Then we delete DRS records where RecordCount < 2 (0 or 1) and can do so because we allowed the creation of the DRS.
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  newRecords Trigger.new
 	 */
-	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
+	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords, Map<Id, DuplicateRecordSet> oldRecordsMap) {
 		Set<Id> toDelete = new Set<Id>();
 		for (DuplicateRecordSet drs : newRecords) {
+			// Prevent deleting DRS when it is instantiated. (No idea why it's updated before DRS are added.)
+			if (drs.RecordCount == 0 && oldRecordsMap.get(drs.Id).RecordCount == 0) {
+				continue;
+			}
 			if (drs.RecordCount < 2) {
 				toDelete.add(drs.Id);
 			}
@@ -74,7 +81,7 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 			if (!System.isFuture() && !System.isBatch()) {
 				deleteSingleRecordSetsFuture(toDelete);
 			} else {
-				deleteEmptySet(toDelete);
+				deleteUnnecessaryRecordSets(toDelete);
 			}
 		}
 	}
@@ -86,7 +93,7 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	 */
 	@future
 	public static void deleteSingleRecordSetsFuture(Set<Id> candidatesToDelete) {
-		deleteEmptySet(candidatesToDelete);
+		deleteUnnecessaryRecordSets(candidatesToDelete);
 	}
 
 	/**
@@ -94,7 +101,7 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	 *
 	 * @param candidatesToDelete  `DuplicateRecordSet` IDs to delete
 	 */
-	private static void deleteEmptySet(Set<Id> candidatesToDelete) {
+	private static void deleteUnnecessaryRecordSets(Set<Id> candidatesToDelete) {
 		Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete AND IsDeleted = FALSE], false);
 	}
 }

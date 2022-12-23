@@ -1,108 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Duplicate Record Handlers code documentation</title>
-		<meta charset="UTF-8" />
-		<script type="module" src="./assets/index.js"></script>
-		<script type="module" src="./assets/search-idx.js"></script>
-		<script type="module" src="./assets/search.js"></script>
-		<script charset="UTF-8" src="./assets/highlight.js"></script>
-		<script charset="UTF-8" src="./assets/mark.js"></script>
-		<script charset="UTF-8" src="./assets/lunr.js"></script>
-		<link rel="stylesheet" href="./assets/highlight.css" />
-		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
-		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
-	</head>
 
-	<body>
-		<div id="side-bar">
-			<div id="logo-container">
-				<div class="title">Duplicate Record Handlers code documentation</div>
-				<img src="assets/logo.png" />
-				<div class="subtitle">
-					Documentation for
-					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
-				</div>
-			</div>
-			<div id="search-wrapper">
-				<div class="search-icon"></div>
-				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
-			</div>
-			<ul id="search-results" class=""></ul>
-			<div class="navbar">
-				<nav role="navigation">
-					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
-					<details id="Duplicate_Handlers" class="group-name">
-						<summary id="header-Duplicate_Handlers" class="nav-header">
-							<span>Duplicate Handlers</span>
-						</summary>
-						<ul>
-							<!-- menu items -->
-							<li
-								title="DuplicateRecordHandlersTest"
-								id="item-DuplicateRecordHandlersTest"
-								class="nav-item class private"
-								onclick="goToLocation('DuplicateRecordHandlersTest.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
-							</li>
-							<li
-								title="DuplicateRecordItemTriggerHandler"
-								id="item-DuplicateRecordItemTriggerHandler"
-								class="nav-item class public"
-								onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
-							</li>
-							<li
-								title="DuplicateRecordSetTriggerHandler"
-								id="item-DuplicateRecordSetTriggerHandler"
-								class="nav-item class public"
-								onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
-							</li>
-						</ul>
-					</details>
-				</nav>
-			</div>
-		</div>
-		<table id="content">
-			<tr>
-				<td class="scoping-panel">
-					Show:
-					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
-					<label for="cbx-all">All</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-					<label for="cbx-global">global</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-					<label for="cbx-public">public</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-					<label for="cbx-protected">protected</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-					<label for="cbx-private">private</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-					<label for="cbx-webservice">webService</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
-					<label for="cbx-testmethod">testMethod</label>
-				</td>
-			</tr>
-			<tr>
-				<td class="doc-page">
-					<h2 class="section-title">Home</h2>
-					<h1>Welcome to Duplicate Records Handler!</h1>
-				</td>
-			</tr>
-			<tr>
-				<td class="footer">
-					<div>
-						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</body>
+  <head>
+    <title>Duplicate Record Handlers code documentation</title>
+    <meta charset="UTF-8">
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
+    <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
+    <link rel="stylesheet" href="./assets/highlight.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+  </head>
+
+  <body>
+    <div id="side-bar">
+
+      <div id="logo-container">
+        <div class="title">
+          Duplicate Record Handlers code documentation
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Duplicate_Handlers" class="group-name">
+            <summary id="header-Duplicate_Handlers" class="nav-header">
+              <span>Duplicate Handlers</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DuplicateRecordHandlersTest" id="item-DuplicateRecordHandlersTest" class="nav-item class " onclick="goToLocation('DuplicateRecordHandlersTest.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
+              </li>
+              <li title="DuplicateRecordItemTriggerHandler" id="item-DuplicateRecordItemTriggerHandler" class="nav-item class " onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
+              </li>
+              <li title="DuplicateRecordSetTriggerHandler" id="item-DuplicateRecordSetTriggerHandler" class="nav-item class " onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
+      <tr>
+        <td class="scoping-panel">
+          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+          <label for="cbx-all">All</label>&nbsp;&nbsp;
+          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
+          <label for="cbx-webservice">
+            webService
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+          <label for="cbx-testmethod">
+            testMethod
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="doc-page">
+          <h2 class='section-title'>Home</h2>
+          <h1>Welcome to Duplicate Records Handler!</h1>
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+
 </html>

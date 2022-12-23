@@ -1,386 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Duplicate Record Handlers code documentation</title>
-		<meta charset="UTF-8" />
-		<script type="module" src="./assets/index.js"></script>
-		<script type="module" src="./assets/search-idx.js"></script>
-		<script type="module" src="./assets/search.js"></script>
-		<script charset="UTF-8" src="./assets/highlight.js"></script>
-		<script charset="UTF-8" src="./assets/mark.js"></script>
-		<script charset="UTF-8" src="./assets/lunr.js"></script>
-		<link rel="stylesheet" href="./assets/highlight.css" />
-		<link rel="stylesheet" type="text/css" href="./assets/index.css" />
-		<link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
-	</head>
 
-	<body>
-		<div id="side-bar">
-			<div id="logo-container">
-				<div class="title">Duplicate Record Handlers code documentation</div>
-				<img src="assets/logo.png" />
-				<div class="subtitle">
-					Documentation for
-					<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
-				</div>
-			</div>
-			<div id="search-wrapper">
-				<div class="search-icon"></div>
-				<input id="search-input" type="text" autocomplete="off" placeholder="Search..." />
-			</div>
-			<ul id="search-results" class=""></ul>
-			<div class="navbar">
-				<nav role="navigation">
-					<a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">Home</a>
-					<details id="Duplicate_Handlers" class="group-name">
-						<summary id="header-Duplicate_Handlers" class="nav-header">
-							<span>Duplicate Handlers</span>
-						</summary>
-						<ul>
-							<!-- menu items -->
-							<li
-								title="DuplicateRecordHandlersTest"
-								id="item-DuplicateRecordHandlersTest"
-								class="nav-item class private"
-								onclick="goToLocation('DuplicateRecordHandlersTest.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
-							</li>
-							<li
-								title="DuplicateRecordItemTriggerHandler"
-								id="item-DuplicateRecordItemTriggerHandler"
-								class="nav-item class public"
-								onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
-							</li>
-							<li
-								title="DuplicateRecordSetTriggerHandler"
-								id="item-DuplicateRecordSetTriggerHandler"
-								class="nav-item class public"
-								onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
-								<a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
-							</li>
-						</ul>
-					</details>
-				</nav>
-			</div>
-		</div>
-		<table id="content">
-			<tr>
-				<td class="scoping-panel">
-					Show:
-					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
-					<label for="cbx-all">All</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-					<label for="cbx-global">global</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
-					<label for="cbx-public">public</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-					<label for="cbx-protected">protected</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
-					<label for="cbx-private">private</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-					<label for="cbx-webservice">webService</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
-					<label for="cbx-testmethod">testMethod</label>
-				</td>
-			</tr>
-			<tr>
-				<td class="doc-page">
-					<div class="section">
-						<h2 class="class-title top-level-type" id="DuplicateRecordItemTriggerHandler">
-							<a
-								target="_blank"
-								rel="noopener noreferrer"
-								title="Go to source"
-								class="source-link"
-								href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L32">
-								DuplicateRecordItemTriggerHandler
-							</a>
-						</h2>
-						<div class="class-container">
-							<div class="class-description">
-								Trigger Handler for
-								<code class="code-inline">DuplicateRecordItem</code>
-							</div>
-							<div class="class-subtitle">Signature</div>
+  <head>
+    <title>Duplicate Record Handlers code documentation</title>
+    <meta charset="UTF-8">
+    <script type="module" src="./assets/index.js"></script>
+    <script type="module" src="./assets/search-idx.js"></script>
+    <script type="module" src="./assets/search.js"></script>
+    <script charset="UTF-8" src="./assets/highlight.js"></script>
+    <script charset="UTF-8" src="./assets/mark.js"></script>
+    <script charset="UTF-8" src="./assets/lunr.js"></script>
+    <link rel="stylesheet" href="./assets/highlight.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png" />
+  </head>
 
-							<div class="class-signature">public inherited sharing class DuplicateRecordItemTriggerHandler</div>
-							<div class="class-subtitle">See</div>
-							<div class="class-subtitle-description">
-								<a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordHandlersTest.html')">DuplicateRecordHandlersTest</a>
-							</div>
-							<div class="class-subtitle">Author</div>
-							<div class="class-subtitle-description">
-								<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-							</div>
-							<div class="class-subtitle">Since</div>
-							<div class="class-subtitle-description">
-								<li>04/19/2021 Initial Version</li>
-								<li>02/28/2022 Static to instance trigger handler methods</li>
-							</div>
-						</div>
-						<div class="subsection methods">
-							<h3 class="subsection-title methods">DuplicateRecordItemTriggerHandler Methods</h3>
-							<div class="methods-container">
-								<ul class="methods-toc">
-									<li class="method private">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.assortDuplicateItems">assortDuplicateItems (newRecords)</a>
+  <body>
+    <div id="side-bar">
 
-										<div class="methods-toc__description">Assign object type and then handle all records</div>
-									</li>
-									<li class="method private">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.handleAccounts">handleAccounts (newAccounts, recordIDs)</a>
+      <div id="logo-container">
+        <div class="title">
+          Duplicate Record Handlers code documentation
+        </div>
+        <img src="assets/logo.png" />
+        <div class="subtitle">
+          Documentation for <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach/duplicatehandling">Duplicate Record Handlers</a>
+        </div>
+      </div>
+      <div id="search-wrapper">
+        <div class="search-icon"></div>
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search...">
+      </div>
+      <ul id="search-results" class=""></ul>
+      <div class="navbar">
+        <nav role="navigation">
+          <a class="nav-header" id="home" href="javascript:void(0)" onclick="goToLocation('index.html');">
+            Home
+          </a>
+          <details id="Duplicate_Handlers" class="group-name">
+            <summary id="header-Duplicate_Handlers" class="nav-header">
+              <span>Duplicate Handlers</span>
+            </summary>
+            <ul>
+              <!-- menu items -->
+              <li title="DuplicateRecordHandlersTest" id="item-DuplicateRecordHandlersTest" class="nav-item class " onclick="goToLocation('DuplicateRecordHandlersTest.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
+              </li>
+              <li title="DuplicateRecordItemTriggerHandler" id="item-DuplicateRecordItemTriggerHandler" class="nav-item class " onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
+              </li>
+              <li title="DuplicateRecordSetTriggerHandler" id="item-DuplicateRecordSetTriggerHandler" class="nav-item class " onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
+                <a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+    </div>
+    <table id="content">
+      <tr>
+        <td class="scoping-panel">
+          Show: <input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
+          <label for="cbx-all">All</label>&nbsp;&nbsp;
+          <input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
+          <label for="cbx-global">
+            global
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
+          <label for="cbx-public">
+            public
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
+          <label for="cbx-protected">
+            protected
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
+          <label for="cbx-private">
+            private
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
+          <label for="cbx-webservice">
+            webService
+          </label>&nbsp;&nbsp;<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
+          <label for="cbx-testmethod">
+            testMethod
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="doc-page">
 
-										<div class="methods-toc__description">Handle Accounts (may be duplicated for any object)</div>
-									</li>
-									<li class="method private">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.handleContacts">handleContacts (newContacts, recordIDs)</a>
+          <div class="section">
 
-										<div class="methods-toc__description">Handle Contacts (may be duplicated for any object)</div>
-									</li>
-									<li class="method private">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.handleLeads">handleLeads (newLeads, recordIDs)</a>
+            <h2 class="class-title top-level-type" id="DuplicateRecordItemTriggerHandler">
 
-										<div class="methods-toc__description">Handle Leads (may be duplicated for any object)</div>
-									</li>
-									<li class="method public">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.handleTrigger">
-											handleTrigger (newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
-										</a>
+              <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L32">
+                DuplicateRecordItemTriggerHandler
+              </a>
+            </h2>
+            <div class="class-container">
 
-										<div class="methods-toc__description">Handle all trigger records</div>
-									</li>
-									<li class="method private">
-										<a class="methods-toc__entry" href="#DuplicateRecordItemTriggerHandler.updateDuplicateRecordSet">updateDuplicateRecordSet (newRecords)</a>
+              <div class="class-description">
+                Trigger Handler for <code class="code-inline">DuplicateRecordItem</code>
+              </div>
+              <div class="class-subtitle">
+                Signature
+              </div>
 
-										<div class="methods-toc__description">
-											Update the parent
-											<code class="code-inline">DuplicateRecordItem</code>
-											records
-										</div>
-									</li>
-								</ul>
-								<div class="method private">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.assortDuplicateItems">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L74">
-											assortDuplicateItems(newRecords)
-										</a>
-									</h4>
-									<div class="method-description">Assign object type and then handle all records</div>
-									<div class="method-subtitle">Signature</div>
+              <div class="class-signature">
+                public inherited sharing class DuplicateRecordItemTriggerHandler
+              </div>
+              <div class="class-subtitle">
+                See
+              </div>
+              <div class="class-subtitle-description">
+                <a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordHandlersTest.html')">DuplicateRecordHandlersTest</a>
+              </div>
+              <div class="class-subtitle">
+                Author
+              </div>
+              <div class="class-subtitle-description">
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+              </div>
+              <div class="class-subtitle">
+                Since
+              </div>
+              <div class="class-subtitle-description">
+                <li>04/19/2021 Initial Version</li>
+                <li>02/28/2022 Static to instance trigger handler methods</li>
+              </div>
+            </div>
+            <div class="subsection methods">
+              <h3 class="subsection-title methods">DuplicateRecordItemTriggerHandler Methods</h3>
+              <div class="methods-container">
+                <ul class="methods-toc">
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.assortDuplicateItems">
+                      assortDuplicateItems (newRecords)
+                    </a>
 
-									<div class="method-signature">private void assortDuplicateItems(List&lt;DuplicateRecordItem&gt; newRecords)</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newRecords</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-								<div class="method private">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.handleAccounts">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L119">
-											handleAccounts(newAccounts, recordIDs)
-										</a>
-									</h4>
-									<div class="method-description">Handle Accounts (may be duplicated for any object)</div>
-									<div class="method-subtitle">Signature</div>
+                    <div class="methods-toc__description">
+                      Assign object type and then handle all records
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.handleAccounts">
+                      handleAccounts (newAccounts, recordIDs)
+                    </a>
 
-									<div class="method-signature">private void handleAccounts(List&lt;DuplicateRecordItem&gt; newAccounts, Set&lt;Id&gt; recordIDs)</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newAccounts</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="param-name">recordIDs</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">Set&lt;Id&gt;</code>
-									</div>
-									<div class="param-description">AccountIDs, which are technically in newAccounts, but included for simplicity</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-								<div class="method private">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.handleContacts">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L155">
-											handleContacts(newContacts, recordIDs)
-										</a>
-									</h4>
-									<div class="method-description">Handle Contacts (may be duplicated for any object)</div>
-									<div class="method-subtitle">Signature</div>
+                    <div class="methods-toc__description">
+                      Handle Accounts (may be duplicated for any object)
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.handleContacts">
+                      handleContacts (newContacts, recordIDs)
+                    </a>
 
-									<div class="method-signature">private void handleContacts(List&lt;DuplicateRecordItem&gt; newContacts, Set&lt;Id&gt; recordIDs)</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newContacts</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="param-name">recordIDs</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">Set&lt;Id&gt;</code>
-									</div>
-									<div class="param-description">ContactIDs, which are technically in newContacts, but included for simplicity</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-								<div class="method private">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.handleLeads">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L191">
-											handleLeads(newLeads, recordIDs)
-										</a>
-									</h4>
-									<div class="method-description">Handle Leads (may be duplicated for any object)</div>
-									<div class="method-subtitle">Signature</div>
+                    <div class="methods-toc__description">
+                      Handle Contacts (may be duplicated for any object)
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.handleLeads">
+                      handleLeads (newLeads, recordIDs)
+                    </a>
 
-									<div class="method-signature">private void handleLeads(List&lt;DuplicateRecordItem&gt; newLeads, Set&lt;Id&gt; recordIDs)</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newLeads</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="param-name">recordIDs</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">Set&lt;Id&gt;</code>
-									</div>
-									<div class="param-description">LeadIDs, which are technically in newLeads, but included for simplicity</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-								<div class="method public">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.handleTrigger">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L43">
-											handleTrigger(newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
-										</a>
-									</h4>
-									<div class="method-description">Handle all trigger records</div>
-									<div class="method-subtitle">Signature</div>
+                    <div class="methods-toc__description">
+                      Handle Leads (may be duplicated for any object)
+                    </div>
+                  </li>
+                  <li class="method public">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.handleTrigger">
+                      handleTrigger (newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
+                    </a>
 
-									<div class="method-signature">
-										public void handleTrigger( List&lt;DuplicateRecordItem&gt; newRecords, List&lt;DuplicateRecordItem&gt; oldRecords, Map&lt;Id, DuplicateRecordItem&gt;
-										newRecordsMap, Map&lt;Id, DuplicateRecordItem&gt; oldRecordsMap, System.TriggerOperation triggerEvent )
-									</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newRecords</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="param-name">oldRecords</div>
-									<div class="param-description">Trigger.old</div>
-									<div class="param-name">newRecordsMap</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.newMap</div>
-									<div class="param-name">oldRecordsMap</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.oldMap</div>
-									<div class="param-name">triggerEvent</div>
-									<div class="param-description">Trigger context enum</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-								<div class="method private">
-									<h4 class="method-title" id="DuplicateRecordItemTriggerHandler.updateDuplicateRecordSet">
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											title="Go to source"
-											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L225">
-											updateDuplicateRecordSet(newRecords)
-										</a>
-									</h4>
-									<div class="method-description">
-										Update the parent
-										<code class="code-inline">DuplicateRecordItem</code>
-										records
-									</div>
-									<div class="method-subtitle">Signature</div>
+                    <div class="methods-toc__description">
+                      Handle all trigger records
+                    </div>
+                  </li>
+                  <li class="method private">
+                    <a class="methods-toc__entry " href="#DuplicateRecordItemTriggerHandler.updateDuplicateRecordSet">
+                      updateDuplicateRecordSet (newRecords)
+                    </a>
 
-									<div class="method-signature">private void updateDuplicateRecordSet(List&lt;DuplicateRecordItem&gt; newRecords)</div>
-									<div class="method-subtitle">Parameters</div>
-									<div class="param-name">newRecords</div>
-									<div class="param-type">
-										Type:
-										<code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
-									</div>
-									<div class="param-description">Trigger.new</div>
-									<div class="method-subtitle">Author</div>
-									<div class="method-subtitle-description">
-										<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td class="footer">
-					<div>
-						<a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">Powered By ApexDox VS Code</a>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</body>
+                    <div class="methods-toc__description">
+                      Update the parent <code class="code-inline">DuplicateRecordItem</code> records
+                    </div>
+                  </li>
+                </ul>
+                <div class="method private">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.assortDuplicateItems">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L74">
+                      assortDuplicateItems(newRecords)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Assign object type and then handle all records
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private void assortDuplicateItems(List&lt;DuplicateRecordItem&gt; newRecords)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newRecords</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.new</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.handleAccounts">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L119">
+                      handleAccounts(newAccounts, recordIDs)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Handle Accounts (may be duplicated for any object)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private void handleAccounts(List&lt;DuplicateRecordItem&gt; newAccounts, Set&lt;Id&gt; recordIDs)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newAccounts</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.new</div>
+                  <div class="param-name">recordIDs</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Set&lt;Id&gt;</code>
+                  </div>
+                  <div class="param-description"> AccountIDs, which are technically in newAccounts, but included for simplicity</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.handleContacts">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L154">
+                      handleContacts(newContacts, recordIDs)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Handle Contacts (may be duplicated for any object)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private void handleContacts(List&lt;DuplicateRecordItem&gt; newContacts, Set&lt;Id&gt; recordIDs)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newContacts</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.new</div>
+                  <div class="param-name">recordIDs</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Set&lt;Id&gt;</code>
+                  </div>
+                  <div class="param-description">ContactIDs, which are technically in newContacts, but included for simplicity</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.handleLeads">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L189">
+                      handleLeads(newLeads, recordIDs)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Handle Leads (may be duplicated for any object)
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private void handleLeads(List&lt;DuplicateRecordItem&gt; newLeads, Set&lt;Id&gt; recordIDs)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newLeads</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.new</div>
+                  <div class="param-name">recordIDs</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">Set&lt;Id&gt;</code>
+                  </div>
+                  <div class="param-description">LeadIDs, which are technically in newLeads, but included for simplicity</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method public">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.handleTrigger">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L43">
+                      handleTrigger(newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Handle all trigger records
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    public void handleTrigger( List&lt;DuplicateRecordItem&gt; newRecords, List&lt;DuplicateRecordItem&gt; oldRecords, Map&lt;Id, DuplicateRecordItem&gt; newRecordsMap, Map&lt;Id, DuplicateRecordItem&gt; oldRecordsMap, System.TriggerOperation triggerEvent )
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newRecords</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">		List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description"> Trigger.new</div>
+                  <div class="param-name">oldRecords</div>
+                  <div class="param-description"> Trigger.old</div>
+                  <div class="param-name">newRecordsMap</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.newMap</div>
+                  <div class="param-name">oldRecordsMap</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.oldMap</div>
+                  <div class="param-name">triggerEvent</div>
+                  <div class="param-description"> Trigger context enum</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+                <div class="method private">
+                  <h4 class="method-title " id="DuplicateRecordItemTriggerHandler.updateDuplicateRecordSet">
+
+                    <a target="_blank" rel="noopener noreferrer" title="Go to source" class="source-link" href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordItemTriggerHandler.cls#L222">
+                      updateDuplicateRecordSet(newRecords)
+                    </a>
+                  </h4>
+                  <div class="method-description">
+                    Update the parent <code class="code-inline">DuplicateRecordItem</code> records
+                  </div>
+                  <div class="method-subtitle">
+                    Signature
+                  </div>
+
+                  <div class="method-signature">
+                    private void updateDuplicateRecordSet(List&lt;DuplicateRecordItem&gt; newRecords)
+                  </div>
+                  <div class="method-subtitle">Parameters</div>
+                  <div class="param-name">newRecords</div>
+                  <div class="param-type">
+                    Type: <code class="code-inline">List&lt;DuplicateRecordItem&gt;</code>
+                  </div>
+                  <div class="param-description">Trigger.new</div>
+                  <div class="method-subtitle">
+                    Author
+                  </div>
+                  <div class="method-subtitle-description">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="footer">
+
+          <div>
+            <a href="https://github.com/no-stack-dub-sack/apexdox-vs-code" target="_blank" rel="noopener noreferrer">
+              Powered By ApexDox VS Code
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+
 </html>
