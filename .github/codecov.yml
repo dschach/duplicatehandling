@@ -13,3 +13,10 @@ coverage:
       default:
         target: auto
         threshold: 10%
+        flags:
+          - Apex
+      Apex:
+        flags:
+          - Apex
+ignore:
+  - "force-app/main/default/staticresources/**"
