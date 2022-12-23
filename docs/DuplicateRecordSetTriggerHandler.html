@@ -99,7 +99,7 @@
 								rel="noopener noreferrer"
 								title="Go to source"
 								class="source-link"
-								href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L32">
+								href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L35">
 								DuplicateRecordSetTriggerHandler
 							</a>
 						</h2>
@@ -115,17 +115,27 @@
 							<div class="class-subtitle-description">
 								<a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordHandlersTest.html')">DuplicateRecordHandlersTest</a>
 							</div>
-							<br />
-							<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-							<br />
-							02/28/2022
+							<div class="class-subtitle">Author</div>
+							<div class="class-subtitle-description">
+								<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+							</div>
+							<div class="class-subtitle">Since</div>
+							<div class="class-subtitle-description">
+								<li>04/19/2021 Initial Version</li>
+								<li>04/19/2021 Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets</li>
+								<li>02/28/2022 Static to instance trigger handler methods</li>
+								<li>09/14/2022 Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false</li>
+							</div>
 						</div>
 						<div class="subsection methods">
 							<h3 class="subsection-title methods">DuplicateRecordSetTriggerHandler Methods</h3>
 							<div class="methods-container">
 								<ul class="methods-toc">
+									<li class="method private">
+										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.deleteEmptySet">deleteEmptySet (candidatesToDelete)</a>
+									</li>
 									<li class="method public">
-										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.deleteSingleRecordSets">deleteSingleRecordSets (candidatesToDelete)</a>
+										<a class="methods-toc__entry" href="#DuplicateRecordSetTriggerHandler.deleteSingleRecordSetsFuture">deleteSingleRecordSetsFuture (candidatesToDelete)</a>
 
 										<div class="methods-toc__description">
 											Future delete
@@ -151,15 +161,30 @@
 										<div class="methods-toc__description">Handle all trigger records</div>
 									</li>
 								</ul>
-								<div class="method public">
-									<h4 class="method-title" id="DuplicateRecordSetTriggerHandler.deleteSingleRecordSets">
+								<div class="method private">
+									<h4 class="method-title" id="DuplicateRecordSetTriggerHandler.deleteEmptySet">
 										<a
 											target="_blank"
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L96">
-											deleteSingleRecordSets(candidatesToDelete)
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L92">
+											deleteEmptySet(candidatesToDelete)
+										</a>
+									</h4>
+									<div class="method-subtitle">Signature</div>
+
+									<div class="method-signature">private static void deleteEmptySet(Set&lt;Id&gt; candidatesToDelete)</div>
+								</div>
+								<div class="method public">
+									<h4 class="method-title" id="DuplicateRecordSetTriggerHandler.deleteSingleRecordSetsFuture">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L88">
+											deleteSingleRecordSetsFuture(candidatesToDelete)
 										</a>
 									</h4>
 									<div class="method-description">
@@ -170,7 +195,7 @@
 									</div>
 									<div class="method-subtitle">Signature</div>
 									<div class="method-annotations">@future</div>
-									<div class="method-signature">public static void deleteSingleRecordSets(Set&lt;Id&gt; candidatesToDelete)</div>
+									<div class="method-signature">public static void deleteSingleRecordSetsFuture(Set&lt;Id&gt; candidatesToDelete)</div>
 									<div class="method-subtitle">Parameters</div>
 									<div class="param-name">candidatesToDelete</div>
 									<div class="param-type">
@@ -195,7 +220,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L70">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L65">
 											findSingleRecordSets(newRecords)
 										</a>
 									</h4>
@@ -226,7 +251,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L43">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordSetTriggerHandler.cls#L46">
 											handleTrigger(newRecords, oldRecords, newRecordsMap, oldRecordsMap, triggerEvent)
 										</a>
 									</h4>
