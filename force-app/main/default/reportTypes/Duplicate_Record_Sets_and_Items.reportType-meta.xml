@@ -51,7 +51,7 @@
             <table>DuplicateRecordSet</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>Object_Type__c</field>
             <table>DuplicateRecordSet</table>
         </columns>
