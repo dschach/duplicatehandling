@@ -1,0 +1,28 @@
+{
+	"records": [
+		{
+			"attributes": {
+				"type": "RecordType",
+				"referenceId": "RecordTypeRef1"
+			},
+			"Name": "default_account",
+			"SobjectType": "Account"
+		},
+		{
+			"attributes": {
+				"type": "RecordType",
+				"referenceId": "RecordTypeRef2"
+			},
+			"Name": "default_contact",
+			"SobjectType": "Contact"
+		},
+		{
+			"attributes": {
+				"type": "RecordType",
+				"referenceId": "RecordTypeRef3"
+			},
+			"Name": "default_lead",
+			"SobjectType": "Lead"
+		}
+	]
+}

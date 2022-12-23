@@ -18,14 +18,17 @@
 /*
  * Ver       Date            Author           Modification
  * 1.0    04/19/2021   David Schach     Initial Version
- * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * 1.1    04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
  * 1.2    02/28/2022   David Schach     Static to instance trigger handler methods
  * 1.3    09/14/2022   David Schach     Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false
  */
 /**
  * Trigger Handler for `DuplicateRecordSet`
  * @author {@link [David Schach](https://github.com/dschach)}
- * @since 02/28/2022
+ * @since 04/19/2021 Initial Version
+ * @since 04/19/2021 Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * @since 02/28/2022 Static to instance trigger handler methods
+ * @since 09/14/2022 Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false
  * @see DuplicateRecordHandlersTest
  * @group Duplicate Handlers
  */
@@ -47,42 +50,39 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 		Map<Id, DuplicateRecordSet> oldRecordsMap,
 		System.TriggerOperation triggerEvent
 	) {
+		//System.debug('IN DRS TRIGGER HANDLER');
 		switch on triggerEvent {
-			// NOT listed in trigger. To use these, update trigger contexts.
-			//when BEFORE_INSERT {}
-			//when AFTER_INSERT {}
-			//when BEFORE_UPDATE {}
-			//when BEFORE_DELETE {}
-			//when AFTER_DELETE {}
-			//when AFTER_UNDELETE {}
-
 			when AFTER_UPDATE {
-				findSingleRecordSets(newRecords);
+				findSingleRecordSets(newRecords, oldRecordsMap);
 			}
 		}
 	}
 
 	/**
 	 * Query for all single-item `DuplicateRecordSet` records
+	 * <br>First we exclude DRS records where the DRI count was and is zero. This allows us to instantiate the record. We don't know why DRS records are also updated when they are created, but that's the situation.
+	 * <br>Then we delete DRS records where RecordCount < 2 (0 or 1) and can do so because we allowed the creation of the DRS.
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  newRecords Trigger.new
+	 * @param  oldRecordsMap Trigger.oldMap
 	 */
-	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
+	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords, Map<Id, DuplicateRecordSet> oldRecordsMap) {
 		Set<Id> toDelete = new Set<Id>();
 		for (DuplicateRecordSet drs : newRecords) {
-			//System.debug(drs.Name + ' has this many records: ' + drs.RecordCount);
-			if (drs.RecordCount == 1) {
+			// Prevent deleting DRS when it is instantiated. (No idea why it's updated before DRS are added.)
+			if (drs.RecordCount == 0 && oldRecordsMap.get(drs.Id).RecordCount == 0) {
+				continue;
+			}
+			if (drs.RecordCount < 2) {
 				toDelete.add(drs.Id);
 			}
 		}
 
 		if (!toDelete.isEmpty()) {
 			if (!System.isFuture() && !System.isBatch()) {
-				//System.debug('Calling a FUTURE method to delete the DRS');
-				deleteSingleRecordSets(toDelete);
+				deleteSingleRecordSetsFuture(toDelete);
 			} else {
-				//System.debug('Synchronously DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
-				Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete AND IsDeleted = FALSE], false);
+				deleteUnnecessaryRecordSets(toDelete);
 			}
 		}
 	}
@@ -93,8 +93,16 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	 * @param  candidatesToDelete Queried `DuplicateRecordSet` records with 1 `DuplicateRecordItem`
 	 */
 	@future
-	public static void deleteSingleRecordSets(Set<Id> candidatesToDelete) {
-		//System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
+	public static void deleteSingleRecordSetsFuture(Set<Id> candidatesToDelete) {
+		deleteUnnecessaryRecordSets(candidatesToDelete);
+	}
+
+	/**
+	 * Declare deletion in a synchronous method so it can be called from either the main handler class or an asychronous method. (DRY)
+	 *
+	 * @param candidatesToDelete  `DuplicateRecordSet` IDs to delete
+	 */
+	private static void deleteUnnecessaryRecordSets(Set<Id> candidatesToDelete) {
 		Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete AND IsDeleted = FALSE], false);
 	}
 }

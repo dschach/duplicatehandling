@@ -15,4 +15,5 @@
 	"apexPMD.runOnFileOpen": true,
 	"apexPMD.runOnFileSave": true,
 	"apexPMD.showErrors": true,
+	"salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
 }

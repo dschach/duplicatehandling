@@ -10,4 +10,4 @@ git add pmd/pmd-version.txt
 
 . doc-assets/updateHighlight.sh
 
-npx lint-staged
+npm run lint-staged

@@ -71,4 +71,4 @@ jobs:
           ~/pmd/bin/run.sh pmd --version
       # Run PMD scan
       - name: "Run PMD scan"
-        run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/apexQuickStart.xml -f text --cache pmd/cache -min 2
+        run: ~/pmd/bin/run.sh pmd -d force-app -R pmd/apexQuickStart.xml -f text --cache pmd/cache --minimum-priority 2

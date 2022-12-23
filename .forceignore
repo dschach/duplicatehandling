@@ -47,10 +47,11 @@ package.xml
 **/standardValueSets
 **/staticresources/SiteSamples**
 **quickActions**
-**/duplicateRules
-**/objects/Account
 
 # Prevent org changes from populating project
 *.duplicateRule
 *.listView
 *.profile
+
+#include our duplicate object listviews
+!**/objects/Duplicate*/listViews/*.listView

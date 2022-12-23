@@ -38,24 +38,20 @@
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li
-								title="DuplicateRecordHandlersTest"
-								id="item-DuplicateRecordHandlersTest"
-								class="nav-item class private"
-								onclick="goToLocation('DuplicateRecordHandlersTest.html');">
+							<li title="DuplicateRecordHandlersTest" id="item-DuplicateRecordHandlersTest" class="nav-item class" onclick="goToLocation('DuplicateRecordHandlersTest.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
 							</li>
 							<li
 								title="DuplicateRecordItemTriggerHandler"
 								id="item-DuplicateRecordItemTriggerHandler"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
 							</li>
 							<li
 								title="DuplicateRecordSetTriggerHandler"
 								id="item-DuplicateRecordSetTriggerHandler"
-								class="nav-item class public"
+								class="nav-item class"
 								onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
 							</li>
@@ -99,7 +95,7 @@
 								rel="noopener noreferrer"
 								title="Go to source"
 								class="source-link"
-								href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L32">
+								href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L33">
 								DuplicateRecordHandlersTest
 							</a>
 						</h2>
@@ -114,10 +110,15 @@
 								,
 								<a href="javascript:void(0)" onclick="goToLocation('DuplicateRecordSetTriggerHandler.html')">DuplicateRecordSetTriggerHandler</a>
 							</div>
-							<br />
-							<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
-							<br />
-							02/28/2022
+							<div class="class-subtitle">Author</div>
+							<div class="class-subtitle-description">
+								<a target="_blank" rel="noopener noreferrer" href="https://github.com/dschach">David Schach</a>
+							</div>
+							<div class="class-subtitle">Since</div>
+							<div class="class-subtitle-description">
+								<li>11/13/2019 Initial Version</li>
+								<li>02/28/2022 PMD-identified cleanup</li>
+							</div>
 						</div>
 						<div class="subsection methods">
 							<h3 class="subsection-title methods">DuplicateRecordHandlersTest Methods</h3>
@@ -144,6 +145,14 @@
 									<li class="method testmethod">
 										<a class="methods-toc__entry" href="#DuplicateRecordHandlersTest.dupeLeadsMerge">dupeLeadsMerge ()</a>
 									</li>
+									<li class="method testmethod">
+										<a class="methods-toc__entry" href="#DuplicateRecordHandlersTest.dupeLeadsMergeFuture">dupeLeadsMergeFuture ()</a>
+									</li>
+									<li class="method private">
+										<a class="methods-toc__entry" href="#DuplicateRecordHandlersTest.futureMergeLeads">futureMergeLeads (lId)</a>
+
+										<div class="methods-toc__description">We have a future method to allow us to run our trigger handler in future context</div>
+									</li>
 									<li class="method private">
 										<a class="methods-toc__entry" href="#DuplicateRecordHandlersTest.makeData">makeData ()</a>
 									</li>
@@ -167,7 +176,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L88">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L89">
 											dupeAccountsCreate()
 										</a>
 									</h4>
@@ -182,7 +191,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L129">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L130">
 											dupeAccountsMerge()
 										</a>
 									</h4>
@@ -197,7 +206,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L166">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L167">
 											dupeAccountsUpdate()
 										</a>
 									</h4>
@@ -212,7 +221,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L209">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L210">
 											dupeContactsCreate()
 										</a>
 									</h4>
@@ -227,7 +236,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L243">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L244">
 											dupeContactsMerge()
 										</a>
 									</h4>
@@ -242,7 +251,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L282">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L283">
 											dupeLeadsCreate()
 										</a>
 									</h4>
@@ -257,13 +266,51 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L319">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L322">
 											dupeLeadsMerge()
 										</a>
 									</h4>
 									<div class="method-subtitle">Signature</div>
 									<div class="method-annotations">@isTest</div>
 									<div class="method-signature">private static void dupeLeadsMerge()</div>
+								</div>
+								<div class="method testmethod">
+									<h4 class="method-title" id="DuplicateRecordHandlersTest.dupeLeadsMergeFuture">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L359">
+											dupeLeadsMergeFuture()
+										</a>
+									</h4>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@isTest</div>
+									<div class="method-signature">private static void dupeLeadsMergeFuture()</div>
+								</div>
+								<div class="method private">
+									<h4 class="method-title" id="DuplicateRecordHandlersTest.futureMergeLeads">
+										<a
+											target="_blank"
+											rel="noopener noreferrer"
+											title="Go to source"
+											class="source-link"
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L399">
+											futureMergeLeads(lId)
+										</a>
+									</h4>
+									<div class="method-description">We have a future method to allow us to run our trigger handler in future context</div>
+									<div class="method-subtitle">Signature</div>
+									<div class="method-annotations">@future</div>
+									<div class="method-signature">private static void futureMergeLeads(Id lId)</div>
+									<div class="method-subtitle">Parameters</div>
+									<div class="param-name">lId</div>
+									<div class="param-type">
+										Type:
+										<code class="code-inline">Id</code>
+									</div>
+									<div class="param-description">Lead Id to keep when merging leads in test class</div>
 								</div>
 								<div class="method private">
 									<h4 class="method-title" id="DuplicateRecordHandlersTest.makeData">
@@ -272,7 +319,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L34">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L35">
 											makeData()
 										</a>
 									</h4>
@@ -287,7 +334,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L43">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L44">
 											setupAccounts(acctCount)
 										</a>
 									</h4>
@@ -302,7 +349,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L69">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L70">
 											setupContact(acctId)
 										</a>
 									</h4>
@@ -317,7 +364,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L56">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L57">
 											setupContacts(accts)
 										</a>
 									</h4>
@@ -332,7 +379,7 @@
 											rel="noopener noreferrer"
 											title="Go to source"
 											class="source-link"
-											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L78">
+											href="https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes/DuplicateRecordHandlersTest.cls#L79">
 											setupLead()
 										</a>
 									</h4>

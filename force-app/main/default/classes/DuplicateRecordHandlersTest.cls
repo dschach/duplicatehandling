@@ -16,14 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 /*
- * Ver       Date            Author      		    Modification
+ * Ver       Date            Author          Modification
  * 1.0    11/13/2019   David Schach    Initial Version
  * 1.1    02/28/2022   David Schach    PMD-identified cleanup
  */
 /**
  * Tests for DuplicateRecord trigger handlers
  * @author {@link [David Schach](https://github.com/dschach)}
- * @since 02/28/2022
+ * @since 11/13/2019 Initial Version
+ * @since 02/28/2022 PMD-identified cleanup
  * @group Duplicate Handlers
  * @see DuplicateRecordItemTriggerHandler
  * @see DuplicateRecordSetTriggerHandler
@@ -301,11 +302,13 @@ private class DuplicateRecordHandlersTest {
 		//System.debug('inserting this many duplicaterecorditems: ' + drisToInsert.size());
 		insert drisToInsert;
 
-		//System.debug('We now have ' + [SELECT COUNT() FROM DuplicateRecordItem] + ' duplicaterecoritems');
+		//System.debug('We now have ' + [SELECT COUNT() FROM DuplicateRecordItem] + ' duplicaterecorditems');
+		//System.debug('We now have ' + [SELECT COUNT() FROM DuplicateRecordSet] + ' duplicaterecordsets');
+		//System.debug('We now have ' + [SELECT RecordCount FROM DuplicateRecordSet] + ' records in our record set');
 
 		Test.stopTest();
 
-		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
+		List<DuplicateRecordSet> drsList = [SELECT Id, RecordCount, Object_Type__c FROM DuplicateRecordSet];
 		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
 		System.assertEquals('Lead', drsList[0].Object_Type__c); // can't know this because we are creating it manually
 
@@ -350,5 +353,52 @@ private class DuplicateRecordHandlersTest {
 		Test.stopTest();
 
 		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+	}
+
+	@isTest
+	private static void dupeLeadsMergeFuture() {
+		DuplicateRule dR = [SELECT Id FROM DuplicateRule WHERE DeveloperName = 'Standard_Lead_Duplicate_Rule' LIMIT 1];
+		DuplicateRecordSet dupRS = new DuplicateRecordSet(DuplicateRuleId = dR.id);
+		insert dupRS;
+
+		Test.startTest();
+		Lead l = setupLead();
+
+		Database.DMLOptions insertDML = new Database.DMLOptions();
+		insertDML.DuplicateRuleHeader.AllowSave = true;
+		Database.SaveResult sr = Database.insert(l, insertDML);
+		System.assert(sr.isSuccess());
+		List<DuplicateRecordItem> drisToInsert = new List<DuplicateRecordItem>();
+		for (Lead ac : [SELECT Id FROM Lead]) {
+			DuplicateRecordItem dup = new DuplicateRecordItem(DuplicateRecordSetId = dupRS.id, RecordId = ac.id);
+			drisToInsert.add(dup);
+		}
+		insert drisToInsert;
+
+		List<DuplicateRecordSet> drsList = [SELECT Id, Object_Type__c FROM DuplicateRecordSet];
+		System.assertEquals(1, drsList.size(), 'Should be one DuplicateRecordSet');
+		System.assertEquals('Lead', drsList[0].Object_Type__c); // can't know this because we are creating it manually
+
+		List<DuplicateRecordItem> driList = [SELECT Id, Object_Type__c, Lead__c FROM DuplicateRecordItem];
+		for (DuplicateRecordItem dri : driList) {
+			System.assertEquals('Lead', dri.Object_Type__c);
+		}
+		futureMergeLeads(l.Id);
+
+		Test.stopTest();
+
+		System.assertEquals(0, [SELECT COUNT() FROM DuplicateRecordSet], 'DuplicateRecordSet not deleted');
+	}
+
+	/**
+	 * We have a future method to allow us to run our trigger handler in future context
+	 *
+	 * @param lId Lead Id to keep when merging leads in test class
+	 */
+	@future
+	private static void futureMergeLeads(Id lId) {
+		List<Lead> primary = [SELECT Id FROM Lead WHERE Id = :lId];
+		List<Lead> secondaries = [SELECT Id FROM Lead WHERE Id != :lId];
+		Database.merge(primary[0], secondaries, false);
 	}
 }
