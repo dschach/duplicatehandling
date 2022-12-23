@@ -64,6 +64,7 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	 * <br>Then we delete DRS records where RecordCount < 2 (0 or 1) and can do so because we allowed the creation of the DRS.
 	 * @author {@link [David Schach](https://github.com/dschach)}
 	 * @param  newRecords Trigger.new
+	 * @param  oldRecordsMap Trigger.oldMap
 	 */
 	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords, Map<Id, DuplicateRecordSet> oldRecordsMap) {
 		Set<Id> toDelete = new Set<Id>();
