@@ -89,6 +89,11 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 		deleteEmptySet(candidatesToDelete);
 	}
 
+	/**
+	 * Declare deletion in a synchronous method so it can be called from either the main handler class or an asychronous method. (DRY)
+	 *
+	 * @param candidatesToDelete  `DuplicateRecordSet` IDs to delete
+	 */
 	private static void deleteEmptySet(Set<Id> candidatesToDelete) {
 		Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete AND IsDeleted = FALSE], false);
 	}
