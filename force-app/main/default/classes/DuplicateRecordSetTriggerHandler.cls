@@ -18,14 +18,17 @@
 /*
  * Ver       Date            Author           Modification
  * 1.0    04/19/2021   David Schach     Initial Version
- * 1.1	  04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * 1.1    04/19/2021   David Schach     Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
  * 1.2    02/28/2022   David Schach     Static to instance trigger handler methods
  * 1.3    09/14/2022   David Schach     Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false
  */
 /**
  * Trigger Handler for `DuplicateRecordSet`
  * @author {@link [David Schach](https://github.com/dschach)}
- * @since 02/28/2022
+ * @since 04/19/2021 Initial Version
+ * @since 04/19/2021 Moved deletion of sets to the Item trigger handler for more control and to delete 0 record count sets
+ * @since 02/28/2022 Static to instance trigger handler methods
+ * @since 09/14/2022 Salesforce may be auto-deleting single-record sets, so setting allOrNothing to false
  * @see DuplicateRecordHandlersTest
  * @group Duplicate Handlers
  */
@@ -48,14 +51,6 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 		System.TriggerOperation triggerEvent
 	) {
 		switch on triggerEvent {
-			// NOT listed in trigger. To use these, update trigger contexts.
-			//when BEFORE_INSERT {}
-			//when AFTER_INSERT {}
-			//when BEFORE_UPDATE {}
-			//when BEFORE_DELETE {}
-			//when AFTER_DELETE {}
-			//when AFTER_UNDELETE {}
-
 			when AFTER_UPDATE {
 				findSingleRecordSets(newRecords);
 			}
@@ -70,19 +65,16 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	public void findSingleRecordSets(List<DuplicateRecordSet> newRecords) {
 		Set<Id> toDelete = new Set<Id>();
 		for (DuplicateRecordSet drs : newRecords) {
-			//System.debug(drs.Name + ' has this many records: ' + drs.RecordCount);
-			if (drs.RecordCount == 1) {
+			if (drs.RecordCount < 2) {
 				toDelete.add(drs.Id);
 			}
 		}
 
 		if (!toDelete.isEmpty()) {
 			if (!System.isFuture() && !System.isBatch()) {
-				//System.debug('Calling a FUTURE method to delete the DRS');
-				deleteSingleRecordSets(toDelete);
+				deleteSingleRecordSetsFuture(toDelete);
 			} else {
-				//System.debug('Synchronously DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :toDelete] + ' SETS');
-				Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :toDelete AND IsDeleted = FALSE], false);
+				deleteEmptySet(toDelete);
 			}
 		}
 	}
@@ -93,8 +85,11 @@ public inherited sharing class DuplicateRecordSetTriggerHandler {
 	 * @param  candidatesToDelete Queried `DuplicateRecordSet` records with 1 `DuplicateRecordItem`
 	 */
 	@future
-	public static void deleteSingleRecordSets(Set<Id> candidatesToDelete) {
-		//System.debug('FUTURE DELETING ' + [SELECT COUNT() FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete] + ' SETS');
+	public static void deleteSingleRecordSetsFuture(Set<Id> candidatesToDelete) {
+		deleteEmptySet(candidatesToDelete);
+	}
+
+	private static void deleteEmptySet(Set<Id> candidatesToDelete) {
 		Database.delete([SELECT Id FROM DuplicateRecordSet WHERE Id IN :candidatesToDelete AND IsDeleted = FALSE], false);
 	}
 }

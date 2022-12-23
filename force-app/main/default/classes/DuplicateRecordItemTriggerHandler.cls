@@ -24,7 +24,8 @@
 /**
  * Trigger Handler for `DuplicateRecordItem`
  * @author {@link [David Schach](https://github.com/dschach)}
- * @since 02/28/2022
+ * @since 04/19/2021     Initial Version
+ * @since 02/28/2022     Static to instance trigger handler methods
  * @see DuplicateRecordHandlersTest
  * @group Duplicate Handlers
  */
@@ -73,18 +74,40 @@ public inherited sharing class DuplicateRecordItemTriggerHandler {
 	private void assortDuplicateItems(List<DuplicateRecordItem> newRecords) {
 		Map<String, String> mapPrefixToObjectName = new Map<String, String>();
 		Set<Id> recIDs = new Set<Id>();
+		Boolean hasAccounts = false;
+		Boolean hasContacts = false;
+		Boolean hasLeads = false;
+
 		for (DuplicateRecordItem dri : newRecords) {
 			String recId = (String) dri.RecordId;
-			if (!mapPrefixToObjectName.containsKey(recId.left(3))) {
-				mapPrefixToObjectName.put(recId.left(3), dri.RecordId.getSObjectType().getDescribe().getName()); //NOPMD
+			String recPrefix = recId.left(3);
+			switch on recPrefix {
+				when '001' {
+					hasAccounts = true;
+				}
+				when '003' {
+					hasContacts = true;
+				}
+				when '00Q' {
+					hasLeads = true;
+				}
+			}
+			if (!mapPrefixToObjectName.containsKey(recPrefix)) {
+				mapPrefixToObjectName.put(recPrefix, dri.RecordId.getSObjectType().getDescribe().getName()); //NOPMD
 			}
 			recIDs.add(dri.RecordId);
-			dri.Object_Type__c = mapPrefixToObjectName.get(recId.left(3));
+			dri.Object_Type__c = mapPrefixToObjectName.get(recPrefix);
 		}
 
-		handleAccounts(newRecords, recIDs);
-		handleContacts(newRecords, recIDs);
-		handleLeads(newRecords, recIDs);
+		if (hasAccounts) {
+			handleAccounts(newRecords, recIDs);
+		}
+		if (hasContacts) {
+			handleContacts(newRecords, recIDs);
+		}
+		if (hasLeads) {
+			handleLeads(newRecords, recIDs);
+		}
 	}
 
 	/**

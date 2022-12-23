@@ -16,14 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 /*
- * Ver       Date            Author      		    Modification
+ * Ver       Date            Author          Modification
  * 1.0    11/13/2019   David Schach    Initial Version
  * 1.1    02/28/2022   David Schach    PMD-identified cleanup
  */
 /**
  * Tests for DuplicateRecord trigger handlers
  * @author {@link [David Schach](https://github.com/dschach)}
- * @since 02/28/2022
+ * @since 11/13/2019 Initial Version
+ * @since 02/28/2022 PMD-identified cleanup
  * @group Duplicate Handlers
  * @see DuplicateRecordItemTriggerHandler
  * @see DuplicateRecordSetTriggerHandler
