@@ -5,7 +5,7 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
+    #paths-ignore:
       #- "sfdx-project.json"
       #- "README.md"
     paths:
