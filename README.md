@@ -45,9 +45,9 @@
    cd duplicatehandling
    ```
 
-1. Run the npm script to create a sratch org, assign the permission set, and open the org
+1. Run the npm script to create a scratch org, assign the permission set, and open the org
    ```
-   npm run-script scratchorg
+   npm run scratchorg
    ```
 
 That's it!
@@ -77,7 +77,7 @@ That's it!
 1. Create a scratch org and provide it with an alias (**duplicatehandling** in the command below):
 
    ```
-   sfdx force:org:create -s -f config/project-scratch-def.json -a duplicatehandling
+   sfdx force:org:create -f config/project-scratch-def.json --durationdays 10 -a duplicatehandling -s
    ```
 
 1. Push the app to your scratch org:
