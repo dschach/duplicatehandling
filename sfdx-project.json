@@ -3,7 +3,7 @@
 		{
 			"path": "force-app",
 			"default": true,
-			"versionNumber": "1.0.0.NEXT"
+			"versionNumber": "0.0.0.NEXT"
 		}
 	],
 	"namespace": "",
