@@ -6,6 +6,7 @@
 		}
 	],
 	"namespace": "",
+	"name": "duplicatehandling",
 	"sfdcLoginUrl": "https://login.salesforce.com",
 	"sourceApiVersion": "56.0"
 }
