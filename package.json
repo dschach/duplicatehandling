@@ -1,7 +1,7 @@
 {
 	"name": "duplicatehandling",
 	"private": true,
-	"version": "0.0.0",
+	"version": "2.0.0",
 	"description": "Duplicates Handling enhancements",
 	"author": "David Schach",
 	"license": "GNU-3.0",
