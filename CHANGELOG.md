@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- Release-please Chore header ([#32](https://github.com/dschach/duplicatehandling/issues/32)) ([78178b2](https://github.com/dschach/duplicatehandling/commit/
+- Release-please Chore header ([#32](https://github.com/dschach/duplicatehandling/issues/32)) ([78178b2](https://github.com/dschach/duplicatehandling/commit/78178b2602ec40157f67b70754423ecffa518279))
 
 ### Build System
 
