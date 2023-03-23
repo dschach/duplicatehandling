@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
   push:
     #paths-ignore:
-      #- "sfdx-project.json"
-      #- "README.md"
+    #- "sfdx-project.json"
+    #- "README.md"
     paths:
       - "force-app/**"
 
@@ -35,22 +35,9 @@ jobs:
         if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm ci
 
-      # Start local Apex parser server for Prettier
-      - name: "Start local Apex parser server for Prettier"
-        run: npm run apex:local:start &
-
-      # Wait for Apex parser server startup
-      - name: "Wait for Apex parser server startup"
-        run: timeout 30 bash -c 'until printf "" 2>>/dev/null >>/dev/tcp/$0/$1; do sleep 1; done' 127.0.0.1 2117
-
       # Prettier formatting
       - name: "Code formatting verification with Prettier"
-        run: npm run prettier:verify:apex:local
-
-      # Stop local Apex parser server for Prettier
-      - name: "Stop local Apex parser server for Prettier"
-        if: always()
-        run: npm run apex:local:stop
+        run: npm run prettier:verify:apex
 
   pmd-analysis:
     runs-on: ubuntu-latest
@@ -64,7 +51,7 @@ jobs:
       # Install PMD
       - name: "Install PMD"
         run: |
-          PMD_VERSION=`cat pmd/pmd-version.txt`
+          PMD_VERSION=$(curl -s https://api.github.com/repos/pmd/pmd/releases/latest | grep '.tag_name' | sed 's:.*/::' | sed 's:",::')
           wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F$PMD_VERSION/pmd-bin-$PMD_VERSION.zip
           unzip pmd-bin-$PMD_VERSION.zip -d ~
           mv ~/pmd-bin-$PMD_VERSION ~/pmd
