@@ -14,6 +14,10 @@
 		{
 			"files": "*.{cmp,page,component}",
 			"options": { "parser": "html" }
+		},
+		{
+			"files": "*.json",
+			"options": { "useTabs": false, "tabWidth": 2 }
 		}
 	]
 }

@@ -10,3 +10,5 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           command: manifest
+          release-type: salesforce
+          default-branch: main
