@@ -13,10 +13,8 @@
 		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:docs": "prettier --write \"docs/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify": "prettier --list-different \"force-app/**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --check \"**/*.{cls,cmp,component,page,trigger}\"",
-		"apex:local:start": "node node_modules/prettier-plugin-apex/dist/bin/start-apex-server.js",
-		"apex:local:stop": "node node_modules/prettier-plugin-apex/dist/bin/stop-apex-server.js",
+		"prettier:apex": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prettier:verify:apex": "prettier --check \"**/*.{cls,cmp,component,page,trigger}\"",
 		"scratchorg": ". scripts/orginit.sh",
 		"prepare": "husky install"
 	},

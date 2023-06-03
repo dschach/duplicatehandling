@@ -16,7 +16,7 @@
 			"options": { "parser": "html" }
 		},
 		{
-			"files": "*.json",
+			"files": "sfdx-project.json",
 			"options": { "useTabs": false, "tabWidth": 2 }
 		}
 	]
