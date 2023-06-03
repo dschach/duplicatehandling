@@ -1,13 +1,21 @@
 {
-	"packageDirectories": [
-		{
-			"path": "force-app",
-			"default": true,
-			"versionNumber": "2.0.0.NEXT"
-		}
-	],
-	"namespace": "",
-	"name": "duplicatehandling",
-	"sfdcLoginUrl": "https://login.salesforce.com",
-	"sourceApiVersion": "56.0"
+  "packageDirectories": [
+    {
+      "default": true,
+      "definitionFile": "",
+      "package": "Duplicate Handling",
+      "path": "force-app",
+      "versionDescription": "",
+      "versionName": "ver 2",
+      "versionNumber": "2.0.0.NEXT"
+    }
+  ],
+  "namespace": "",
+  "name": "duplicatehandling",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "57.0",
+  "packageAliases": {
+    "Duplicate Handling": "0Ho3a000000GmbqCAC",
+    "Duplicate Handling@2.0.0-1": "04t3a000000LdirAAC"
+  }
 }

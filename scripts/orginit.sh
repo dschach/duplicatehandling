@@ -1,18 +1,18 @@
 #!/bin/bash
 
 echo "Cleaning previous scratch org..."
-sfdx force:org:delete -p -u DuplicatesHandler
+sf org delete scratch --no-prompt --target-org DuplicatesHandler
 
 echo "Creating new scratch org"
-sfdx force:org:create -f config/project-scratch-def.json --durationdays 10 -a DuplicatesHandler -s
+sf org create scratch --definition-file config/project-scratch-def.json --duration-days 10 --alias DuplicatesHandler --no-namespace --set-default
 
 echo "Pushing metadata"
-sfdx force:source:push
+sf project deploy start --source-dir force-app
 
 echo "Assigning Permissions"
-sfdx force:user:permset:assign -n Duplicates_Handler
+sf org assign permset --name Duplicates_Handler
 
 echo "Opening org"
-sfdx force:org:open
+sf org open
 
 echo "Org is set up"
