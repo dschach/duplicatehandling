@@ -44,7 +44,6 @@ jobs:
       - name: "Code formatting verification with Prettier"
         run: npm run prettier:verify
 
- 
   scratch-org-test:
     runs-on: ubuntu-latest
     needs: format-lint-lwc-tests
@@ -90,7 +89,7 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sf org create scratch --definition-file config/project-scratch-def.json --set-alias scratch-org --set-default-username --duration-days 1
+        run: sf org create scratch --definition-file config/project-scratch-def.json --alias scratch-org --set-default --duration-days 1
 
       # Deploy source to scratch org
       - name: "Push source to scratch org"
