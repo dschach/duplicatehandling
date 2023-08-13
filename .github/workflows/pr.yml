@@ -8,6 +8,7 @@ on:
     types: [opened, edited, synchronize, reopened]
     paths:
       - "force-app/**"
+      - ".github/workflows/pr.yml"
 
 # Jobs to be executed
 jobs:
@@ -89,15 +90,15 @@ jobs:
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sf org create scratch --definitionfile config/project-scratch-def.json --setalias scratch-org --setdefaultusername --durationdays 1
+        run: sf org create scratch --definition-file config/project-scratch-def.json --set-alias scratch-org --set-default-username --duration-days 1
 
       # Deploy source to scratch org
       - name: "Push source to scratch org"
-        run: sf force source push
+        run: sf project deploy start
 
       # Assign permissionset
       - name: "Assign permissionset to default user"
-        run: sf force user permset assign --perm-set-name Duplicates_Handler
+        run: sf org assign permset --name Duplicates_Handler
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"

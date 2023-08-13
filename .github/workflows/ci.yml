@@ -10,6 +10,7 @@ on:
     #- "README.md"
     paths:
       - "force-app/**"
+      - ".github/workflows/ci.yml"
 
 # Jobs to be executed
 jobs:
