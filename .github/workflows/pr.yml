@@ -8,6 +8,7 @@ on:
     types: [opened, edited, synchronize, reopened]
     paths:
       - "force-app/**"
+      - ".github/workflows/pr.yml"
 
 # Jobs to be executed
 jobs:
@@ -43,7 +44,6 @@ jobs:
       - name: "Code formatting verification with Prettier"
         run: npm run prettier:verify
 
- 
   scratch-org-test:
     runs-on: ubuntu-latest
     needs: format-lint-lwc-tests
@@ -69,11 +69,8 @@ jobs:
       # Install Salesforce CLI
       - name: "Install Salesforce CLI"
         run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-          mkdir ~/sfdx
-          tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-          echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-          ~/sfdx/bin/sfdx version
+          npm install @salesforce/cli --global
+          sf --version
 
       # Store secret for dev hub
       - name: "Populate auth file with SALESFORCE_AUTH_URL secret"
@@ -88,23 +85,23 @@ jobs:
 
       # Authenticate dev hub
       - name: "Authenticate Dev Hub"
-        run: sfdx auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d
+        run: sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias devhub --set-default-dev-hub
 
       # Create scratch org
       - name: "Create scratch org"
-        run: sfdx force:org:create -f config/project-scratch-def.json -a scratch-org -s -d 1
+        run: sf org create scratch --definition-file config/project-scratch-def.json --alias scratch-org --set-default --duration-days 1
 
       # Deploy source to scratch org
       - name: "Push source to scratch org"
-        run: sfdx force:source:push
+        run: sf project deploy start
 
       # Assign permissionset
       - name: "Assign permissionset to default user"
-        run: sfdx force:user:permset:assign -n Duplicates_Handler
+        run: sf org assign permset --name Duplicates_Handler
 
       # Run Apex tests in scratch org
       - name: "Run Apex tests"
-        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
+        run: sf apex run test --code-coverage --result-format human --output-dir ./tests/apex --wait 20
 
       # Delete temporary test file that Codecov is unable to parse
       - name: "Delete coverage file (temporary step)"
@@ -119,4 +116,4 @@ jobs:
       # Housekeeping
       - name: "Delete scratch org"
         if: always()
-        run: sfdx force:org:delete -p -u scratch-org
+        run: sf org delete scratch --no-prompt --target-org scratch-org

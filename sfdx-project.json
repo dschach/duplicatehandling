@@ -13,7 +13,7 @@
   "namespace": "",
   "name": "duplicatehandling",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "57.0",
+  "sourceApiVersion": "58.0",
   "packageAliases": {
     "Duplicate Handling": "0Ho3a000000GmbqCAC",
     "Duplicate Handling@2.0.0-1": "04t3a000000LdirAAC"

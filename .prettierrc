@@ -18,6 +18,9 @@
 		{
 			"files": "sfdx-project.json",
 			"options": { "useTabs": false, "tabWidth": 2 }
-		}
-	]
+		},
+		{ "files": "*.yml", "options": { "parser": "yaml" } },
+		{ "files": ".prettierrc", "options": { "parser": "json" } }
+	],
+	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]
 }
