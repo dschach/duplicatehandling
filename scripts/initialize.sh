@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sfdx update
+sf update
 npm install
 npm update
 npm install --save-dev eslint-plugin-prettier

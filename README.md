@@ -35,7 +35,7 @@
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
    ```
-   sfdx auth:web:login -d -a myhuborg
+   sf org login web -d -a myhuborg
    ```
 
 1. Clone the duplicatehandling repository:
@@ -64,7 +64,7 @@ That's it!
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
    ```
-   sfdx auth:web:login -d -a myhuborg
+   sf org login web -d -a -d -a myhuborg
    ```
 
 1. Clone the duplicatehandling repository:
@@ -77,25 +77,25 @@ That's it!
 1. Create a scratch org and provide it with an alias (**duplicatehandling** in the command below):
 
    ```
-   sfdx force:org:create -f config/project-scratch-def.json --durationdays 10 -a duplicatehandling -s
+   sf org create scratch -f config/project-scratch-def.json --durationdays 10 -a duplicatehandling -s
    ```
 
 1. Push the app to your scratch org:
 
    ```
-   sfdx force:source:push
+   sf project deploy start
    ```
 
 1. Assign the **Duplicates Handler** permission set to the default user:
 
    ```
-   sfdx force:user:permset:assign -n Duplicates_Handler
+   sf org assign permset -n Duplicates_Handler
    ```
 
 1. Open the scratch org:
 
    ```
-   sfdx force:org:open
+   sf org open
    ```
 
 ## Installing the App using a Developer Edition Org or a Trailhead Playground
@@ -115,23 +115,23 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
 
    ```
-   sfdx auth:web:login -s -a mydevorg
+   sf org login web -s -a mydevorg
    ```
 
 1. Run this command in a terminal to deploy the app.
 
    ```
-   sfdx force:source:deploy -p force-app
+   sf project deploy start -d force-app
    ```
 
 1. Assign the `Duplicates_Handler` permission set to the default user.
 
    ```
-   sfdx force:user:permset:assign -n Duplicates_Handler
+   sf org assign permset -n Duplicates_Handler
    ```
 
 1. If your org isn't already open, open it now:
 
    ```
-   sfdx force:org:open -u mydevorg
+   sf org open -o mydevorg
    ```
