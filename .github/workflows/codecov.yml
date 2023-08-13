@@ -1,8 +1,9 @@
 name: code-coverage
 on:
-  push:
-    paths:
-      - "force-app/**"
+  workflow-dispatch:
+  #push:
+  #  paths:
+  #    - "force-app/**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,11 +19,11 @@ jobs:
       - name: Authenticate Dev Hub
         run: "sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias DevHub --set-default-dev-hub"
       - name: Create Scratch Org
-        run: sf force org create --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+        run: sf force org create scratch --set-default --definition-file config/project-scratch-def.json --alias ciorg --duration-days 1
       - name: Deploy source
         run: sf force source push
       - name: assign permissions
-        run: sf force user permset assign --perm-set-name Duplicates_Handler
+        run: sf force user permset assign --name Duplicates_Handler
       - name: Run Apex tests
         run: sf apex run test --code-coverage --result-format human --output-dir ./
       #- name: Delete coverage file (temporary fix)
