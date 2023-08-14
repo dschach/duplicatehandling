@@ -22,5 +22,6 @@
 		{ "files": "*.yml", "options": { "parser": "yaml" } },
 		{ "files": ".prettierrc", "options": { "parser": "json" } }
 	],
-	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"]
+	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"],
+	"$schema": "https://json.schemastore.org/prettierrc"
 }

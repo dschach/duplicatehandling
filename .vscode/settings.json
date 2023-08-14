@@ -17,7 +17,7 @@
 	"apexPMD.runOnFileSave": true,
 	"apexPMD.showErrors": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"prettier.prettierPath": "node_modules/prettier/index.cjs",
-	//"prettier.prettierPath": "./packages/compiler/node_modules/prettier/index.cjs",
+	"prettier.configPath": ".prettierrc",
+	//"prettier.prettierPath": "node_modules/prettier/index.cjs",
 	"salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false
 }
