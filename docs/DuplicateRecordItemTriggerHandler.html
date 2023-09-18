@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<title>Duplicate Record Handlers code documentation</title>
@@ -38,20 +38,24 @@
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li title="DuplicateRecordHandlersTest" id="item-DuplicateRecordHandlersTest" class="nav-item class" onclick="goToLocation('DuplicateRecordHandlersTest.html');">
+							<li
+								title="DuplicateRecordHandlersTest"
+								id="item-DuplicateRecordHandlersTest"
+								class="nav-item class private"
+								onclick="goToLocation('DuplicateRecordHandlersTest.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
 							</li>
 							<li
 								title="DuplicateRecordItemTriggerHandler"
 								id="item-DuplicateRecordItemTriggerHandler"
-								class="nav-item class"
+								class="nav-item class public"
 								onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
 							</li>
 							<li
 								title="DuplicateRecordSetTriggerHandler"
 								id="item-DuplicateRecordSetTriggerHandler"
-								class="nav-item class"
+								class="nav-item class public"
 								onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
 							</li>
@@ -67,20 +71,11 @@
 					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
 					<label for="cbx-all">All</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-					<label for="cbx-global">global</label>
-					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
 					<label for="cbx-public">public</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-					<label for="cbx-protected">protected</label>
-					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
 					<label for="cbx-private">private</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-					<label for="cbx-webservice">webService</label>
 					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
 					<label for="cbx-testmethod">testMethod</label>

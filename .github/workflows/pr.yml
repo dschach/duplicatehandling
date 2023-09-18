@@ -7,8 +7,8 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
     paths:
-      - "force-app/**"
-      - ".github/workflows/pr.yml"
+      - 'force-app/**'
+      - '.github/workflows/pr.yml'
 
 # Jobs to be executed
 jobs:
@@ -17,15 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checkout the source code
-      - name: "Checkout source code"
+      - name: 'Checkout source code'
         uses: actions/checkout@v4
 
       # Install Volta to enforce proper node and package manager versions
-      - name: "Install Volta"
+      - name: 'Install Volta'
         uses: volta-cli/action@v4
 
       # Cache node_modules to speed up the process
-      - name: "Restore node_modules cache"
+      - name: 'Restore node_modules cache'
         id: cache-npm
         uses: actions/cache@v3
         with:
@@ -36,12 +36,12 @@ jobs:
             npm-
 
       # Install npm dependencies for Prettier and Jest
-      - name: "Install npm dependencies"
+      - name: 'Install npm dependencies'
         if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm ci
 
       # Prettier formatting
-      - name: "Code formatting verification with Prettier"
+      - name: 'Code formatting verification with Prettier'
         run: npm run prettier:verify
 
   scratch-org-test:
@@ -50,30 +50,30 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       # Checkout the source code
-      - name: "Checkout source code"
+      - name: 'Checkout source code'
         uses: actions/checkout@v4
 
       # Run PMD scan
-      - name: "Run PMD scan"
+      - name: 'Run PMD scan'
         uses: pmd/pmd-github-action@v1
         id: pmd
         with:
-          sourcePath: "force-app"
-          rulesets: "pmd/apexQuickStart.xml"
+          sourcePath: 'force-app'
+          rulesets: 'pmd/apexQuickStart.xml'
 
       # Check for PMD violations
-      - name: "Check for PMD violations"
+      - name: 'Check for PMD violations'
         if: steps.pmd.outputs.violations != 0
         run: exit 1
 
       # Install Salesforce CLI
-      - name: "Install Salesforce CLI"
+      - name: 'Install Salesforce CLI'
         run: |
           npm install @salesforce/cli --global
           sf --version
 
       # Store secret for dev hub
-      - name: "Populate auth file with SALESFORCE_AUTH_URL secret"
+      - name: 'Populate auth file with SALESFORCE_AUTH_URL secret'
         shell: bash
         run: |
           echo ${{ secrets.SALESFORCE_AUTH_URL}} > ./SALESFORCE_AUTH_URL.txt
@@ -84,36 +84,36 @@ jobs:
           fi
 
       # Authenticate dev hub
-      - name: "Authenticate Dev Hub"
+      - name: 'Authenticate Dev Hub'
         run: sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias devhub --set-default-dev-hub
 
       # Create scratch org
-      - name: "Create scratch org"
+      - name: 'Create scratch org'
         run: sf org create scratch --definition-file config/project-scratch-def.json --alias scratch-org --set-default --duration-days 1
 
       # Deploy source to scratch org
-      - name: "Push source to scratch org"
+      - name: 'Push source to scratch org'
         run: sf project deploy start
 
       # Assign permissionset
-      - name: "Assign permissionset to default user"
+      - name: 'Assign permissionset to default user'
         run: sf org assign permset --name Duplicates_Handler
 
       # Run Apex tests in scratch org
-      - name: "Run Apex tests"
+      - name: 'Run Apex tests'
         run: sf apex run test --code-coverage --result-format human --output-dir ./tests/apex --wait 20
 
       # Delete temporary test file that Codecov is unable to parse
-      - name: "Delete coverage file (temporary step)"
+      - name: 'Delete coverage file (temporary step)'
         run: rm ./tests/apex/test-result-707*-codecoverage.json
 
       # Upload code coverage data
-      - name: "Upload code coverage for Apex to Codecov.io"
+      - name: 'Upload code coverage for Apex to Codecov.io'
         uses: codecov/codecov-action@v3
         with:
           flags: Apex
 
       # Housekeeping
-      - name: "Delete scratch org"
+      - name: 'Delete scratch org'
         if: always()
         run: sf org delete scratch --no-prompt --target-org scratch-org

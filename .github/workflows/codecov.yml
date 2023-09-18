@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout source code"
+      - name: 'Checkout source code'
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: |
@@ -17,7 +17,7 @@ jobs:
       - name: Populate auth file
         run: 'echo "${{ secrets.SALESFORCE_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
       - name: Authenticate Dev Hub
-        run: "sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias DevHub --set-default-dev-hub"
+        run: 'sf org login sfdx-url --sfdx-url-file ./SALESFORCE_AUTH_URL.txt --alias DevHub --set-default-dev-hub'
       - name: Create Scratch Org
         run: sf force org create scratch --set-default --definition-file config/project-scratch-def.json --alias ciorg --duration-days 1
       - name: Deploy source
@@ -28,7 +28,7 @@ jobs:
         run: sf apex run test --code-coverage --result-format human --output-dir ./
       #- name: Delete coverage file (temporary fix)
       #  run: rm ./test-result-707*-codecoverage.json
-      - name: "Upload code coverage for Apex to Codecov.io"
+      - name: 'Upload code coverage for Apex to Codecov.io'
         uses: codecov/codecov-action@v3
         with:
           flags: Apex
