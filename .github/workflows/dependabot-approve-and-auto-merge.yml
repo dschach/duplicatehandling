@@ -12,11 +12,11 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     steps:
-      - name: "Fetch Dependabot metadata"
+      - name: 'Fetch Dependabot metadata'
         id: dependabot
         uses: dependabot/fetch-metadata@v1
 
-      - name: "Check auto merge conditions"
+      - name: 'Check auto merge conditions'
         id: auto-merge
         if: |
           (
@@ -28,7 +28,7 @@ jobs:
           )
         run: echo "::notice ::auto-merge conditions satisfied"
 
-      - name: "Approve and merge PR"
+      - name: 'Approve and merge PR'
         if: ${{ steps.auto-merge.conclusion == 'success' }}
         run: |
           gh pr review --approve "$PR_URL"

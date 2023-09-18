@@ -8,6 +8,8 @@
 
 > This application is designed to run on the Salesforce Platform.
 
+## [Changelog](./CHANGELOG.md)
+
 ## Table of contents
 
 - [Quick Deploy](#quick-deploy): Fast, easy installation of this repository into any org.
@@ -15,6 +17,19 @@
 - [Installing the app using a Scratch Org](#installing-the-app-using-a-scratch-org): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
 
 - [Installing the app using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground): Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
+
+## Package Installation
+
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3a000000LdirAAC">
+  <img alt="Deploy to Salesforce"
+       src="./media/deploy-package-to-prod.png">
+</a>
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t3a000000LdirAAC">
+  <img alt="Deploy to Salesforce Sandbox"
+       src="./media/deploy-package-to-sandbox.png">
+</a>
+
+<br/>
 
 ## Quick Deploy
 

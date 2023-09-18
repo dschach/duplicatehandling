@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<title>Duplicate Record Handlers code documentation</title>
@@ -38,20 +38,24 @@
 						</summary>
 						<ul>
 							<!-- menu items -->
-							<li title="DuplicateRecordHandlersTest" id="item-DuplicateRecordHandlersTest" class="nav-item class" onclick="goToLocation('DuplicateRecordHandlersTest.html');">
+							<li
+								title="DuplicateRecordHandlersTest"
+								id="item-DuplicateRecordHandlersTest"
+								class="nav-item class private"
+								onclick="goToLocation('DuplicateRecordHandlersTest.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordHandlersTest</a>
 							</li>
 							<li
 								title="DuplicateRecordItemTriggerHandler"
 								id="item-DuplicateRecordItemTriggerHandler"
-								class="nav-item class"
+								class="nav-item class public"
 								onclick="goToLocation('DuplicateRecordItemTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordItemTriggerHandler</a>
 							</li>
 							<li
 								title="DuplicateRecordSetTriggerHandler"
 								id="item-DuplicateRecordSetTriggerHandler"
-								class="nav-item class"
+								class="nav-item class public"
 								onclick="goToLocation('DuplicateRecordSetTriggerHandler.html');">
 								<a tabindex="1" href="javascript:void(0)">DuplicateRecordSetTriggerHandler</a>
 							</li>
@@ -67,20 +71,11 @@
 					<input type="checkbox" checked="true" id="cbx-all" onclick="toggleAllScopes(this.checked);" />
 					<label for="cbx-all">All</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-global" onclick="toggleScope('global', this.checked);" />
-					<label for="cbx-global">global</label>
-					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-public" onclick="toggleScope('public', this.checked);" />
 					<label for="cbx-public">public</label>
 					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-protected" onclick="toggleScope('protected', this.checked);" />
-					<label for="cbx-protected">protected</label>
-					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-private" onclick="toggleScope('private', this.checked);" />
 					<label for="cbx-private">private</label>
-					&nbsp;&nbsp;
-					<input type="checkbox" checked="true" id="cbx-webservice" onclick="toggleScope('webservice', this.checked);" />
-					<label for="cbx-webservice">webService</label>
 					&nbsp;&nbsp;
 					<input type="checkbox" checked="true" id="cbx-testmethod" onclick="toggleScope('testmethod', this.checked);" />
 					<label for="cbx-testmethod">testMethod</label>
@@ -89,7 +84,192 @@
 			<tr>
 				<td class="doc-page">
 					<h2 class="section-title">Home</h2>
-					<h1>Welcome to Duplicate Records Handler!</h1>
+					<link href="assets/styling.css" rel="stylesheet" />
+					<h1>Duplicate Management Enhancements</h1>
+					<p>
+						<img src="https://img.shields.io/github/license/dschach/duplicatehandling" alt="License" />
+						<a href="https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml">
+							<img src="https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml/badge.svg" alt="CI" />
+						</a>
+						<a href="https://github.com/dschach/duplicatehandling/actions/workflows/codecov.yml">
+							<img src="https://github.com/dschach/duplicatehandling/actions/workflows/codecov.yml/badge.svg" alt="coverage check" />
+						</a>
+						<a href="https://codecov.io/gh/dschach/duplicatehandling">
+							<img src="https://codecov.io/gh/dschach/duplicatehandling/branch/main/graph/badge.svg?token=4353PVRMRH" alt="codecov" />
+						</a>
+						<a href="https://twitter.com/dschach"><img src="https://img.shields.io/twitter/follow/dschach.svg?style=social" alt="Twitter" /></a>
+					</p>
+					<blockquote>
+						<p>This application is designed to run on the Salesforce Platform.</p>
+					</blockquote>
+					<h2><a href="./changelog.html">Changelog</a></h2>
+					<h2>Table of contents</h2>
+					<ul>
+						<li>
+							<p>
+								<a href="#quick-deploy">Quick Deploy</a>
+								: Fast, easy installation of this repository into any org.
+							</p>
+						</li>
+						<li>
+							<p>
+								<a href="#installing-the-app-using-a-scratch-org">Installing the app using a Scratch Org</a>
+								: This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
+							</p>
+						</li>
+						<li>
+							<p>
+								<a href="#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground">Installing the app using a Developer Edition Org or a Trailhead Playground</a>
+								: Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
+							</p>
+						</li>
+					</ul>
+					<h2>Quick Deploy</h2>
+					<a href="https://githubsfdeploy.herokuapp.com">
+						<img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png" />
+					</a>
+
+					<h2>Installing the app using a Scratch Org</h2>
+					<ol>
+						<li>
+							<p>
+								Set up your environment. Follow the steps in the
+								<a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/">Quick Start: Lightning Web Components</a>
+								Trailhead project. The steps include:
+							</p>
+							<ul>
+								<li>Enable Dev Hub in your Trailhead Playground</li>
+								<li>Install Salesforce CLI</li>
+								<li>Install Visual Studio Code</li>
+								<li>Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension</li>
+							</ul>
+						</li>
+						<li>
+							<p>
+								If you haven&#39;t already done so, authorize your hub org and provide it with an alias (
+								<strong>myhuborg</strong>
+								in the command below):
+							</p>
+							<pre><code>sf org login web --set-default-dev-hub --alias myhuborg
+</code></pre>
+						</li>
+						<li>
+							<p>Clone the duplicatehandling repository:</p>
+							<pre><code>git clone https://github.com/dschach/duplicatehandling
+cd duplicatehandling
+</code></pre>
+						</li>
+						<li>
+							<p>Run the npm script to create a scratch org, assign the permission set, and open the org</p>
+							<pre><code>npm run scratchorg
+</code></pre>
+						</li>
+					</ol>
+					<p>That&#39;s it!</p>
+					<h2>Installing the app using a Scratch Org (Step-by-step)</h2>
+					<ol>
+						<li>
+							<p>
+								Set up your environment. Follow the steps in the
+								<a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/">Quick Start: Lightning Web Components</a>
+								Trailhead project. The steps include:
+							</p>
+							<ul>
+								<li>Enable Dev Hub in your Trailhead Playground</li>
+								<li>Install Salesforce CLI</li>
+								<li>Install Visual Studio Code</li>
+								<li>Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension</li>
+							</ul>
+						</li>
+						<li>
+							<p>
+								If you haven&#39;t already done so, authorize your hub org and provide it with an alias (
+								<strong>myhuborg</strong>
+								in the command below):
+							</p>
+							<pre><code>sf org login web --set-default-dev-hub --alias myhuborg
+</code></pre>
+						</li>
+						<li>
+							<p>Clone the duplicatehandling repository:</p>
+							<pre><code>git clone https://github.com/dschach/duplicatehandling
+cd duplicatehandling
+</code></pre>
+						</li>
+						<li>
+							<p>
+								Create a scratch org and provide it with an alias (
+								<strong>duplicatehandling</strong>
+								in the command below):
+							</p>
+							<pre><code>sf org create scratch --definition-file config/project-scratch-def.json --durationdays 10 --alias duplicatehandling --set-default
+</code></pre>
+						</li>
+						<li>
+							<p>Push the app to your scratch org:</p>
+							<pre><code>sf project deploy start
+</code></pre>
+						</li>
+						<li>
+							<p>
+								Assign the
+								<strong>Duplicates Handler</strong>
+								permission set to the default user:
+							</p>
+							<pre><code>sf org assign permset --name Duplicates_Handler
+</code></pre>
+						</li>
+						<li>
+							<p>Open the scratch org:</p>
+							<pre><code>sf org open
+</code></pre>
+						</li>
+					</ol>
+					<h2>Installing the App using a Developer Edition Org or a Trailhead Playground</h2>
+					<p>
+						Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org. This includes non source-tracked orgs such as a
+						<a href="https://developer.salesforce.com/signup">free Developer Edition Org</a>
+						or a
+						<a href="https://trailhead.salesforce.com/">Trailhead Playground</a>
+						.
+					</p>
+					<p>Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.</p>
+					<ol>
+						<li>
+							<p>Clone this repository:</p>
+							<pre><code>git clone https://github.com/dschach/duplicatehandling
+cd duplicatehandling
+</code></pre>
+						</li>
+						<li>
+							<p>
+								Authorize your Trailhead Playground or Developer org and provide it with an alias (
+								<strong>mydevorg</strong>
+								in the command below):
+							</p>
+							<pre><code>sf org login web --set-default-dev-hub --alias mydevorg
+</code></pre>
+						</li>
+						<li>
+							<p>Run this command in a terminal to deploy the app.</p>
+							<pre><code>sf project deploy start --source-dir force-app
+</code></pre>
+						</li>
+						<li>
+							<p>
+								Assign the
+								<code>Duplicates_Handler</code>
+								permission set to the default user.
+							</p>
+							<pre><code>sf org assign permset --name Duplicates_Handler
+</code></pre>
+						</li>
+						<li>
+							<p>If your org isn&#39;t already open, open it now:</p>
+							<pre><code>sf org open --target-org mydevorg
+</code></pre>
+						</li>
+					</ol>
 				</td>
 			</tr>
 			<tr>

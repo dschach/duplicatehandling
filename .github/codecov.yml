@@ -1,7 +1,7 @@
 coverage:
   precision: 2
   round: down
-  range: "75...100"
+  range: '75...100'
   status:
     patch:
       default:
@@ -19,4 +19,4 @@ coverage:
         flags:
           - Apex
 ignore:
-  - "force-app/main/default/staticresources/**"
+  - 'force-app/main/default/staticresources/**'

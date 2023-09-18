@@ -1,8 +1,8 @@
 engine:
   source:
-    - path: "${workspaceFolder}/force-app/main/default/classes"
-      sourceUrl: https://github.com/dschach/duplicatehandling/tree/main/force-app/main/default/classes
-  targetDirectory: "${workspaceFolder}/docs"
+    - path: '${workspaceFolder}/force-app/main/default/classes'
+      sourceUrl: https://github.com/dschach/duplicatehandling/tree/main
+  targetDirectory: '${workspaceFolder}/docs'
   #excludes:
   #  - "*Test.cls"
   title: Duplicate Record Handlers code documentation
@@ -11,22 +11,22 @@ engine:
   cleanDir: false
   showTOCSnippets: true
   scope:
-    - global
+    #- global
     - public
-    - protected
+    #- protected
     - private
-    - webService
+    #- webService
     - testMethod
-  homePagePath: "${workspaceFolder}/doc-assets/main.html"
-  #pages:
-  #  - "${workspaceFolder}/doc-assets/index.html"
+  homePagePath: '${workspaceFolder}/doc-assets/main.html'
+  pages:
+    - '${workspaceFolder}/doc-assets/changelog.html'
   assets:
-    - "${workspaceFolder}/doc-assets/logo.png"
-    - "${workspaceFolder}/doc-assets/favicon.png"
-    - "${workspaceFolder}/doc-assets/icon.png"
-    - "${workspaceFolder}/doc-assets/highlight.css"
-    - "${workspaceFolder}/doc-assets/highlight.js"
-    - "${workspaceFolder}/doc-assets/index.js"
+    - '${workspaceFolder}/doc-assets/logo.png'
+    - '${workspaceFolder}/doc-assets/favicon.png'
+    - '${workspaceFolder}/doc-assets/icon.png'
+    - '${workspaceFolder}/doc-assets/highlight.css'
+    - '${workspaceFolder}/doc-assets/highlight.js'
+    - '${workspaceFolder}/doc-assets/index.js'
   #  - "${workspaceFolder}/documentation/meme.jpg"
   port: 9090
 docblock:

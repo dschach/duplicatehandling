@@ -12,7 +12,7 @@
 
 pmd/
 coverage/
-docs/assets/
+docs/assets/*.js
 doc-assets/
 
 LICENSE
