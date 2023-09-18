@@ -49,19 +49,19 @@
 
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
-   ```
+   ```bash
    sf org login web --set-default-dev-hub --alias myhuborg
    ```
 
 1. Clone the duplicatehandling repository:
 
-   ```
+   ```bash
    git clone https://github.com/dschach/duplicatehandling
    cd duplicatehandling
    ```
 
 1. Run the npm script to create a scratch org, assign the permission set, and open the org
-   ```
+   ```bash
    npm run scratchorg
    ```
 
@@ -78,38 +78,38 @@ That's it!
 
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
-   ```
+   ```bash
    sf org login web --set-default-dev-hub --alias myhuborg
    ```
 
 1. Clone the duplicatehandling repository:
 
-   ```
+   ```bash
    git clone https://github.com/dschach/duplicatehandling
    cd duplicatehandling
    ```
 
 1. Create a scratch org and provide it with an alias (**duplicatehandling** in the command below):
 
-   ```
+   ```bash
    sf org create scratch --definition-file config/project-scratch-def.json --durationdays 10 --alias duplicatehandling --set-default
    ```
 
 1. Push the app to your scratch org:
 
-   ```
+   ```bash
    sf project deploy start
    ```
 
 1. Assign the **Duplicates Handler** permission set to the default user:
 
-   ```
+   ```bash
    sf org assign permset --name Duplicates_Handler
    ```
 
 1. Open the scratch org:
 
-   ```
+   ```bash
    sf org open
    ```
 
@@ -122,31 +122,31 @@ Make sure to start from a brand-new environment to avoid conflicts with previous
 
 1. Clone this repository:
 
-   ```
+   ```bash
    git clone https://github.com/dschach/duplicatehandling
    cd duplicatehandling
    ```
 
 1. Authorize your Trailhead Playground or Developer org and provide it with an alias (**mydevorg** in the command below):
 
-   ```
+   ```bash
    sf org login web --set-default-dev-hub --alias mydevorg
    ```
 
 1. Run this command in a terminal to deploy the app.
 
-   ```
+   ```bash
    sf project deploy start --source-dir force-app
    ```
 
 1. Assign the `Duplicates_Handler` permission set to the default user.
 
-   ```
+   ```bash
    sf org assign permset --name Duplicates_Handler
    ```
 
 1. If your org isn't already open, open it now:
 
-   ```
+   ```bash
    sf org open --target-org mydevorg
    ```

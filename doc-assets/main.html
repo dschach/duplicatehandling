@@ -18,6 +18,18 @@
 <li><p><a href="#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground">Installing the app using a Developer Edition Org or a Trailhead Playground</a>: Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.</p>
 </li>
 </ul>
+<h2>Package Installation</h2>
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t3a000000LdirAAC">
+  <img alt="Deploy to Salesforce"
+       src="./media/deploy-package-to-prod.png">
+</a>
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t3a000000LdirAAC">
+  <img alt="Deploy to Salesforce Sandbox"
+       src="./media/deploy-package-to-sandbox.png">
+</a>
+
+<br/>
+
 <h2>Quick Deploy</h2>
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
@@ -35,16 +47,16 @@
 </ul>
 </li>
 <li><p>If you haven&#39;t already done so, authorize your hub org and provide it with an alias (<strong>myhuborg</strong> in the command below):</p>
-<pre><code>sf org login web --set-default-dev-hub --alias myhuborg
+<pre><code class="language-bash">sf org login web --set-default-dev-hub --alias myhuborg
 </code></pre>
 </li>
 <li><p>Clone the duplicatehandling repository:</p>
-<pre><code>git clone https://github.com/dschach/duplicatehandling
+<pre><code class="language-bash">git clone https://github.com/dschach/duplicatehandling
 cd duplicatehandling
 </code></pre>
 </li>
 <li><p>Run the npm script to create a scratch org, assign the permission set, and open the org</p>
-<pre><code>npm run scratchorg
+<pre><code class="language-bash">npm run scratchorg
 </code></pre>
 </li>
 </ol>
@@ -60,28 +72,28 @@ cd duplicatehandling
 </ul>
 </li>
 <li><p>If you haven&#39;t already done so, authorize your hub org and provide it with an alias (<strong>myhuborg</strong> in the command below):</p>
-<pre><code>sf org login web --set-default-dev-hub --alias myhuborg
+<pre><code class="language-bash">sf org login web --set-default-dev-hub --alias myhuborg
 </code></pre>
 </li>
 <li><p>Clone the duplicatehandling repository:</p>
-<pre><code>git clone https://github.com/dschach/duplicatehandling
+<pre><code class="language-bash">git clone https://github.com/dschach/duplicatehandling
 cd duplicatehandling
 </code></pre>
 </li>
 <li><p>Create a scratch org and provide it with an alias (<strong>duplicatehandling</strong> in the command below):</p>
-<pre><code>sf org create scratch --definition-file config/project-scratch-def.json --durationdays 10 --alias duplicatehandling --set-default
+<pre><code class="language-bash">sf org create scratch --definition-file config/project-scratch-def.json --durationdays 10 --alias duplicatehandling --set-default
 </code></pre>
 </li>
 <li><p>Push the app to your scratch org:</p>
-<pre><code>sf project deploy start
+<pre><code class="language-bash">sf project deploy start
 </code></pre>
 </li>
 <li><p>Assign the <strong>Duplicates Handler</strong> permission set to the default user:</p>
-<pre><code>sf org assign permset --name Duplicates_Handler
+<pre><code class="language-bash">sf org assign permset --name Duplicates_Handler
 </code></pre>
 </li>
 <li><p>Open the scratch org:</p>
-<pre><code>sf org open
+<pre><code class="language-bash">sf org open
 </code></pre>
 </li>
 </ol>
@@ -91,24 +103,24 @@ This includes non source-tracked orgs such as a <a href="https://developer.sales
 <p>Make sure to start from a brand-new environment to avoid conflicts with previous work you may have done.</p>
 <ol>
 <li><p>Clone this repository:</p>
-<pre><code>git clone https://github.com/dschach/duplicatehandling
+<pre><code class="language-bash">git clone https://github.com/dschach/duplicatehandling
 cd duplicatehandling
 </code></pre>
 </li>
 <li><p>Authorize your Trailhead Playground or Developer org and provide it with an alias (<strong>mydevorg</strong> in the command below):</p>
-<pre><code>sf org login web --set-default-dev-hub --alias mydevorg
+<pre><code class="language-bash">sf org login web --set-default-dev-hub --alias mydevorg
 </code></pre>
 </li>
 <li><p>Run this command in a terminal to deploy the app.</p>
-<pre><code>sf project deploy start --source-dir force-app
+<pre><code class="language-bash">sf project deploy start --source-dir force-app
 </code></pre>
 </li>
 <li><p>Assign the <code>Duplicates_Handler</code> permission set to the default user.</p>
-<pre><code>sf org assign permset --name Duplicates_Handler
+<pre><code class="language-bash">sf org assign permset --name Duplicates_Handler
 </code></pre>
 </li>
 <li><p>If your org isn&#39;t already open, open it now:</p>
-<pre><code>sf org open --target-org mydevorg
+<pre><code class="language-bash">sf org open --target-org mydevorg
 </code></pre>
 </li>
 </ol>
