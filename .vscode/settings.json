@@ -8,7 +8,7 @@
   "salesforcedx-vscode-core.retrieve-test-code-coverage": true,
 	"apexPMD.enableCache": true,
 	"apexPMD.rulesets": [
-		"pmd/apexQuickStart.xml"
+		"pmd/ruleset.xml"
 	],
 	"apexPMD.priorityErrorThreshold": 2,
 	"apexPMD.priorityWarnThreshold": 3,
