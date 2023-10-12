@@ -20,7 +20,7 @@
 			"options": { "parser": "lwc" }
 		},
 		{
-			"files": "docs/*.html",
+			"files": "*.{cmp,page,component,html}",
 			"options": {
 				"parser": "html",
 				"tabWidth": 2,
@@ -33,15 +33,12 @@
 			}
 		},
 		{
-			"files": "*.{cmp,page,component,html}",
-			"options": { "parser": "html" }
-		},
-		{
 			"files": "sfdx-project.json",
 			"options": { "useTabs": false, "tabWidth": 2 }
 		},
 		{ "files": "*.{yml,yaml}", "options": { "parser": "yaml", "singleQuote": true } },
-		{ "files": ".prettierrc", "options": { "parser": "json" } }
+		{ "files": ".prettierrc", "options": { "parser": "json" } },
+		{ "files": "*.xml", "options": { "useTabs": true, "parser": "xml" } }
 	],
 	"plugins": ["prettier-plugin-apex", "@prettier/plugin-xml"],
 	"$schema": "https://json.schemastore.org/prettierrc"

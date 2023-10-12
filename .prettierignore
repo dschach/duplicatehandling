@@ -10,7 +10,7 @@
 
 *meta.xml
 
-pmd/
+!pmd/*.xml
 coverage/
 docs/assets/*.js
 doc-assets/
