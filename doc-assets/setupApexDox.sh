@@ -10,5 +10,6 @@ printf '<link href="assets/styling.css" rel="stylesheet" />' > "doc-assets/chang
 echo >> "doc-assets/changelog.html"
 npx marked -i CHANGELOG.md --gfm >> "doc-assets/changelog.html"
 sed -i "" "s|CHANGELOG.md|changelog.html|" "doc-assets/main.html"
+sed -i "" "s|./media|./assets|" "doc-assets/main.html"
 
 . doc-assets/updateHighlight.sh
