@@ -1,4 +1,4 @@
-# Duplicate Management Enhancements
+# Duplicate Management Enhancements <!-- omit in toc -->
 
 ![License](https://img.shields.io/github/license/dschach/duplicatehandling)
 [![CI](https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml/badge.svg)](https://github.com/dschach/duplicatehandling/actions/workflows/ci.yml)
@@ -10,13 +10,14 @@
 
 ## [Changelog](./CHANGELOG.md)
 
-## Table of contents
+## Table of contents <!-- omit in toc -->
 
-- [Quick Deploy](#quick-deploy): Fast, easy installation of this repository into any org.
-
-- [Installing the app using a Scratch Org](#installing-the-app-using-a-scratch-org): This is the recommended installation option. Use this option if you are a developer who wants to experience the app and the code.
-
-- [Installing the app using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground): Useful when tackling Trailhead Badges or if you want the app deployed to a more permanent environment than a Scratch org.
+- [Changelog](#changelog)
+- [Package Installation](#package-installation)
+  - [Quick Deploy](#quick-deploy)
+  - [Installing the app using a Scratch Org](#installing-the-app-using-a-scratch-org)
+  - [Installing the app using a Scratch Org (Step-by-step)](#installing-the-app-using-a-scratch-org-step-by-step)
+  - [Installing the App using a Developer Edition Org or a Trailhead Playground](#installing-the-app-using-a-developer-edition-org-or-a-trailhead-playground)
 
 ## Package Installation
 
@@ -31,14 +32,14 @@
 
 <br/>
 
-## Quick Deploy
+### Quick Deploy
 
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
-## Installing the app using a Scratch Org
+### Installing the app using a Scratch Org
 
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
@@ -67,7 +68,7 @@
 
 That's it!
 
-## Installing the app using a Scratch Org (Step-by-step)
+### Installing the app using a Scratch Org (Step-by-step)
 
 1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
@@ -113,7 +114,7 @@ That's it!
    sf org open
    ```
 
-## Installing the App using a Developer Edition Org or a Trailhead Playground
+### Installing the App using a Developer Edition Org or a Trailhead Playground
 
 Follow this set of instructions if you want to deploy the app to a more permanent environment than a Scratch org.
 This includes non source-tracked orgs such as a [free Developer Edition Org](https://developer.salesforce.com/signup) or a [Trailhead Playground](https://trailhead.salesforce.com/).

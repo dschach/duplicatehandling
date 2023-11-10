@@ -27,6 +27,8 @@ engine:
     - '${workspaceFolder}/doc-assets/highlight.css'
     - '${workspaceFolder}/doc-assets/highlight.js'
     - '${workspaceFolder}/doc-assets/index.js'
+    - '${workspaceFolder}/media/deploy-package-to-prod.png'
+    - '${workspaceFolder}/media/deploy-package-to-sandbox.png'
   #  - "${workspaceFolder}/documentation/meme.jpg"
   port: 9090
 docblock:
