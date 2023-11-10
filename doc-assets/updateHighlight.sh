@@ -1,9 +1,14 @@
 #!/bin/sh
 
-curl -L "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js" -o "doc-assets/highlight.js"
-echo >> "doc-assets/highlight.js"
-curl -L "https://cdn.jsdelivr.net/npm/highlightjs-apex@1/dist/apex.min.js" >> "doc-assets/highlight.js"
+FILE=node_modules/@highlightjs/cdn-assets/highlight.min.js
+if test -f "$FILE"; then
+	cat node_modules/@highlightjs/cdn-assets/highlight.min.js > doc-assets/highlight.js
+	echo "\n" >> doc-assets/highlight.js
+	cat node_modules/highlightjs-apex/dist/apex.min.js >> doc-assets/highlight.js
+else
+	curl -L "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js" -o "doc-assets/highlight.js"
+	echo >> "assets/highlight.js"
+	curl -L "https://cdn.jsdelivr.net/npm/highlightjs-apex/dist/apex.min.js" >> "doc-assets/highlight.js"
+fi
 
-curl -L "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js" -o "docs/assets/highlight.js"
-echo >> "docs/assets/highlight.js"
-curl -L "https://cdn.jsdelivr.net/npm/highlightjs-apex@1/dist/apex.min.js" >> "docs/assets/highlight.js"
+cp doc-assets/highlight.js docs/assets/highlight.js
