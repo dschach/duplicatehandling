@@ -1,6 +1,6 @@
 name: code-coverage
 on:
-  workflow-dispatch:
+  workflow_dispatch:
   #push:
   #  paths:
   #    - "force-app/**"
