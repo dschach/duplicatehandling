@@ -1,5 +1,5 @@
 name: Dependabot Pull Request Approve and Merge
-on: pull_request_target
+on: pull_request #_target
 permissions:
   pull-requests: write
   contents: write
