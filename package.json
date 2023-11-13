@@ -15,6 +15,7 @@
 		"prettier:verify": "prettier --list-different \"force-app/**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:apex": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
 		"prettier:verify:apex": "prettier --check \"**/*.{cls,cmp,component,page,trigger}\"",
+		"prune": "git branch | grep -v \"main\" | xargs git branch -D",
 		"scratchorg": ". scripts/orginit.sh",
 		"prepare": "husky install"
 	},
