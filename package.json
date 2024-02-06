@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@prettier/plugin-xml": "^3.2.2",
-		"highlightjs-apex": "^1.3.3",
+		"highlightjs-apex": "^1.3.5",
 		"husky": "^9.0.10",
 		"lint-staged": "^15.2.2",
 		"marked": "^12.0.0",
