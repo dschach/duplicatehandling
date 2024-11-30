@@ -17,7 +17,7 @@
 		"prettier:verify:apex": "prettier --check \"**/*.{cls,cmp,component,page,trigger}\"",
 		"prune": "git branch | grep -v \"main\" | xargs git branch -D",
 		"scratchorg": ". scripts/orginit.sh",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@prettier/plugin-xml": "^3.4.1",
