@@ -17,16 +17,16 @@
 		"prettier:verify:apex": "prettier --check \"**/*.{cls,cmp,component,page,trigger}\"",
 		"prune": "git branch | grep -v \"main\" | xargs git branch -D",
 		"scratchorg": ". scripts/orginit.sh",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@prettier/plugin-xml": "^3.3.1",
+		"@prettier/plugin-xml": "^3.4.1",
 		"highlightjs-apex": "^1.4.0",
-		"husky": "^9.0.11",
-		"lint-staged": "^15.2.2",
-		"marked": "^12.0.1",
-		"prettier": "^3.2.5",
-		"prettier-plugin-apex": "^2.1.0"
+		"husky": "^9.1.7",
+		"lint-staged": "^15.2.10",
+		"marked": "^15.0.3",
+		"prettier": "^3.4.1",
+		"prettier-plugin-apex": "^2.2.2"
 	},
 	"lint-staged": {
 		"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}": [
