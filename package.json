@@ -24,7 +24,7 @@
 		"highlightjs-apex": "^1.4.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.2.11",
-		"marked": "^15.0.3",
+		"marked": "^15.0.4",
 		"prettier": "^3.4.2",
 		"prettier-plugin-apex": "^2.2.2"
 	},
