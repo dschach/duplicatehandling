@@ -1,8 +1,11 @@
 name: Dependabot Pull Request Approve and Merge
-on: pull_request #_target
+on: pull_request_target
 permissions:
   pull-requests: write
   contents: write
+  statuses: read
+  checks: read
+  repository-projects: read
 jobs:
   pull-request-title-change:
     runs-on: ubuntu-latest
@@ -31,9 +34,6 @@ jobs:
           title_pt1="${TITLE%%:*}"
           gh pr checkout "$PR_URL" # sets the upstream metadata for `gh pr status`
           packagename="${{ steps.dependabot-fetch.outputs.dependency-names }}"
-          #echo "packagename is $packagename"
-          #echo "$title_pt1"
-          #echo "$title_pt2"
           parensOpen="("
           parensClose="):"
           pr_title=$title_pt1$parensOpen$packagename$parensClose$title_pt2
@@ -70,8 +70,10 @@ jobs:
       - name: 'Approve and merge PR'
         if: ${{ steps.auto-merge.conclusion == 'success' }}
         run: |
-          gh pr review --approve "$PR_URL"
-          gh pr merge --auto --squash "$PR_URL"
+          gh pr edit "$PR_URL" --add-label "dependabot"  
+          # gh pr edit "$PR_URL" --add-label "auto-merged"  
+          # gh pr review --approve "$PR_URL"
+          # gh pr merge --auto --squash "$PR_URL"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
