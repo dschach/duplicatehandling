@@ -12,21 +12,21 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/" # Location of package.json
+  - package-ecosystem: 'npm'
+    directory: '/' # Location of package.json
     commit-message:
-      prefix: "deps" # production dependencies
-      prefix-development: "build" # development dependencies
-    rebase-strategy: "auto"
+      prefix: 'deps' # production dependencies
+      prefix-development: 'build' # development dependencies
+    rebase-strategy: 'auto'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     open-pull-requests-limit: 0 # security updates only
 
-  - package-ecosystem: "github-actions"
-    directory: "/" # Dependabot reads the workflows in .github/workflows
+  - package-ecosystem: 'github-actions'
+    directory: '/' # Dependabot reads the workflows in .github/workflows
     commit-message:
-      prefix: "ci"
-    rebase-strategy: "auto"
+      prefix: 'ci'
+    rebase-strategy: 'auto'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     open-pull-requests-limit: 0 # security updates only
