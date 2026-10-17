@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.2](https://github.com/dschach/duplicatehandling/compare/duplicatehandling-v2.0.1...duplicatehandling-v2.0.2) (2026-10-17)
+
+
+### Build System
+
+* **highlightjs-apex:** Bump highlightjs-apex from 1.4.0 to 1.5.0 ([#172](https://github.com/dschach/duplicatehandling/issues/172)) ([ff4ecbe](https://github.com/dschach/duplicatehandling/commit/ff4ecbe0bcad1ddb3c6d0e11d6cd374b61f7461a))
+* **lint-staged:** Bump lint-staged from 15.2.10 to 15.2.11 ([#153](https://github.com/dschach/duplicatehandling/issues/153)) ([4752591](https://github.com/dschach/duplicatehandling/commit/475259128225a0c6e7bb384c88ad14df4e7a1f89))
+* **lint-staged:** Bump lint-staged from 15.2.11 to 15.3.0 ([#155](https://github.com/dschach/duplicatehandling/issues/155)) ([41ab438](https://github.com/dschach/duplicatehandling/commit/41ab4386d737893cafcc42b4f070bd76548458ef))
+* **lint-staged:** Bump lint-staged from 15.3.0 to 15.4.1 ([#158](https://github.com/dschach/duplicatehandling/issues/158)) ([ae9120d](https://github.com/dschach/duplicatehandling/commit/ae9120d662c460f00d68a337af991ec80be59281))
+* **marked:** Bump marked from 15.0.3 to 15.0.4 ([#154](https://github.com/dschach/duplicatehandling/issues/154)) ([444145b](https://github.com/dschach/duplicatehandling/commit/444145b19d3cf1d98a833487bf11f45251cc2310))
+* **marked:** Bump marked from 15.0.4 to 15.0.5 ([#156](https://github.com/dschach/duplicatehandling/issues/156)) ([5a7bbee](https://github.com/dschach/duplicatehandling/commit/5a7bbeeb9dbfa728e3b41a909777299a8156f0ec))
+* **marked:** Bump marked from 15.0.5 to 15.0.6 ([#157](https://github.com/dschach/duplicatehandling/issues/157)) ([6ab80d9](https://github.com/dschach/duplicatehandling/commit/6ab80d92464e15727fb772d8ec09b9b79ff88fca))
+* **prettier:** Bump prettier from 3.4.1 to 3.4.2 ([#152](https://github.com/dschach/duplicatehandling/issues/152)) ([b91d310](https://github.com/dschach/duplicatehandling/commit/b91d310f94cde00ac5e527cae18a9fea85817486))
+
+
+### Continuous Integration
+
+* Delete .github/CODEOWNERS ([7f4c24d](https://github.com/dschach/duplicatehandling/commit/7f4c24d52ec4fd414a8e2088606e5b8faae5094d))
+* **dependabot:** Cancel auto-merge ([#159](https://github.com/dschach/duplicatehandling/issues/159)) ([8fbf479](https://github.com/dschach/duplicatehandling/commit/8fbf479286c007150ad41ffaaac4cce5f1aa5b44))
+* **dependabot:** Use the x2od reusable Dependabot workflow ([#201](https://github.com/dschach/duplicatehandling/issues/201)) ([aabf836](https://github.com/dschach/duplicatehandling/commit/aabf836197c918353e381468e8494648cbc129fb))
+
 ## [2.0.1](https://github.com/dschach/duplicatehandling/compare/duplicatehandling-v2.0.0...duplicatehandling-v2.0.1) (2024-03-30)
 
 
