@@ -1,5 +1,39 @@
 # Changelog
 
+## [2.0.2](https://github.com/dschach/duplicatehandling/compare/duplicatehandling-v2.0.1...duplicatehandling-v2.0.2) (2026-10-23)
+
+
+### Miscellaneous Chores
+
+* **renovate:** Use the shared Renovate preset ([e7304b7](https://github.com/dschach/duplicatehandling/commit/e7304b7ee80276de352878a479f636affbc63717))
+
+
+### Build System
+
+* **axios:** Bump axios from 1.7.7 to 1.20.0 ([#204](https://github.com/dschach/duplicatehandling/issues/204)) ([148b678](https://github.com/dschach/duplicatehandling/commit/148b678ae091e971a17a7d29fc0e09d6150a767b))
+* **form-data:** Bump form-data from 4.0.0 to 4.0.6 ([#203](https://github.com/dschach/duplicatehandling/issues/203)) ([f665f8c](https://github.com/dschach/duplicatehandling/commit/f665f8c96d752e253532b8671d5f5cd18d2b1818))
+* **highlightjs-apex:** Bump highlightjs-apex from 1.4.0 to 1.5.0 ([#172](https://github.com/dschach/duplicatehandling/issues/172)) ([ff4ecbe](https://github.com/dschach/duplicatehandling/commit/ff4ecbe0bcad1ddb3c6d0e11d6cd374b61f7461a))
+* **joi:** Bump joi from 17.13.3 to 17.13.8 ([#205](https://github.com/dschach/duplicatehandling/issues/205)) ([b22306a](https://github.com/dschach/duplicatehandling/commit/b22306a1ead6434648decf59a95dc3a81894c481))
+* **lint-staged:** Bump lint-staged from 15.2.10 to 15.2.11 ([#153](https://github.com/dschach/duplicatehandling/issues/153)) ([4752591](https://github.com/dschach/duplicatehandling/commit/475259128225a0c6e7bb384c88ad14df4e7a1f89))
+* **lint-staged:** Bump lint-staged from 15.2.11 to 15.3.0 ([#155](https://github.com/dschach/duplicatehandling/issues/155)) ([41ab438](https://github.com/dschach/duplicatehandling/commit/41ab4386d737893cafcc42b4f070bd76548458ef))
+* **lint-staged:** Bump lint-staged from 15.3.0 to 15.4.1 ([#158](https://github.com/dschach/duplicatehandling/issues/158)) ([ae9120d](https://github.com/dschach/duplicatehandling/commit/ae9120d662c460f00d68a337af991ec80be59281))
+* **lint-staged:** Bump lint-staged from 15.4.1 to 17.6.0 ([#199](https://github.com/dschach/duplicatehandling/issues/199)) ([c05df99](https://github.com/dschach/duplicatehandling/commit/c05df99d873d83ca4dcd971c1faead3ad565a5cd))
+* **lodash:** Bump lodash from 4.17.21 to 4.18.1 ([#207](https://github.com/dschach/duplicatehandling/issues/207)) ([50a3ab9](https://github.com/dschach/duplicatehandling/commit/50a3ab9f45596538ddd5dfa6aea1ea2ba1c8329d))
+* **marked:** Bump marked from 15.0.3 to 15.0.4 ([#154](https://github.com/dschach/duplicatehandling/issues/154)) ([444145b](https://github.com/dschach/duplicatehandling/commit/444145b19d3cf1d98a833487bf11f45251cc2310))
+* **marked:** Bump marked from 15.0.4 to 15.0.5 ([#156](https://github.com/dschach/duplicatehandling/issues/156)) ([5a7bbee](https://github.com/dschach/duplicatehandling/commit/5a7bbeeb9dbfa728e3b41a909777299a8156f0ec))
+* **marked:** Bump marked from 15.0.5 to 15.0.6 ([#157](https://github.com/dschach/duplicatehandling/issues/157)) ([6ab80d9](https://github.com/dschach/duplicatehandling/commit/6ab80d92464e15727fb772d8ec09b9b79ff88fca))
+* **prettier:** Bump prettier from 3.4.1 to 3.4.2 ([#152](https://github.com/dschach/duplicatehandling/issues/152)) ([b91d310](https://github.com/dschach/duplicatehandling/commit/b91d310f94cde00ac5e527cae18a9fea85817486))
+* **prettier:** Bump prettier from 3.4.2 to 3.9.10 ([#177](https://github.com/dschach/duplicatehandling/issues/177)) ([a5e08f5](https://github.com/dschach/duplicatehandling/commit/a5e08f544b961ddef9667cee2d38795b57ec67d1))
+
+
+### Continuous Integration
+
+* Delete .github/CODEOWNERS ([7f4c24d](https://github.com/dschach/duplicatehandling/commit/7f4c24d52ec4fd414a8e2088606e5b8faae5094d))
+* **dependabot:** Cancel auto-merge ([#159](https://github.com/dschach/duplicatehandling/issues/159)) ([8fbf479](https://github.com/dschach/duplicatehandling/commit/8fbf479286c007150ad41ffaaac4cce5f1aa5b44))
+* **dependabot:** Use the x2od reusable Dependabot workflow ([#201](https://github.com/dschach/duplicatehandling/issues/201)) ([aabf836](https://github.com/dschach/duplicatehandling/commit/aabf836197c918353e381468e8494648cbc129fb))
+* **dependabot:** Use the x2od reusable Dependabot workflow ([#202](https://github.com/dschach/duplicatehandling/issues/202)) ([8b18c59](https://github.com/dschach/duplicatehandling/commit/8b18c5916812f3ec641cc1b21cd464b6e45c8563))
+* **workflow security:** Document pull_request_target policy, rename Dependabot workflow ([#206](https://github.com/dschach/duplicatehandling/issues/206)) ([a4552c7](https://github.com/dschach/duplicatehandling/commit/a4552c799f5ad936052b3433c397484245018c52))
+
 ## [2.0.1](https://github.com/dschach/duplicatehandling/compare/duplicatehandling-v2.0.0...duplicatehandling-v2.0.1) (2024-03-30)
 
 
